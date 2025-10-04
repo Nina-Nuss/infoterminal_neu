@@ -201,7 +201,7 @@ header('Access-Control-Allow-Origin: *');
                                                     </div>
                                                     <div class="form-group d-flex justify-content-start align-items-center">
                                                         <i class="fas fa-calendar-day  me-2"></i>Tage:
-                                                        <div id="wochentageContainer" class="d-flex gap-1 align-items-center ms-2">
+                                                        <div id="wochentageContainer" class="d-flex gap-1 align-items-center ms-4">
                                                             <button id="monKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Monday', this)">Mo</button>
                                                             <button id="tueKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Tuesday', this)">Di</button>
                                                             <button id="wedKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Wednesday', this)">Mi</button>
