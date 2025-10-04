@@ -5,7 +5,7 @@ $templates = $data['templates'] ?? [];
 
 $sql = "INSERT INTO templates (fk_schema_id, templateName, typ, inhalt) VALUES (?, ?, ?, ?)";
 foreach ($templates as $template) {
-    $schema_id = $template['fk_schema_id'];
+    $schema_id = $template['id'];
     $templateName = $template['templateName'] ?? 'meow';
     $typ = $template['typ'] ?? 'meow';
     $inhalt = $template['inhalt'] ?? 'meow';

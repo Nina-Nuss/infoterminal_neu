@@ -267,7 +267,7 @@ function isParseableNumber(str) {
     return true;
 };
 async function updateDataBase(cardObj, databaseUrl) {
-    debugger
+
     console.log(cardObj);
     // Erstellen eines FormData-Objekts
     try {

@@ -354,7 +354,7 @@ class Infoseite {
         }
     }
     static async getLastUploadedInfoseite() {
-        debugger
+
         var result = await fetch("../database/selectLastRow.php");
         var data = await result.text();
         return data;
@@ -393,7 +393,7 @@ class Infoseite {
         }
     }
     static async update() {
-        
+
         var delSchema = document.getElementById("deleteSchema")
         console.log("bin in delschema drin");
         if (delSchema != null) {
@@ -583,7 +583,7 @@ class Infoseite {
         }
     }
     static prepareObjForUpdate(obj) {
-        
+
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         console.log(obj);
         // var timerSelect = document.getElementById("timerSelectRange");
@@ -635,14 +635,14 @@ class Infoseite {
             });
         }
         var wochentageStr = cardObj.wochentage; // Beispiel: "monday+tuesday+friday"
-        
+
         let listWochenTage = [];
         listeWochentage = [];
         if (wochentageStr) {
             listWochenTage = wochentageStr.split("+"); // Teilt den String in ein Array auf
         }
         console.log(listWochenTage);
-        
+
 
 
 
@@ -976,7 +976,7 @@ function detectLinkType(link) {
     return null; // Unbekannter Typ
 }
 async function meow(selectedValue) {
-    
+
     let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
@@ -1027,11 +1027,10 @@ async function meow(selectedValue) {
         inhalt = prefix + validLink;
         console.log("Prefixed Link:", inhalt);
     } else if (selectedValue === "temp1") {
-    
+
         alert("diese Option ist noch in Arbeit.");
         return;
     } else if (selectedValue === "tempTest") {
-
         var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
         inhalt = filesData;
         alert("diese Option ist noch in Arbeit.");
@@ -1040,18 +1039,20 @@ async function meow(selectedValue) {
         alert("Unbekannter Typ ausgewählt.");
         return;
     }
-    try { 
+    try {
         debugger
-        // await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
+        await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
         var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
         console.log(lastUploadedInfoseite);
         Template.prepareTemplate.forEach(element => {
+            debugger
             if (element.text) {
-                new Template(lastUploadedInfoseite.id, "", "text", element);
-            }else if (element.imagePath) {
-
+                new Template(lastUploadedInfoseite, "", "text", element.text);
+            } else if (element.imagePath) {
             }
         });
+        console.log(Template.list);
+        await insertTemplate(Template.list);
         Template.resetForm("infoSeiteForm");
         console.log("Infoseite wurde erfolgreich erstellt.");
     } catch (error) {
@@ -1060,25 +1061,21 @@ async function meow(selectedValue) {
     }
 }
 async function insertTemplate(listParams) {
-    try {
-        listParams.forEach(async (param) => {
-            await fetch("../php/insertTemplate.php", {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(param)
-            }).then(response => response.json()).then(data => {
-                console.log("Template eingefügt:", data);
-            }).catch(error => {
-                console.error("Fehler beim Einfügen der Vorlage:", error);
-            });
-        });
-    } catch (error) {
+    debugger
+    await fetch("../database/insertTemplates.php", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ templates: listParams })
+    }).then(response => response.text()).then(data => {
+        console.log("Template eingefügt:", data);
+    }).catch(error => {
         console.error("Fehler beim Einfügen der Vorlage:", error);
-    }
+    });
+    Template.list = [];
 }
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
-    
+
     try {
         const obj1 = new Infoseite(
             "",
@@ -1126,6 +1123,7 @@ function checkTikTokUrl(url) {
     return pattern.test(url);
 }
 function prepareFormData(selectedValue) {
+    Template.prepareTemplate = []
     let formData = null;
     let filesData = null;
     var infoseiteForm = document.getElementById('infoSeiteForm');
@@ -1147,10 +1145,9 @@ function prepareFormData(selectedValue) {
     } else if (selectedValue === "tempTest") {
         var test1 = document.getElementById('test1').value;
         var test2 = document.getElementById('test2').value;
-        filesData = "tempA_" + "testLink?param1=" + test1 + "&param2=" + test2;
-        debugger
-        Template.prepareTemplate.push({ Text: test1 });
-        Template.prepareTemplate.push({ Text: test2 });
+        filesData = "tempA_" + randomNumberGenerator();
+        Template.prepareTemplate.push({ text: test1 });
+        Template.prepareTemplate.push({ text: test2 });
         console.log(Template.prepareTemplate);
     }
     const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
@@ -1159,6 +1156,7 @@ function prepareFormData(selectedValue) {
     const description = formData.get('description');
     return { filesData, selectedTime, aktiv, titel, description };
 }
+
 async function sendDatei(selectedValue) {
     var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue); // Formulardaten vorbereiten
     console.log("Selected Time:", selectedTime);
@@ -1189,7 +1187,6 @@ async function sendDatei(selectedValue) {
     return true;
 }
 async function sendPicture(filesData) {
- 
     try {
         const response = await fetch("../php/movePic.php", {
             method: 'POST',
@@ -1318,7 +1315,7 @@ function erstelleFunktionForCardObj(objID) {
         console.log("moew uwu kabum omi");
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
-      
+
         console.log(obj);
         Infoseite.selectedID = id; // Set the selected ID
         Infoseite.deaktiviereAllElements(false)
@@ -1415,6 +1412,11 @@ function senden(tag, obj) {
         obj.classList.add("btn-primary");
     }
     console.log(listeWochentage);
+}
+
+function randomNumberGenerator() {
+    const randomNumber = Math.floor(Math.random() * 9999) + 1;
+    return String(randomNumber)
 }
 
 window.addEventListener("DOMContentLoaded", function () {

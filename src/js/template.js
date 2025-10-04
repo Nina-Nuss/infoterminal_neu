@@ -30,7 +30,7 @@ class Template {
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
             this.resetAll();
-            debugger
+            
             templatesContainer.innerHTML = Template.imgContainer();
             if (fileInput) {
                 fileInput.disabled = false;
@@ -81,7 +81,6 @@ class Template {
         }
     }
     static imgContainer() {
-        debugger
         Template.imgContainerCount += 1;
         let form = `<form id="dataiContainer" class="form-group">
                     <label for="img" class="form-label">
@@ -215,6 +214,7 @@ class Template {
         document.body.appendChild(video); // Add the new video to the body
     }
     static createVorlageA(id) {
+        debugger
         let listInhalt = [];
         let container = document.createElement('div');
         container.className = "d-flex justify-content-between align-items-center";
@@ -227,11 +227,11 @@ class Template {
             let element = listInhalt[index];
             if (element.typ == "text") {
                 container.innerHTML += `
-                    <h1>${element.typ}</h1>
+                    <h1>${element.inhalt}</h1>
             `;
-            } else if (element.typ == "text") {
+            } else if (element.typ == "image") {
                 container.innerHTML += `
-                    <h1>${element.typ}</h1>
+                    <h1>${element.inhalt}</h1>
             `;
             }
         }
@@ -256,6 +256,7 @@ class Template {
         document.body.appendChild(container);
     }
     static async getIdContent(id) {
+        debugger
         console.log(id);
         let inhalt = await fetch("../database/selectTemplates.php?schema_id=" + id);
         console.log(inhalt);
@@ -331,13 +332,13 @@ if (document.getElementById('inputGroupSelect01')) {
     Template.selectTemplate("img")
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    console.log("DOM vollständig geladen und analysiert");
-    var lastUploaded = await Infoseite.getLastUploadedInfoseite();
-    console.log(lastUploaded);
-    // var cardObj = { imagePath: 'default.jpg', selectedTime: 10000, isAktiv: 1, startTime: null, endTime: null, startDateTime: null, endDateTime: null, timeAktiv: 0, dateAktiv: 0, titel: 'Beispiel Titel', beschreibung: 'Beispiel Beschreibung' };
-    // Infoseite.insertDatabase(cardObj)
-    // templateListen = [{ fk_schema_id: parseInt(lastUploaded), templateName: 't1', typ: 'x', inhalt: '...' }, { fk_schema_id: parseInt(lastUploaded), templateName: 't2', typ: 'y', inhalt: '...' }];
-    // Template.insertTemplateDatas(templateListen);
-});
+// document.addEventListener('DOMContentLoaded', async () => {
+//     console.log("DOM vollständig geladen und analysiert");
+//     var lastUploaded = await Infoseite.getLastUploadedInfoseite();
+//     console.log(lastUploaded);
+//     // var cardObj = { imagePath: 'default.jpg', selectedTime: 10000, isAktiv: 1, startTime: null, endTime: null, startDateTime: null, endDateTime: null, timeAktiv: 0, dateAktiv: 0, titel: 'Beispiel Titel', beschreibung: 'Beispiel Beschreibung' };
+//     // Infoseite.insertDatabase(cardObj)
+//     // templateListen = [{ fk_schema_id: parseInt(lastUploaded), templateName: 't1', typ: 'x', inhalt: '...' }, { fk_schema_id: parseInt(lastUploaded), templateName: 't2', typ: 'y', inhalt: '...' }];
+//     // Template.insertTemplateDatas(templateListen);
+// });
 

@@ -84,16 +84,12 @@ foreach ($relevantSchemas as $rs) {
     }
     
 }
-
-
-
 foreach ($imagesContainer as $schema) {
     // Hier können Sie die Bilder weiterverarbeiten
     $timeIsActive = filter_var($schema[8], FILTER_VALIDATE_BOOLEAN);
     $dateIsActive = filter_var($schema[9], FILTER_VALIDATE_BOOLEAN);
     $timeIsValid = false;
     $dateIsValid = false;
-
     if ($dateIsActive) {
         // Wenn Zeit auch aktiv ist, müssen beide stimmen
         if ($timeIsActive) {
@@ -130,53 +126,7 @@ foreach ($imagesContainer as $schema) {
         }
     }
 }
-// foreach ($images as $image) {
-//     foreach ($schemaList as $schema) {
-//         if ($schema[1] == $image && $schema[3] == true) {
-//             foreach ($relationList as $relation) {
-//                 if ($relation[1] == $id && $relation[2] == $schema[0]) {
-//                     //  Variablen pro Schema initialisieren
-//                     $timeIsActive = filter_var($schema[8], FILTER_VALIDATE_BOOLEAN);
-//                     $dateIsActive = filter_var($schema[9], FILTER_VALIDATE_BOOLEAN);
 
-//                     $timeIsValid = false;
-//                     $dateIsValid = false;
-
-//                     if ($dateIsActive) {
-//                         // Wenn Zeit auch aktiv ist, müssen beide stimmen
-//                         if ($timeIsActive) {
-//                             $timeIsValid = checkTime($schema[4], $schema[5], $timeFormat, $nowTime);
-//                             $dateIsValid = checkTime($schema[6], $schema[7], $dateFormat, $nowDateTime);
-//                             if ($timeIsValid && $dateIsValid) {
-//                                 array_push($imagesContainer, $schema);
-//                             }
-//                         } else {
-//                             // Nur Datum zählt
-//                             $dateIsValid = checkTime($schema[6], $schema[7], $dateFormat, $nowDateTime);
-//                             if ($dateIsValid) {
-//                                 array_push($imagesContainer, $schema);
-//                             }
-//                         }
-//                     } else {
-//                         // Wenn Datum nicht aktiv, prüfe nur Zeit
-//                         if ($timeIsActive) {
-//                             $timeIsValid = checkTime($schema[4], $schema[5], $timeFormat, $nowTime);
-//                             if ($timeIsValid) {
-//                                 array_push($imagesContainer, $schema);
-//                             }
-//                         } else {
-//                             // Weder Zeit noch Datum aktiv: immer anzeigen
-//                             array_push($imagesContainer, $schema);
-//                         }
-//                     }
-//                 }
-//             }
-//         } else if (str_starts_with($schema[1], 'yt_')) {
-//             // Wenn das Schema nicht aktiv ist, aber das Bild vorhanden ist
-
-//         }
-//     }
-// };
 function checkTime($start, $end, $format, $time)
 {
     // echo "  → Prüfe: '$start' bis '$end' (Format: $format), Jetzt: '$time'<br>";
