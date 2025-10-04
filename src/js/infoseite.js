@@ -344,9 +344,7 @@ class Infoseite {
             if (obj.changed && Infoseite.selectedID) {
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
-                    // Hier deine Methode aufrufen, z.B. speichern:
-
-                    await Infoseite.saveChanges(obj);
+                    // Hier deine Methode aufrufen, z.B. speichern
                     await Infoseite.saveChanges(obj);
                 } else {
                     alert("änderungen wurden nicht gespeichert");
@@ -356,6 +354,7 @@ class Infoseite {
         }
     }
     static async getLastUploadedInfoseite() {
+        debugger
         var result = await fetch("../database/selectLastRow.php");
         var data = await result.text();
         return data;
@@ -394,7 +393,7 @@ class Infoseite {
         }
     }
     static async update() {
-        debugger
+        
         var delSchema = document.getElementById("deleteSchema")
         console.log("bin in delschema drin");
         if (delSchema != null) {
@@ -406,7 +405,7 @@ class Infoseite {
         console.log(this.list);
     }
     static async createCardObj() {
-        debugger;
+        ;
         console.log("createCardObj wurde aufgerufen");
         var delSchema = document.getElementById("deleteSchema")
         const response = await readDatabase("selectSchemas");
@@ -463,7 +462,7 @@ class Infoseite {
         }
     }
     static async saveChanges(obj) {
-        debugger;
+        ;
         console.log(obj);
         if (obj != null) {
             obj = findObj(Infoseite.list, obj.id);
@@ -492,7 +491,7 @@ class Infoseite {
     }
     static checkWeekdays(obj) {
 
-        debugger;
+        ;
         let wochentage = "";
         listeWochentage.forEach(element => {
             wochentage += element + "+";
@@ -584,7 +583,7 @@ class Infoseite {
         }
     }
     static prepareObjForUpdate(obj) {
-        debugger
+        
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         console.log(obj);
         // var timerSelect = document.getElementById("timerSelectRange");
@@ -636,14 +635,14 @@ class Infoseite {
             });
         }
         var wochentageStr = cardObj.wochentage; // Beispiel: "monday+tuesday+friday"
-        debugger
+        
         let listWochenTage = [];
         listeWochentage = [];
         if (wochentageStr) {
             listWochenTage = wochentageStr.split("+"); // Teilt den String in ein Array auf
         }
         console.log(listWochenTage);
-        debugger
+        
 
 
 
@@ -977,7 +976,7 @@ function detectLinkType(link) {
     return null; // Unbekannter Typ
 }
 async function meow(selectedValue) {
-    debugger
+    
     let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
@@ -1041,26 +1040,25 @@ async function meow(selectedValue) {
         alert("Unbekannter Typ ausgewählt.");
         return;
     }
-    try {
-        await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
-        var lastUploadedInfoseite = await Infoseite.getLastInsertedInfoseite();
-        console.log(lastUploadedInfoseite.id);
-        
-        // Template.prepareTemplate.forEach(element => {
-        //     if (element.text) {
-        //         new Template(lastUploadedInfoseite.id, "", "text", element);
-        //     }
-        // });
-        // Template.resetForm("infoSeiteForm");
-        // console.log("Infoseite wurde erfolgreich erstellt.");
+    try { 
+        debugger
+        // await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
+        var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
+        console.log(lastUploadedInfoseite);
+        Template.prepareTemplate.forEach(element => {
+            if (element.text) {
+                new Template(lastUploadedInfoseite.id, "", "text", element);
+            }else if (element.imagePath) {
+
+            }
+        });
+        Template.resetForm("infoSeiteForm");
+        console.log("Infoseite wurde erfolgreich erstellt.");
     } catch (error) {
         console.error("Fehler beim Erstellen der Infoseite:", error);
         alert("Fehler beim Erstellen der Infoseite. Bitte versuchen Sie es erneut.");
     }
 }
-
-
-
 async function insertTemplate(listParams) {
     try {
         listParams.forEach(async (param) => {
@@ -1080,7 +1078,7 @@ async function insertTemplate(listParams) {
 }
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
-    debugger
+    
     try {
         const obj1 = new Infoseite(
             "",
@@ -1128,7 +1126,7 @@ function checkTikTokUrl(url) {
     return pattern.test(url);
 }
 function prepareFormData(selectedValue) {
-    debugger;
+
     let formData = null;
     let filesData = null;
     let templates = [];
@@ -1153,7 +1151,10 @@ function prepareFormData(selectedValue) {
         var test1 = document.getElementById('test1').value;
         var test2 = document.getElementById('test2').value;
         filesData = "tempA_" + "testLink?param1=" + test1 + "&param2=" + test2;
-        Template.prepareTemplate.push({ text: test1, text: test2 });
+        debugger
+        Template.prepareTemplate.push({ Text: test1 });
+        Template.prepareTemplate.push({ Text: test2 });
+        console.log(Template.prepareTemplate);
     }
     const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
     const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
@@ -1162,7 +1163,7 @@ function prepareFormData(selectedValue) {
     return { filesData, selectedTime, aktiv, titel, description };
 }
 async function sendDatei(selectedValue) {
-    debugger
+
     var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue); // Formulardaten vorbereiten
     console.log("Selected Time:", selectedTime);
     if (!filesData || selectedTime === "" || aktiv === null || titel === "") {
@@ -1192,7 +1193,7 @@ async function sendDatei(selectedValue) {
     return true;
 }
 async function sendPicture(filesData) {
-    debugger;
+ 
     try {
         const response = await fetch("../php/movePic.php", {
             method: 'POST',
@@ -1321,9 +1322,8 @@ function erstelleFunktionForCardObj(objID) {
         console.log("moew uwu kabum omi");
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
-        debugger
+      
         console.log(obj);
-
         Infoseite.selectedID = id; // Set the selected ID
         Infoseite.deaktiviereAllElements(false)
         Infoseite.loadChanges(obj); // Load changes for the selected Infoseite
@@ -1408,7 +1408,6 @@ function wähleErstesInfoseite() {
             console.error("Erstes Objekt konnte nicht ausgewählt werden.", error);
             titelUmgebung.innerHTML = "<div style='font-weight: bold; font-size: 0.8rem;'>Keine Infoseiten vorhanden</div>";
         }
-
     }
 }
 function senden(tag, obj) {

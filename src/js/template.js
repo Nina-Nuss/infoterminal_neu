@@ -4,6 +4,7 @@ class Template {
     static imgContainerCount = 0;
     static youtubeContainerCount = 0;
     static testContainerCount = 0;
+    static prepareTemplate = [];
     static ccText = 0;
     constructor(id, templateName, typ, inhalt) {
         this.id = id;
@@ -330,13 +331,13 @@ if (document.getElementById('inputGroupSelect01')) {
     Template.selectTemplate("img")
 }
 
-// document.addEventListener('DOMContentLoaded', async () => {
-//     console.log("DOM vollständig geladen und analysiert");
-//     var lastUploaded = await Infoseite.getLastUploadedInfoseite();
-//     console.log(lastUploaded);
-//     // var cardObj = { imagePath: 'default.jpg', selectedTime: 10000, isAktiv: 1, startTime: null, endTime: null, startDateTime: null, endDateTime: null, timeAktiv: 0, dateAktiv: 0, titel: 'Beispiel Titel', beschreibung: 'Beispiel Beschreibung' };
-//     // Infoseite.insertDatabase(cardObj)
-//     // templateListen = [{ fk_schema_id: parseInt(lastUploaded), templateName: 't1', typ: 'x', inhalt: '...' }, { fk_schema_id: parseInt(lastUploaded), templateName: 't2', typ: 'y', inhalt: '...' }];
-//     // Template.insertTemplateDatas(templateListen);
-// });
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("DOM vollständig geladen und analysiert");
+    var lastUploaded = await Infoseite.getLastUploadedInfoseite();
+    console.log(lastUploaded);
+    // var cardObj = { imagePath: 'default.jpg', selectedTime: 10000, isAktiv: 1, startTime: null, endTime: null, startDateTime: null, endDateTime: null, timeAktiv: 0, dateAktiv: 0, titel: 'Beispiel Titel', beschreibung: 'Beispiel Beschreibung' };
+    // Infoseite.insertDatabase(cardObj)
+    // templateListen = [{ fk_schema_id: parseInt(lastUploaded), templateName: 't1', typ: 'x', inhalt: '...' }, { fk_schema_id: parseInt(lastUploaded), templateName: 't2', typ: 'y', inhalt: '...' }];
+    // Template.insertTemplateDatas(templateListen);
+});
 

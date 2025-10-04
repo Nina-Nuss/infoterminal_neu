@@ -27,6 +27,7 @@ header('Access-Control-Allow-Origin: *');
 <body>
     <div style="min-height: 100vh;">
         <?php include '../layout/header.php'; ?>
+
         <?php include '../layout/modal/hinzufuegen.html'; ?>
         <?php include '../layout/modal/addInfoSeite.html'; ?>
         <div>
@@ -181,10 +182,10 @@ header('Access-Control-Allow-Origin: *');
                                                                 aria-label="Sekunden" aria-describedby="addon-wrapping">
                                                         </div> -->
                                                     </div>
-                                                    <div class="form-group mt-3">
+                                                    <div class="form-group mt-3 d-flex justify-content-between">
                                                         <div class="d-flex align-items-center">
-                                                            <label for="openTerminalBtn" class="form-label ">
-                                                                <i class="fas fa-desktop mb-0 me-2"></i>Anzeige:
+                                                            <label for="openTerminalBtn" class="form-label m-0">
+                                                                <i class="fas fa-desktop me-2"></i>Anzeige: 
                                                             </label>
                                                             <select class="form-control form-select-sm" style="width: 140px; margin-left: 0.5rem;"
                                                                 id="infotherminalSelect">
@@ -195,6 +196,19 @@ header('Access-Control-Allow-Origin: *');
                                                                 style="width: 2vw;">
                                                                 <i class="fas fa-external-link-alt"></i>
                                                             </button>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group d-flex justify-content-start align-items-center">
+                                                        <i class="fas fa-calendar-day  me-2"></i>Tage:
+                                                        <div id="wochentageContainer" class="d-flex gap-1 align-items-center ms-2">
+                                                            <button id="monKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Monday', this)">Mo</button>
+                                                            <button id="tueKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Tuesday', this)">Di</button>
+                                                            <button id="wedKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Wednesday', this)">Mi</button>
+                                                            <button id="thuKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Thursday', this)">Do</button>
+                                                            <button id="friKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Friday', this)">Fr</button>
+                                                            <button id="satKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Saturday', this)">Sa</button>
+                                                            <button id="sunKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Sunday', this)">So</button>
                                                         </div>
                                                     </div>
                                                     <div id="zeitspannePanel"
@@ -226,17 +240,7 @@ header('Access-Control-Allow-Origin: *');
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="d-flex flex-column align-items-center mt-2">
-                                                        <div id="wochentageContainer" class="d-flex gap-1  w-75 justify-content-center">
-                                                            <button id="monKonf" class="btn border" onclick="senden('Monday', this)">Mo</button>
-                                                            <button id="tueKonf" class="btn border" onclick="senden('Tuesday', this)">Di</button>
-                                                            <button id="wedKonf" class="btn border" onclick="senden('Wednesday', this)">Mi</button>
-                                                            <button id="thuKonf" class="btn border" onclick="senden('Thursday', this)">Do</button>
-                                                            <button id="friKonf" class="btn border" onclick="senden('Friday', this)">Fr</button>
-                                                            <button id="satKonf" class="btn border" onclick="senden('Saturday', this)">Sa</button>
-                                                            <button id="sunKonf" class="btn border" onclick="senden('Sunday', this)">So</button>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -246,7 +250,7 @@ header('Access-Control-Allow-Origin: *');
                             <div class="" id="bildschirmVerwaltung" style="min-height: 170px;">
                                 <div class="card h-100">
                                     <div class="card-header p-2">
-                                        <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm verwalten</h6>
+                                        <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirme verwalten</h6>
                                     </div>
                                     <div class="card-body d-flex">
                                         <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
