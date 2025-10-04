@@ -282,6 +282,7 @@ class Template {
             console.log(key[2]);
             new Template(key[1], key[2], key[3], key[4]);
         }
+        return response[0][1];
     }
     static async insertTemplateDatas(templateListen) {
         fetch('../database/insertTemplates.php', {

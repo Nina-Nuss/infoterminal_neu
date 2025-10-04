@@ -116,8 +116,8 @@
                     Template.createYoutubeVid(template);
                 } else if (template.includes('tempA_')) {
                     debugger
-                    await Template.getviaPathContent(template);
-                    Template.createVorlageA(template);
+                    let id = await Template.getviaPathContent(template);
+                    Template.createVorlageA(id);
                 }
                 return;
             }

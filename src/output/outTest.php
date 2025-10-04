@@ -3,10 +3,12 @@
 </head>
 
 <script>
+    debugger
     const params = new URLSearchParams(window.location.search);
     const template = params.get('template');
     console.log(Template.list);
     async function loadTemplate(template) {
+        debugger
         if (template) {
             console.log("Template geladen");
             if (template.includes('img_')) {
