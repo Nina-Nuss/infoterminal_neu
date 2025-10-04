@@ -42,7 +42,6 @@ class Template {
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
             templatesContainer.innerHTML += Template.imgContainer();
-          
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();
@@ -51,6 +50,7 @@ class Template {
     }
     static resetAll() {
         let previewContainer = document.getElementById('previewContainer');
+
         let idsTwo = ["imgPreview", "videoPreview"];
         let idsOne = ["img", "youtubeUrl", "start", "end", "title", "description", "inputContainer", "imageContainer"];
         idsOne.forEach(id => {

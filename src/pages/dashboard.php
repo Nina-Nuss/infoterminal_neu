@@ -33,7 +33,7 @@ header('Access-Control-Allow-Origin: *');
         <div>
             <div class="container-fluid pt-3">
                 <div class="d-flex justify-content-center" style="height:90vh;">
-                    <div style="">
+                    <div style="width: 300px;">
                         <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
                     </div>
                     <div class="text-center">
@@ -281,6 +281,7 @@ header('Access-Control-Allow-Origin: *');
                                         <div class="w-100 overflow-auto border rounded-3">
                                             <div style=" width: 210px; max-height: 168px; overflow-y: auto;">
                                                 <table class="table table-hover w-100 mb-0 p-0">
+                                                   
                                                     <tbody id="tabelleDelete">
                                                         <!-- Tabellenzeilen hier -->
                                                     </tbody>
