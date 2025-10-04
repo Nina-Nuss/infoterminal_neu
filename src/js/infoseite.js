@@ -344,7 +344,7 @@ class Infoseite {
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
                     // Hier deine Methode aufrufen, z.B. speichern:
-                    
+
                     await Infoseite.saveChanges(obj);
                     await Infoseite.saveChanges(obj);
                 } else {
@@ -490,7 +490,7 @@ class Infoseite {
         }
     }
     static checkWeekdays(obj) {
-        
+
         debugger;
         let wochentage = "";
         listeWochentage.forEach(element => {
@@ -629,7 +629,7 @@ class Infoseite {
         var ytEnd = document.getElementById("endyt");
         var wochentageContainer = document.getElementById("wochentageContainer");
         if (wochentageContainer) {
-            var tage  = wochentageContainer.querySelectorAll('button');
+            var tage = wochentageContainer.querySelectorAll('button');
             tage.forEach(tag => {
                 tag.classList.remove("btn-primary");
             });
@@ -643,29 +643,29 @@ class Infoseite {
         }
         console.log(listWochenTage);
         debugger
-        
+
 
 
         listWochenTage.forEach(tag => {
-            if(tag == "Monday"){
+            if (tag == "Monday") {
                 document.getElementById("monKonf").classList.add("btn-primary");
                 listeWochentage.push("Monday");
-            }else if(tag == "Tuesday"){
+            } else if (tag == "Tuesday") {
                 document.getElementById("tueKonf").classList.add("btn-primary");
                 listeWochentage.push("Tuesday");
-            }else if(tag == "Wednesday"){
+            } else if (tag == "Wednesday") {
                 document.getElementById("wedKonf").classList.add("btn-primary");
                 listeWochentage.push("Wednesday");
-            }else if(tag == "Thursday"){
+            } else if (tag == "Thursday") {
                 document.getElementById("thuKonf").classList.add("btn-primary");
                 listeWochentage.push("Thursday");
-            }else if(tag == "Friday"){
+            } else if (tag == "Friday") {
                 document.getElementById("friKonf").classList.add("btn-primary");
                 listeWochentage.push("Friday");
-            }else if(tag == "Saturday"){
+            } else if (tag == "Saturday") {
                 document.getElementById("satKonf").classList.add("btn-primary");
                 listeWochentage.push("Saturday");
-            }else if(tag == "Sunday"){
+            } else if (tag == "Sunday") {
                 document.getElementById("sunKonf").classList.add("btn-primary");
                 listeWochentage.push("Sunday");
             }
@@ -975,8 +975,9 @@ function detectLinkType(link) {
     if (checkTikTokUrl(link)) return "tiktok";
     return null; // Unbekannter Typ
 }
-async function meow(selectedValue, liste) {
+async function meow(selectedValue) {
     debugger
+    let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
         const result = await sendDatei(selectedValue);
@@ -989,14 +990,14 @@ async function meow(selectedValue, liste) {
     } else if (selectedValue === "yt") {
         var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
         console.log("Selected Value:", selectedValue);
-        console.log("Link:", liste[0]);
-        console.log("Start:", liste[1]);
-        console.log("End:", liste[2]);
+        var yt = document.getElementById('youtubeUrl').value;
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
         let validLink = "";
         let prefix = "";
-        var link = liste[0];
-        var start = Number(liste[1]);
-        var end = Number(liste[2]);
+        var link = yt;
+        var start = Number(start);
+        var end = Number(end);
         if (isNaN(start) || isNaN(end)) {
             alert("Start- und Endzeit müssen Zahlen sein.");
             return;
@@ -1023,23 +1024,24 @@ async function meow(selectedValue, liste) {
         }
         prefix = linkType + "_"; // z.B. "yt_", "tiktok_"
         console.log("Valid Link:", validLink);
-        var prefixedLink = prefix + validLink;
-        console.log("Prefixed Link:", prefixedLink);
+        inhalt = prefix + validLink;
+        console.log("Prefixed Link:", inhalt);
     } else if (selectedValue === "temp1") {
         alert("diese Option ist noch in Arbeit.");
         return;
     } else if (selectedValue === "tempTest") {
-        var test1 = liste[0];
-        var test2 = liste[1];
+        var test1 = document.getElementById('test1').value;
+        var test2 = document.getElementById('test2').value;
+        var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
+        inhalt = filesData;
         alert("diese Option ist noch in Arbeit.");
     } else {
         const result = await sendDatei();
         alert("Unbekannter Typ ausgewählt.");
         return;
     }
-    // Gemeinsame Logik für Links
     try {
-        await createInfoseiteObj(prefixedLink, selectedTime, aktiv, titel, description);
+        await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
         Template.resetForm("infoSeiteForm");
         console.log("Infoseite wurde erfolgreich erstellt.");
     } catch (error) {
@@ -1098,11 +1100,12 @@ function checkTikTokUrl(url) {
 function prepareFormData(selectedValue) {
     debugger;
     let formData = null;
+    let filesData = null;
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
-    filesData = new FormData();
     console.log(formData.get('youtubeUrl'));
     if (selectedValue === "img") {
+        filesData = new FormData();
         let files = infoseiteForm.querySelectorAll('input[type="file"]')[0].files;
         console.log(files);
         if (!files || files.length === 0) {
@@ -1115,6 +1118,10 @@ function prepareFormData(selectedValue) {
         }
     } else if (selectedValue === "yt") {
         filesData = formData.get('youtubeUrl');
+    } else if (selectedValue === "tempTest") {
+        var test1 = document.getElementById('test1').value;
+        var test2 = document.getElementById('test2').value;
+        filesData = "tempA_" + "testLink?param1=" + test1 + "&param2=" + test2;
     }
     const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
     const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
@@ -1284,7 +1291,7 @@ function erstelleFunktionForCardObj(objID) {
         var obj = findObj(Infoseite.list, id);
         debugger
         console.log(obj);
-        
+
         Infoseite.selectedID = id; // Set the selected ID
         Infoseite.deaktiviereAllElements(false)
         Infoseite.loadChanges(obj); // Load changes for the selected Infoseite

@@ -3,6 +3,7 @@ class Template {
     static testAnzeige = []
     static imgContainerCount = 0;
     static youtubeContainerCount = 0;
+    static testContainerCount = 0;
     static ccText = 0;
     constructor(id, templateName, typ, inhalt) {
         this.id = id;
@@ -19,7 +20,6 @@ class Template {
         var Youtube = document.getElementById('YoutubeContainer');
         if (!inputGroupSelect01) return;
         var selectedValue = template;
-
         if (selectedValue === 'yt') {
             this.resetAll();
             templatesContainer.innerHTML = Template.youtubeContainer();
@@ -38,12 +38,12 @@ class Template {
             if (ytInput) {
                 ytInput.disabled = true; // optional
             }
-
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();
+            templatesContainer.innerHTML = Template.testContainer();
         }
     }
     static resetAll() {
@@ -129,8 +129,23 @@ class Template {
                     </div>`;
         return youtubeForm;
     }
-
-
+    static testContainer(){
+        Template.testContainerCount += 1;
+        let testForm = `
+       <div id="tempTest" class="d-flex justify-content-evenly align-items-center form-group">
+                            <div>
+                                <label for="test1">Text Links</label>
+                                <input type="text" class="form-control" style="width: 200px;" id="test1" name="test1"
+                                    placeholder="Titel">
+                            </div>
+                            <div>
+                                <label for="test2">Text Rechts:</label>
+                                <input type="text" class="form-control" style="width: 200px;" id="test2" name="test2"
+                                    placeholder="Inhalt">
+                            </div>
+                        </div>`;
+        return testForm;
+    }
     static createPic(element) {
         const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;

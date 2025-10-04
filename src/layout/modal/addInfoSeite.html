@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
                         <button  type="button" class="btn btn-success shadow-sm"
-                            onclick="meow(selectItem.value, getList())">
+                            onclick="meow(selectItem.value)">
                             <i class="fas fa-plus me-2"></i> Hinzufügen
                         </button>
                     </div>
@@ -49,18 +49,7 @@
                                 <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
                             </label>
                         </div>
-                        <div id="tempTest" class="d-flex justify-content-between align-items-center hidden form-group">
-                            <div>
-                                <label for="test1">Text Links</label>
-                                <input type="text" class="form-control" style="width: 200px;" id="test1" name="test1"
-                                    placeholder="Titel">
-                            </div>
-                            <div>
-                                <label for="test2">Text Rechts:</label>
-                                <input type="text" class="form-control" style="width: 200px;" id="test2" name="test2"
-                                    placeholder="Inhalt">
-                            </div>
-                        </div>
+                       
                         <div id="tempSnackbar" class="hidden form-group">
                             <label for="test1">Kopfzeile:</label>
                             <input type="text" class="form-control" id="test5" name="test5" placeholder="Titel">
@@ -148,9 +137,11 @@
         } else if (selectedValue === 'tempSnackbar') {
             Template.selectTemplate('tempSnackbar');
         } else if (selectedValue === 'tempTest') {
+            Template.selectTemplate('tempTest');
+            
         }
     });
-   
+  
     window.addEventListener("load", async function () {
         const templatebereich = document.getElementById("templateBereich");
         if (templatebereich !== null) {
@@ -159,24 +150,6 @@
             });
         }
     });
-    function getList() {
-        if (selectItem.value == "yt") {
-            yt = document.getElementById('youtubeUrl').value;
-            start = document.getElementById('start').value;
-            end = document.getElementById('end').value;
-            return [yt, start, end];
-        } else if (selectItem.value == "img") {
-    
-        } else if (selectItem.value == "tempTest") {
-            var test1 = document.getElementById('test1').value;
-            var test2 = document.getElementById('test2').value;
-            return [test1, test2];
-        } else if (selectItem.value == "tempSnackbar") {
-            var test5 = document.getElementById('test5');
-            var test6 = document.getElementById('test6');
-            return [test5, test6];
-        }
-    }
     document.addEventListener('DOMContentLoaded', function () {
         const selectItem = document.getElementById('inputGroupSelect01');
         selectItem.value = 'img'; // setzt auf Bild
