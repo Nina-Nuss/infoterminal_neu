@@ -88,7 +88,7 @@
 
     // Initial laden + alle 5 Minuten aktualisieren (5 * 60 * 1000 ms)
     getWeather();
-    setInterval(getWeather, 0.1 * 60 * 1000);
+    setInterval(getWeather, 5 * 60 * 1000);
 </script>
 
 

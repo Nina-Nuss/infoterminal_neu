@@ -270,6 +270,19 @@ class Template {
             new Template(key[1], key[2], key[3], key[4]);
         }
     }
+    static async getviaPathContent(path) {
+        debugger
+        console.log(path);
+        let inhalt = await fetch("../database/getTemplateViaSchema.php?imagePath=" + path);
+        console.log(inhalt);
+        let response = await inhalt.json();
+        console.log("Response:", response);
+        console.log(response);
+        for (const key of response) {
+            console.log(key[2]);
+            new Template(key[1], key[2], key[3], key[4]);
+        }
+    }
     static async insertTemplateDatas(templateListen) {
         fetch('../database/insertTemplates.php', {
             method: 'POST',

@@ -3,7 +3,7 @@ ob_start();
 include '../database/selectSchemas.php';
 include '../../config/php/connection.php';
 ob_clean();
-$path = $_GET['imagePath'] ?? 'tempA_6516';
+$path = $_GET['imagePath'];
 
 foreach ($schemaList1 as $schema) {
     if ($schema[1] === $path) {
@@ -12,6 +12,9 @@ foreach ($schemaList1 as $schema) {
     }
 }
 
+if(!isset($schema_id)) {
+    die("Fehler: Schema-ID konnte nicht ermittelt werden.");
+}
 
 $sql2 = "SELECT templates.* FROM schemas 
             RIGHT JOIN templates ON templates.fk_schema_id = schemas.id
@@ -33,6 +36,5 @@ while ($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
     ));
 }
 sqlsrv_free_stmt($result2);
-
 $templatesListJson = json_encode($templatesList);
 echo $templatesListJson;

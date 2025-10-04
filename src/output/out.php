@@ -116,15 +116,8 @@
                     Template.createYoutubeVid(template);
                 } else if (template.includes('tempA_')) {
                     debugger
-                    let parts = template.split('tempA_');
-                    console.log(parts[1]);
-                    await Template.getIdContent(parts[1]);
-                    Template.createVorlageA(parts[1]);
-                } else if (template.includes('tempB_')) {
-                    let parts = template.split('tempB_');
-                    console.log(parts[1]);
-                    await Template.getIdContent(parts[1]);
-                    Template.createVorlageB(parts[1]);
+                    await Template.getviaPathContent(template);
+                    Template.createVorlageA(template);
                 }
                 return;
             }
