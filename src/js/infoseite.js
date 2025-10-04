@@ -113,7 +113,7 @@ class Infoseite {
 
         if (imagePath.startsWith('temp')) {
             console.log(imagePath);
-            return placeHolder = `<iframe class="card-img-small" src="../output/outTest.php?template=${imagePath}"  alt="Bild" onerror="this.onerror=null; this.src=''"></iframe>`;
+            return placeHolder = `<iframe class="w-100 card-img-small" style="pointer-events: none; overflow: hidden;" scrolling="no" src="../output/out.php?template=${imagePath}" alt="Bild" onerror="this.onerror=null; this.src=''" allowfullscreen></iframe>`;
         }
 
         console.log(ext);

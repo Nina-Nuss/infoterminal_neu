@@ -217,7 +217,7 @@ class Template {
         debugger
         let listInhalt = [];
         let container = document.createElement('div');
-        container.className = "d-flex justify-content-between align-items-center";
+        container.className = "d-flex justify-content-evenly align-items-center";
         for (let index = 0; index < Template.list.length; index++) {
             if (Template.list[index].id == id) {
                 listInhalt.push(Template.list[index]);
@@ -225,9 +225,14 @@ class Template {
         }
         for (let index = 0; index < listInhalt.length; index++) {
             let element = listInhalt[index];
-            if (element.typ == "text") {
+            if (element.typ == "text" && index === 0) {
                 container.innerHTML += `
-                    <h1>${element.inhalt}</h1>
+                    <h3>Text Links: ${element.inhalt}</h3>
+            `;
+            }
+            else if (element.typ == "text" && index === 1) {
+                container.innerHTML += `
+                    <h3>Text Rechts: ${element.inhalt}</h3>
             `;
             } else if (element.typ == "image") {
                 container.innerHTML += `
