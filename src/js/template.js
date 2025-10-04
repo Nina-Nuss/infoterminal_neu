@@ -30,7 +30,7 @@ class Template {
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
             this.resetAll();
-            
+
             templatesContainer.innerHTML = Template.imgContainer();
             if (fileInput) {
                 fileInput.disabled = false;
@@ -41,6 +41,11 @@ class Template {
             }
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
+            templatesContainer.innerHTML += Template.imgContainer();
+            templatesContainer.innerHTML += Template.imgContainer();
+           
+
+    
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();
@@ -83,21 +88,21 @@ class Template {
     static imgContainer() {
         Template.imgContainerCount += 1;
         let form = `<form id="dataiContainer" class="form-group">
-                    <label for="img" class="form-label">
-                        <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
-                    </label>
-                    <div id="previewContainer" style="display:none; margin-bottom:10px;">
-                        <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
-                            style="max-width:100%; max-height:200px;">
-                        <video id="videoPreview" controls muted name="videoPreview"
-                            style="max-width:100%; max-height:200px;">
-                            <source src="#" type="video/mp4">
-                            Ihr Browser unterstützt das Video-Element nicht.
-                        </video>
-                    </div>
-                    <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
-                        onchange="Template.previewFile('single', this, event, document.getElementById('previewContainer'), document.getElementById('imgPreview'), document.getElementById('videoPreview'));" >
-                    </form>
+                        <label for="img" class="form-label">
+                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+                        </label>
+
+                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
+                            onchange="Template.previewFile('single', this, event, ${Template.imgContainerCount});" >
+                        <div id="previewContainer${Template.imgContainerCount}" style="display:none; margin-bottom:10px;">
+                            <img id="imgPreview${Template.imgContainerCount}" src="#" alt="Bild-Vorschau" name="imgPreview"
+                                style="max-width:100%; max-height:200px;">
+                            <video id="videoPreview${Template.imgContainerCount}" controls muted name="videoPreview"
+                                style="max-width:100%; max-height:200px;">
+                                <source src="#" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Element nicht.
+                            </video>
+                        </div>
                     </form>
                     `
             ;
@@ -129,22 +134,62 @@ class Template {
                     </div>`;
         return youtubeForm;
     }
-    static testContainer(){
+    static testContainer() {
         Template.testContainerCount += 1;
         let testForm = `
-       <div id="tempTest" class="d-flex justify-content-evenly align-items-center form-group">
-                            <div>
-                                <label for="test1">Text Links</label>
-                                <input type="text" class="form-control" style="width: 200px;" id="test1" name="test1"
-                                    placeholder="Titel">
-                            </div>
-                            <div>
-                                <label for="test2">Text Rechts:</label>
-                                <input type="text" class="form-control" style="width: 200px;" id="test2" name="test2"
-                                    placeholder="Inhalt">
-                            </div>
-                        </div>`;
+      <form id="dataiContainer" class="form-group">
+                        <label for="img" class="form-label">
+                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+                        </label>
+
+                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
+                            onchange="Template.previewFile('single', this, event)" >
+                        <div id="previewContainer" style="display:none; margin-bottom:10px;">
+                            <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
+                                style="max-width:100%; max-height:200px;">
+                            <video id="videoPreview" controls muted name="videoPreview"
+                                style="max-width:100%; max-height:200px;">
+                                <source src="#" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Element nicht.
+                            </video>
+                        </div>
+                          <label for="img" class="form-label">
+                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+                        </label>
+
+                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
+                            onchange="Template.previewFile('single', this, event)" >
+                        <div id="previewContainer" style="display:none; margin-bottom:10px;">
+                            <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
+                                style="max-width:100%; max-height:200px;">
+                            <video id="videoPreview" controls muted name="videoPreview"
+                                style="max-width:100%; max-height:200px;">
+                                <source src="#" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Element nicht.
+                            </video>
+                        </div>
+                    </form>`;
         return testForm;
+    }
+    static snackbarContainer() {
+        let snackbarForm = `
+       <label for="img" class="form-label">
+                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+                        </label>
+                    
+                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
+                            onchange="Template.previewFile('single', this, event)" >
+                        <div id="previewContainer" style="display:none; margin-bottom:10px;">
+                            <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
+                                style="max-width:100%; max-height:200px;">
+                            <video id="videoPreview" controls muted name="videoPreview"
+                                style="max-width:100%; max-height:200px;">
+                                <source src="#" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Element nicht.
+                            </video>
+                        </div>
+    `;
+        return snackbarForm;
     }
     static createPic(element) {
         const img = document.createElement('img');
@@ -303,7 +348,11 @@ class Template {
             console.error("Fehler beim Einfügen der Templates:", error);
         });
     }
-    static previewFile(type, input, event, previewContainer, imagePreview, videoPreview) {
+    static previewFile(type, input, event, id) {
+        var previewContainer = document.getElementById('previewContainer' + id);
+        var imagePreview = document.getElementById('imgPreview' + id);
+        var videoPreview = document.getElementById('videoPreview' + id);
+        var container = "imageContainer"; // ID des Containers, in den die Bilder eingefügt werden sollen
         if (type == null) {
             return;
         }
