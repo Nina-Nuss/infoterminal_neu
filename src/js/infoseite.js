@@ -1126,13 +1126,10 @@ function checkTikTokUrl(url) {
     return pattern.test(url);
 }
 function prepareFormData(selectedValue) {
-
     let formData = null;
     let filesData = null;
-    let templates = [];
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
-    console.log(formData.get('youtubeUrl'));
     if (selectedValue === "img") {
         filesData = new FormData();
         let files = infoseiteForm.querySelectorAll('input[type="file"]')[0].files;
@@ -1163,7 +1160,6 @@ function prepareFormData(selectedValue) {
     return { filesData, selectedTime, aktiv, titel, description };
 }
 async function sendDatei(selectedValue) {
-
     var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue); // Formulardaten vorbereiten
     console.log("Selected Time:", selectedTime);
     if (!filesData || selectedTime === "" || aktiv === null || titel === "") {
