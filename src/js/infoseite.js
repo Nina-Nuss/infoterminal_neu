@@ -7,6 +7,7 @@ class Infoseite {
     static eleListe = []
     static list = [];
     static selectedHistorys = [];
+    static prepareTemplate = [];
     static checkAllowed = false; // Variable to control checkbox behavior
     constructor(id, imagePath, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, wochentage, beschreibung) {
         this.id = id;
@@ -1027,11 +1028,11 @@ async function meow(selectedValue) {
         inhalt = prefix + validLink;
         console.log("Prefixed Link:", inhalt);
     } else if (selectedValue === "temp1") {
+    
         alert("diese Option ist noch in Arbeit.");
         return;
     } else if (selectedValue === "tempTest") {
-        var test1 = document.getElementById('test1').value;
-        var test2 = document.getElementById('test2').value;
+
         var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
         inhalt = filesData;
         alert("diese Option ist noch in Arbeit.");
@@ -1042,13 +1043,42 @@ async function meow(selectedValue) {
     }
     try {
         await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
-        Template.resetForm("infoSeiteForm");
-        console.log("Infoseite wurde erfolgreich erstellt.");
+        var lastUploadedInfoseite = await Infoseite.getLastInsertedInfoseite();
+        console.log(lastUploadedInfoseite.id);
+        
+        // Template.prepareTemplate.forEach(element => {
+        //     if (element.text) {
+        //         new Template(lastUploadedInfoseite.id, "", "text", element);
+        //     }
+        // });
+        // Template.resetForm("infoSeiteForm");
+        // console.log("Infoseite wurde erfolgreich erstellt.");
     } catch (error) {
         console.error("Fehler beim Erstellen der Infoseite:", error);
         alert("Fehler beim Erstellen der Infoseite. Bitte versuchen Sie es erneut.");
     }
 }
+
+
+
+async function insertTemplate(listParams) {
+    try {
+        listParams.forEach(async (param) => {
+            await fetch("../php/insertTemplate.php", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(param)
+            }).then(response => response.json()).then(data => {
+                console.log("Template eingefügt:", data);
+            }).catch(error => {
+                console.error("Fehler beim Einfügen der Vorlage:", error);
+            });
+        });
+    } catch (error) {
+        console.error("Fehler beim Einfügen der Vorlage:", error);
+    }
+}
+
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
     debugger
     try {
@@ -1101,6 +1131,7 @@ function prepareFormData(selectedValue) {
     debugger;
     let formData = null;
     let filesData = null;
+    let templates = [];
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
     console.log(formData.get('youtubeUrl'));
@@ -1122,6 +1153,7 @@ function prepareFormData(selectedValue) {
         var test1 = document.getElementById('test1').value;
         var test2 = document.getElementById('test2').value;
         filesData = "tempA_" + "testLink?param1=" + test1 + "&param2=" + test2;
+        Template.prepareTemplate.push({ text: test1, text: test2 });
     }
     const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
     const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
@@ -1379,9 +1411,6 @@ function wähleErstesInfoseite() {
 
     }
 }
-
-
-
 function senden(tag, obj) {
     if (listeWochentage.includes(tag)) {
         listeWochentage.splice(listeWochentage.indexOf(tag), 1);
@@ -1392,8 +1421,6 @@ function senden(tag, obj) {
     }
     console.log(listeWochentage);
 }
-
-
 
 window.addEventListener("DOMContentLoaded", function () {
     const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
