@@ -27,7 +27,6 @@ header('Access-Control-Allow-Origin: *');
 <body>
     <div style="min-height: 100vh;">
         <?php include '../layout/header.php'; ?>
-
         <?php include '../layout/modal/hinzufuegen.html'; ?>
         <?php include '../layout/modal/addInfoSeite.html'; ?>
         <div>

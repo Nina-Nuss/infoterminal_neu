@@ -31,7 +31,6 @@ class Template {
         } else if (selectedValue === 'img') {
             this.resetAll();
             templatesContainer.innerHTML += Template.imgContainer();
-            templatesContainer.innerHTML += Template.imgContainer();
             if (fileInput) {
                 fileInput.disabled = false;
                 fileInput.value = '';
@@ -46,6 +45,7 @@ class Template {
         else if (selectedValue === 'tempTest') {
             this.resetAll();
             templatesContainer.innerHTML = Template.testContainer();
+
         }
     }
     static resetAll() {
@@ -122,38 +122,24 @@ class Template {
     static testContainer() {
         Template.testContainerCount += 1;
         let testForm = `
-      <form id="dataiContainer" class="form-group">
-                        <label for="img" class="form-label">
-                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+      <form id="dataiContainer" class="form-group ">
+                <div class="d-flex justify-content-evenly align-items-center">
+                    <div class="me-3 w-25">
+                        <label for="text${Template.testContainerCount}" class="form-label">
+                            <i class="fas fa-font me-2"></i> Text Links: <span style="color:red">*</span>
                         </label>
-
-                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
-                            onchange="Template.previewFile('single', this, event)" >
-                        <div id="previewContainer" style="display:none; margin-bottom:10px;">
-                            <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
-                                style="max-width:100%; max-height:200px;">
-                            <video id="videoPreview" controls muted name="videoPreview"
-                                style="max-width:100%; max-height:200px;">
-                                <source src="#" type="video/mp4">
-                                Ihr Browser unterstützt das Video-Element nicht.
-                            </video>
-                        </div>
-                          <label for="img" class="form-label">
-                            <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="text${Template.testContainerCount}" name="text${Template.testContainerCount}"
+                            placeholder="" >
+                    </div>
+                    <div class="ms-3 w-25">
+                        <label for="text${Template.testContainerCount + 1}" class="form-label">
+                            <i class="fas fa-font me-2"></i> Text Rechts: <span style="color:red">*</span>
                         </label>
-
-                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
-                            onchange="Template.previewFile('single', this, event)" >
-                        <div id="previewContainer" style="display:none; margin-bottom:10px;">
-                            <img id="imgPreview" src="#" alt="Bild-Vorschau" name="imgPreview"
-                                style="max-width:100%; max-height:200px;">
-                            <video id="videoPreview" controls muted name="videoPreview"
-                                style="max-width:100%; max-height:200px;">
-                                <source src="#" type="video/mp4">
-                                Ihr Browser unterstützt das Video-Element nicht.
-                            </video>
-                        </div>
-                    </form>`;
+                        <input type="text" class="form-control" id="text${Template.testContainerCount + 1}" name="text${Template.testContainerCount + 1}"
+                            placeholder="" >
+                    </div>
+                  </div>
+        </form>`;
         return testForm;
     }
     static snackbarContainer() {
@@ -304,7 +290,7 @@ class Template {
         }
     }
     static async getviaPathContent(path) {
-        
+        debugger
         console.log(path);
         let inhalt = await fetch("../database/getTemplateViaSchema.php?imagePath=" + path);
         console.log(inhalt);

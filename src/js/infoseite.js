@@ -265,8 +265,6 @@ class Infoseite {
         }
 
     }
-
-
     static async deleteCardObj() {
         const confirmed = confirm("Sind Sie sicher, dass Sie die Infoseite löschen möchten?");
         if (!confirmed) {
@@ -278,7 +276,6 @@ class Infoseite {
 
         wähleErstesInfoseite();
     }
-
     static async removeFromListLogik() {
         // DIese Methode wird aufgerufen sobald wir auf Minus (-) klicken
         // Hier benötigen wir die Aktuellen IDS der Datenbank zum löschen
@@ -1044,7 +1041,6 @@ async function meow(selectedValue) {
         var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
         console.log(lastUploadedInfoseite);
         Template.prepareTemplate.forEach(element => {
-
             if (element.text) {
                 new Template(lastUploadedInfoseite, "", "text", element.text);
             } else if (element.imagePath) {
@@ -1122,6 +1118,7 @@ function checkTikTokUrl(url) {
     return pattern.test(url);
 }
 function prepareFormData(selectedValue) {
+    debugger
     Template.prepareTemplate = []
     let formData = null;
     let filesData = null;
@@ -1137,7 +1134,6 @@ function prepareFormData(selectedValue) {
             return;
         }
         let totalFiles = 0;
-
         // Durch alle File-Inputs iterieren
         for (let i = 0; i < files.length; i++) {
             const element = files[i];
@@ -1159,8 +1155,8 @@ function prepareFormData(selectedValue) {
     } else if (selectedValue === "yt") {
         filesData = formData.get('youtubeUrl');
     } else if (selectedValue === "tempTest") {
-        var test1 = document.getElementById('test1').value;
-        var test2 = document.getElementById('test2').value;
+        var test1 = document.getElementById('text1').value;
+        var test2 = document.getElementById('text2').value;
         filesData = "tempA_" + randomNumberGenerator();
         Template.prepareTemplate.push({ text: test1 });
         Template.prepareTemplate.push({ text: test2 });
