@@ -152,7 +152,7 @@
                 const response = await inhalt.json();
                 console.log(response);
                 for (const key of response) {
-                    console.log(key[2]);
+              
                     new Template(key[1], key[2], key[3], key[4]);
                 }
             }

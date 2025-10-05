@@ -307,13 +307,11 @@ class Template {
         console.log(id);
         let inhalt = await fetch("../database/selectTemplates.php?schema_id=" + id);
         console.log(inhalt);
-
         let response = await inhalt.json();
         console.log("Response:", response);
-
         console.log(response);
         for (const key of response) {
-            console.log(key[2]);
+          
             new Template(key[1], key[2], key[3], key[4]);
         }
     }
@@ -326,7 +324,7 @@ class Template {
         console.log("Response:", response);
         console.log(response);
         for (const key of response) {
-            console.log(key[2]);
+         
             new Template(key[1], key[2], key[3], key[4]);
         }
         return response[0][1];
