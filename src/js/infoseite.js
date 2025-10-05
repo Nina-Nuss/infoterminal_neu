@@ -976,7 +976,7 @@ function detectLinkType(link) {
     return null; // Unbekannter Typ
 }
 async function meow(selectedValue) {
-
+    debugger
     let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
@@ -1040,12 +1040,11 @@ async function meow(selectedValue) {
         return;
     }
     try {
-        debugger
         await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
         var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
         console.log(lastUploadedInfoseite);
         Template.prepareTemplate.forEach(element => {
-            debugger
+
             if (element.text) {
                 new Template(lastUploadedInfoseite, "", "text", element.text);
             } else if (element.imagePath) {
@@ -1061,7 +1060,7 @@ async function meow(selectedValue) {
     }
 }
 async function insertTemplate(listParams) {
-    debugger
+
     await fetch("../database/insertTemplates.php", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1129,16 +1128,33 @@ function prepareFormData(selectedValue) {
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
     if (selectedValue === "img") {
+        debugger
         filesData = new FormData();
-        let files = infoseiteForm.querySelectorAll('input[type="file"]')[0].files;
+        let files = infoseiteForm.querySelectorAll('input[type="file"]');
         console.log(files);
         if (!files || files.length === 0) {
             alert("Bitte wählen Sie mindestens ein Bild aus.");
             return;
         }
-        alert(`Anzahl ausgewählter Bilder: ${files.length}`);
+        let totalFiles = 0;
+
+        // Durch alle File-Inputs iterieren
         for (let i = 0; i < files.length; i++) {
-            filesData.append('files', files[i]);
+            const element = files[i];
+            console.log(`Element ${i}:`, element);
+            if (element.files && element.files.length > 0) {
+                for (let j = 0; j < element.files.length; j++) {
+                    if (element.files[j].name != "") {
+                        filesData.append('files', element.files[j]); // Alle Dateien anhängen
+                        console.log(`Datei ${j}:`, element.files[j].name);
+                        totalFiles++;
+                    }
+                }
+            }
+        }
+        if (totalFiles === 0) {
+            alert("Bitte wählen Sie mindestens eine Datei aus.");
+            return;
         }
     } else if (selectedValue === "yt") {
         filesData = formData.get('youtubeUrl');
@@ -1174,23 +1190,39 @@ async function sendDatei(selectedValue) {
         alert("Bitte wählen Sie eine Datei aus.");
         return false;
     }
-    const serverImageName = await sendPicture(filesData);
-    console.log("Server Image Name:", serverImageName);
+    let serverImageNames = [];
+    let allFiles = filesData.getAll('files');
+    // Sequenziell verarbeiten
+    for (const file of allFiles) {
+        try {
+            const imageName = await sendPicture(file);
+            if (imageName) {
+                serverImageNames.push(imageName);
+            }
+        } catch (error) {
+            console.error('Fehler beim Upload:', error);
+        }
+    }
+
+    console.log("Server Image Names:", serverImageNames);
     // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
-    if (serverImageName === "") {
+    if (serverImageNames.length === 0) {
         console.error("Bild konnte nicht hochgeladen werden.");
         alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
         return false;
     }
-    await createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description);
+    await createInfoseiteObj(serverImageNames[0], selectedTime, aktiv, titel, description);
     Template.resetForm("infoSeiteForm");
     return true;
 }
 async function sendPicture(filesData) {
+    debugger
     try {
+        let formData = new FormData();
+        formData.append('files', filesData);
         const response = await fetch("../php/movePic.php", {
             method: 'POST',
-            body: filesData // Sende das Objekt als JSON-String
+            body: formData // Sende das Objekt als JSON-String
         });
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok');
@@ -1205,7 +1237,6 @@ async function sendPicture(filesData) {
         return imageName;
     } catch (error) {
         console.error('Error:', error);
-
         return "";
     }
 }

@@ -30,8 +30,8 @@ class Template {
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
             this.resetAll();
-
-            templatesContainer.innerHTML = Template.imgContainer();
+            templatesContainer.innerHTML += Template.imgContainer();
+            templatesContainer.innerHTML += Template.imgContainer();
             if (fileInput) {
                 fileInput.disabled = false;
                 fileInput.value = '';
@@ -41,7 +41,7 @@ class Template {
             }
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
-            templatesContainer.innerHTML += Template.imgContainer();
+            templatesContainer.innerHTML = Template.imgContainer();
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();
@@ -49,47 +49,29 @@ class Template {
         }
     }
     static resetAll() {
-        let previewContainer = document.getElementById('previewContainer');
-
-        let idsTwo = ["imgPreview", "videoPreview"];
-        let idsOne = ["img", "youtubeUrl", "start", "end", "title", "description", "inputContainer", "imageContainer"];
-        idsOne.forEach(id => {
-            const element = document.getElementById(id);
-            if (element) {
-                element.innerHTML = ''; // Setze den Wert jedes Elements zurück
-            }
-        });
-        idsTwo.forEach(element => {
-            const el = document.getElementById(element);
-            if (el) {
-                el.src = '#';
-                el.style.display = 'none';
-                el.alt = 'Bildvorschau';
-            }
-        });
-        if (previewContainer) {
-            previewContainer.style.display = 'none';
+        Template.deleteCounterContainer();
+        let templateContainer = document.getElementById('templateContainer');
+        if (templateContainer) {
+            templateContainer.innerHTML = '';
         }
-        idsOne = null;
-        idsTwo = null;
-        previewContainer = null;
+        
     }
     static resetForm(formType) {
         if (formType === "infoSeiteForm") {
-            this.resetAll(); // Alle Formularfelder zurücksetzen
+            this.resetAll();
             const modalElement = document.getElementById('addInfoSeite');
             const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
             modalInstance.hide();
+            Template.selectTemplate("img")
         }
     }
     static imgContainer() {
         Template.imgContainerCount += 1;
         let form = `<form id="dataiContainer" class="form-group">
-                        <label for="img" class="form-label">
+                        <label for="img${Template.imgContainerCount}" class="form-label">
                             <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
                         </label>
-
-                        <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
+                        <input type="file" class="form-control" id="img${Template.imgContainerCount}" name="files" accept="image/*,video/*"
                             onchange="Template.previewFile('single', this, event, ${Template.imgContainerCount});" >
                         <div id="previewContainer${Template.imgContainerCount}" style="display:none; margin-bottom:10px;">
                             <img id="imgPreview${Template.imgContainerCount}" src="#" alt="Bild-Vorschau" name="imgPreview"
@@ -104,6 +86,12 @@ class Template {
                     `
             ;
         return form;
+    }
+
+    static deleteCounterContainer() {
+        Template.imgContainerCount = 0;
+        Template.youtubeContainerCount = 0;
+        Template.testContainerCount = 0;
     }
     static youtubeContainer() {
         Template.youtubeContainerCount += 1;
@@ -256,7 +244,7 @@ class Template {
         document.body.appendChild(video); // Add the new video to the body
     }
     static createVorlageA(id) {
-        debugger
+        
         let listInhalt = [];
         let container = document.createElement('div');
         container.className = "d-flex justify-content-evenly align-items-center";
@@ -303,7 +291,7 @@ class Template {
         document.body.appendChild(container);
     }
     static async getIdContent(id) {
-        debugger
+        
         console.log(id);
         let inhalt = await fetch("../database/selectTemplates.php?schema_id=" + id);
         console.log(inhalt);
@@ -316,7 +304,7 @@ class Template {
         }
     }
     static async getviaPathContent(path) {
-        debugger
+        
         console.log(path);
         let inhalt = await fetch("../database/getTemplateViaSchema.php?imagePath=" + path);
         console.log(inhalt);

@@ -115,7 +115,7 @@
                 } else if (template.includes('yt_')) {
                     Template.createYoutubeVid(template);
                 } else if (template.includes('tempA_')) {
-                    debugger
+                    
                     let id = await Template.getviaPathContent(template);
                     Template.createVorlageA(id);
                 }
