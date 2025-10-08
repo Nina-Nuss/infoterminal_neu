@@ -41,7 +41,7 @@ class Template {
         }else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
             templatesContainer.innerHTML = Template.imgContainer();
-            templatesContainer.innerHTML = Template.imgContainer();
+            templatesContainer.innerHTML += Template.imgContainer();
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();

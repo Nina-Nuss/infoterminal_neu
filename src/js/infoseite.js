@@ -1031,6 +1031,12 @@ async function meow(selectedValue) {
         var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
         inhalt = filesData;
         alert("diese Option ist noch in Arbeit.");
+    } else if (selectedValue === "tempSnackbar") {
+        var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
+        inhalt = filesData;
+        var result = sendPicture(inhalt);
+        alert("diese Option ist noch in Arbeit.");
+        return;
     } else {
         const result = await sendDatei();
         alert("Unbekannter Typ ausgewählt.");
@@ -1070,6 +1076,7 @@ async function insertTemplate(listParams) {
 }
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
+    debugger
     try {
         const obj1 = new Infoseite(
             "",
@@ -1160,6 +1167,34 @@ function prepareFormData(selectedValue) {
         Template.prepareTemplate.push({ text: test1 });
         Template.prepareTemplate.push({ text: test2 });
         console.log(Template.prepareTemplate);
+    } else if (selectedValue === "tempSnackbar") {
+        debugger
+        filesData = new FormData();
+        let files = infoseiteForm.querySelectorAll('input[type="file"]');
+        console.log(files);
+        if (!files || files.length === 0) {
+            alert("Bitte wählen Sie mindestens ein Bild aus.");
+            return;
+        }
+        let totalFiles = 0;
+        // Durch alle File-Inputs iterieren
+        for (let i = 0; i < files.length; i++) {
+            const element = files[i];
+            console.log(`Element ${i}:`, element);
+            if (element.files && element.files.length > 0) {
+                for (let j = 0; j < element.files.length; j++) {
+                    if (element.files[j].name != "") {
+                        filesData.append('files[]', element.files[j]); // Alle Dateien anhängen
+                        console.log(`Datei ${j}:`, element.files[j].name);
+                        totalFiles++;
+                    }
+                }
+            }
+        }
+        if (totalFiles === 0) {
+            alert("Bitte wählen Sie mindestens eine Datei aus.");
+            return;
+        }
     }
     const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
     const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
@@ -1189,12 +1224,10 @@ async function sendDatei(selectedValue) {
     // Sequenziell verarbeiten
     const imageName = await sendPicture(filesData);
     console.log(imageName);
-    
+    debugger;
     if (imageName) {
         serverImageNames.push(imageName);
     }
-      
-
     console.log("Server Image Names:", serverImageNames);
     // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
     if (serverImageNames.length === 0) {
@@ -1202,13 +1235,14 @@ async function sendDatei(selectedValue) {
         alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
         return false;
     }
-    await createInfoseiteObj(serverImageNames[0], selectedTime, aktiv, titel, description);
+    await createInfoseiteObj(imageName, selectedTime, aktiv, titel, description);
     Template.resetForm("infoSeiteForm");
     return true;
 }
 async function sendPicture(filesData) {
-    debugger
+    
     try {
+        debugger
         const response = await fetch("../php/movePic2.php", {
             method: 'POST',
             body: filesData // Sende das Objekt als JSON-String
@@ -1217,13 +1251,13 @@ async function sendPicture(filesData) {
             throw new Error('Netzwerkantwort war nicht ok');
         }
         let imageName = await response.json();
-        console.log(imageName);
-        
-        if (imageName.filePath.includes('../../uploads/img/')) {
-            imageName = imageName.filePath.split('/').pop(); // Extrahiere nur den Dateinamen
+        console.log(imageName.filePath);
 
-        } else if (imageName.filePath.includes('../../uploads/video/')) {
-            imageName = imageName.filePath.split('/').pop(); // Extrahiere nur den Dateinamen
+        if (imageName.filePath[0].includes('../../uploads/img/')) {
+            imageName = imageName.filePath[0].split('/').pop(); // Extrahiere nur den Dateinamen
+
+        } else if (imageName.filePath[0].includes('../../uploads/video/')) {
+            imageName = imageName.filePath[0].split('/').pop(); // Extrahiere nur den Dateinamen
         }
         return imageName;
     } catch (error) {

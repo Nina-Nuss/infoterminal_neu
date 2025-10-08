@@ -12,6 +12,7 @@ if (!isset($_FILES['files'])) {
 }
 
 $destPathList = [];
+$imageList = [];
 
 $all_files = count($_FILES['files']['name']);
 
@@ -61,8 +62,10 @@ for ($i = 0; $i < $all_files; $i++) {
     // Datei verschieben
     if (is_uploaded_file($file_tmp) && move_uploaded_file($file_tmp, $destPath)) {
         // Relativen Pfad zurückgeben
-        echo json_encode(['success' => true, 'filePath' => $destPath]);
+        $imageList[] = $destPath;
     } else {
         echo json_encode(['success' => false, 'message' => 'Fehler beim Verschieben der Datei.']);
     }
 }
+
+echo json_encode(['success' => true, 'filePath' => $imageList]);
