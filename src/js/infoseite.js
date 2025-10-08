@@ -1070,7 +1070,6 @@ async function insertTemplate(listParams) {
 }
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
-
     try {
         const obj1 = new Infoseite(
             "",
@@ -1141,7 +1140,7 @@ function prepareFormData(selectedValue) {
             if (element.files && element.files.length > 0) {
                 for (let j = 0; j < element.files.length; j++) {
                     if (element.files[j].name != "") {
-                        filesData.append('files', element.files[j]); // Alle Dateien anhängen
+                        filesData.append('files[]', element.files[j]); // Alle Dateien anhängen
                         console.log(`Datei ${j}:`, element.files[j].name);
                         totalFiles++;
                     }
@@ -1181,24 +1180,20 @@ async function sendDatei(selectedValue) {
         return false;
     }
     // Bild hochladen und vom Server den Dateinamen erhalten
-    console.log("image: ", filesData.get('files').name);
-    if (filesData.get('files').name == "") {
+    console.log("image: ", filesData.get('files[]').name);
+    if (filesData.get('files[]').name == "") {
         alert("Bitte wählen Sie eine Datei aus.");
         return false;
     }
     let serverImageNames = [];
-    let allFiles = filesData.getAll('files');
     // Sequenziell verarbeiten
-    for (const file of allFiles) {
-        try {
-            const imageName = await sendPicture(file);
-            if (imageName) {
-                serverImageNames.push(imageName);
-            }
-        } catch (error) {
-            console.error('Fehler beim Upload:', error);
-        }
+    const imageName = await sendPicture(filesData);
+    console.log(imageName);
+    
+    if (imageName) {
+        serverImageNames.push(imageName);
     }
+      
 
     console.log("Server Image Names:", serverImageNames);
     // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
@@ -1214,16 +1209,16 @@ async function sendDatei(selectedValue) {
 async function sendPicture(filesData) {
     debugger
     try {
-        let formData = new FormData();
-        formData.append('files', filesData);
-        const response = await fetch("../php/movePic.php", {
+        const response = await fetch("../php/movePic2.php", {
             method: 'POST',
-            body: formData // Sende das Objekt als JSON-String
+            body: filesData // Sende das Objekt als JSON-String
         });
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok');
         }
         let imageName = await response.json();
+        console.log(imageName);
+        
         if (imageName.filePath.includes('../../uploads/img/')) {
             imageName = imageName.filePath.split('/').pop(); // Extrahiere nur den Dateinamen
 

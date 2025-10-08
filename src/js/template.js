@@ -38,8 +38,9 @@ class Template {
             if (ytInput) {
                 ytInput.disabled = true; // optional
             }
-        } else if (selectedValue === 'tempSnackbar') {
+        }else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
+            templatesContainer.innerHTML = Template.imgContainer();
             templatesContainer.innerHTML = Template.imgContainer();
         }
         else if (selectedValue === 'tempTest') {
@@ -147,7 +148,6 @@ class Template {
        <label for="img" class="form-label">
                             <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
                         </label>
-                    
                         <input type="file" class="form-control" id="img" name="files" accept="image/*,video/*"
                             onchange="Template.previewFile('single', this, event)" >
                         <div id="previewContainer" style="display:none; margin-bottom:10px;">

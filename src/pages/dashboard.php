@@ -20,7 +20,7 @@ header('Access-Control-Allow-Origin: *');
 
 <head>
     <?php include '../assets/links.html'; ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no">
     <title>Infoterminal - Dashboard</title>
 </head>
 

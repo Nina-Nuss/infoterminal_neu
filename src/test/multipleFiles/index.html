@@ -86,6 +86,7 @@
         console.log('File Inputs:', fileInputs);
         console.log('Text Inputs:', textInputs);
         for (let i = 0; i < fileInputs.length; i++) {
+            console.log(`Processing file input ${i}:`, fileInputs[i]);
             const files = fileInputs[i].files;
             for (let k = 0; k < files.length; k++) {
                 const file = files[k];
@@ -102,9 +103,6 @@
     }
     function showPreview(input, containerId, labelId) {
         const file = input.files[0];
-        console.log(file);
-        console.log(input.files);
-        console.log(input);
         if (labelId) document.getElementById(labelId).style.display = 'none';
         input.style.display = 'none';
         const container = document.getElementById(containerId);
@@ -121,9 +119,8 @@
     }
 
     function moveFileToServer(form) {
-       
         if (form) {
-            fetch('../uploads', {
+            fetch('../multipleFiles/movePic.php', {
                 method: 'POST',
                 body: form
             })
