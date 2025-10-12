@@ -113,7 +113,7 @@ class Infoseite {
 
         if (imagePath.startsWith('temp')) {
             console.log(imagePath);
-            return placeHolder = `<iframe class="w-100 card-img-small" style="pointer-events: none; overflow: hidden;" scrolling="no" src="../output/out.php?template=${imagePath}" alt="Bild" onerror="this.onerror=null; this.src=''" allowfullscreen></iframe>`;
+            return placeHolder = `<iframe class="w-100 card-img-small" style="pointer-events: none; overflow: hidden;" scrolling="no" src="../output/outTest.php?template=${imagePath}" alt="Bild" onerror="this.onerror=null; this.src=''" allowfullscreen></iframe>`;
         }
 
         console.log(ext);
@@ -973,7 +973,7 @@ function detectLinkType(link) {
     return null; // Unbekannter Typ
 }
 async function meow(selectedValue) {
-    debugger
+
     let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
@@ -1043,14 +1043,12 @@ async function meow(selectedValue) {
         return;
     }
     try {
-        await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
-        var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
-        console.log(lastUploadedInfoseite);
-        Template.prepareTemplate.forEach(element => {
-            if (element.text) {
-                new Template(lastUploadedInfoseite, "", "text", element.text);
-            } else if (element.imagePath) {
-            }
+        debugger
+        const id = await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
+        // var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
+        console.log(id);
+        Template.list.forEach(template => {
+            template.id = id; // Setze die InfoseiteId für jedes Template-Objekt
         });
         console.log(Template.list);
         await insertTemplate(Template.list);
@@ -1095,10 +1093,16 @@ async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, d
         )
         console.log(obj1.selectedTime);
         const result = await insertDatabase(obj1);
+        if(!result.id){
+            alert("Fehler beim erstellen des Infoseite!");
+            return;
+        }
+
         alert("Infoseite erfolgreich erstellt!");
         await Infoseite.update();
-        console.log(result);
+        console.log(result.id);
         selectNewInfoseite();
+        return result.id;
     } catch (error) {
         console.error("Fehler beim erstellen des Infoseite:", error);
     }
@@ -1124,14 +1128,14 @@ function checkTikTokUrl(url) {
     return pattern.test(url);
 }
 function prepareFormData(selectedValue) {
-    debugger
+
     Template.prepareTemplate = []
     let formData = null;
     let filesData = null;
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
     if (selectedValue === "img") {
-        debugger
+   
         filesData = new FormData();
         let files = infoseiteForm.querySelectorAll('input[type="file"]');
         console.log(files);
@@ -1164,11 +1168,10 @@ function prepareFormData(selectedValue) {
         var test1 = document.getElementById('text1').value;
         var test2 = document.getElementById('text2').value;
         filesData = "tempA_" + randomNumberGenerator();
-        Template.prepareTemplate.push({ text: test1 });
-        Template.prepareTemplate.push({ text: test2 });
+        new Template("", "", "text", test1);
+        new Template("", "", "text", test2);
         console.log(Template.prepareTemplate);
     } else if (selectedValue === "tempSnackbar") {
-        debugger
         filesData = new FormData();
         let files = infoseiteForm.querySelectorAll('input[type="file"]');
         console.log(files);
@@ -1224,7 +1227,7 @@ async function sendDatei(selectedValue) {
     // Sequenziell verarbeiten
     const imageName = await sendPicture(filesData);
     console.log(imageName);
-    debugger;
+
     if (imageName) {
         serverImageNames.push(imageName);
     }
@@ -1242,7 +1245,7 @@ async function sendDatei(selectedValue) {
 async function sendPicture(filesData) {
     
     try {
-        debugger
+ 
         const response = await fetch("../php/movePic2.php", {
             method: 'POST',
             body: filesData // Sende das Objekt als JSON-String

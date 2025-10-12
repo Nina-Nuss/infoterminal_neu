@@ -38,7 +38,7 @@ class Template {
             if (ytInput) {
                 ytInput.disabled = true; // optional
             }
-        }else if (selectedValue === 'tempSnackbar') {
+        } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
             templatesContainer.innerHTML = Template.imgContainer();
             templatesContainer.innerHTML += Template.imgContainer();
@@ -55,7 +55,7 @@ class Template {
         if (templateContainer) {
             templateContainer.innerHTML = '';
         }
-        
+
     }
     static resetForm(formType) {
         if (formType === "infoSeiteForm") {
@@ -230,7 +230,7 @@ class Template {
         document.body.appendChild(video); // Add the new video to the body
     }
     static createVorlageA(id) {
-        
+
         let listInhalt = [];
         let container = document.createElement('div');
         container.className = "d-flex justify-content-evenly align-items-center";
@@ -277,7 +277,7 @@ class Template {
         document.body.appendChild(container);
     }
     static async getIdContent(id) {
-        
+
         console.log(id);
         let inhalt = await fetch("../database/selectTemplates.php?schema_id=" + id);
         console.log(inhalt);
@@ -285,23 +285,24 @@ class Template {
         console.log("Response:", response);
         console.log(response);
         for (const key of response) {
-          
+
             new Template(key[1], key[2], key[3], key[4]);
         }
     }
     static async getviaPathContent(path) {
-        debugger
-        console.log(path);
-        let inhalt = await fetch("../database/getTemplateViaSchema.php?imagePath=" + path);
-        console.log(inhalt);
-        let response = await inhalt.json();
-        console.log("Response:", response);
-        console.log(response);
-        for (const key of response) {
-         
-            new Template(key[1], key[2], key[3], key[4]);
+        try {
+            debugger
+            let inhalt = await fetch("../database/getTemplateViaSchema.php?imagePath=" + path);
+            let response = await inhalt.json();
+            console.log("Response:", response);
+            console.log(response);
+            for (const key of response) {
+                new Template(key[1], key[2], key[3], key[4]);
+            }
+            return response[0][1];
+        } catch (error) {
+            return false;
         }
-        return response[0][1];
     }
     static async insertTemplateDatas(templateListen) {
         fetch('../database/insertTemplates.php', {

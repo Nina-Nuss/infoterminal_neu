@@ -17,7 +17,7 @@ sqlsrv_close($conn);
 if ($row === null) {
     echo json_encode(['success' => true, 'message' => 'Keine Zeilen gefunden', 'row' => null]);
 } else {
-    echo json_encode( $row["id"] );
+    echo json_encode( $row["id"]);
 
 }
 exit;

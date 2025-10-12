@@ -20,11 +20,17 @@
             } else if (template.includes('tempA_')) {
                 debugger
                 let id = await Template.getviaPathContent(template);
+                if(id == false) {
+                    return;
+                }
                 Template.createVorlageA(id);
             } else if (template.includes('tempB_')) {
                 let parts = template.split('tempB_');
                 console.log(parts[1]);
-                await Template.getViaPathContent(template);
+                let id = await Template.getViaPathContent(template);
+                if(id == false) {
+                    return;
+                }
                 Template.createVorlageB(parts[1]);
             }
             return;
