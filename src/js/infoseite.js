@@ -1032,9 +1032,12 @@ async function meow(selectedValue) {
         inhalt = filesData;
         alert("diese Option ist noch in Arbeit.");
     } else if (selectedValue === "tempSnackbar") {
+        debugger
         var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue);
         inhalt = filesData;
+        
         var result = sendPicture(inhalt);
+
         alert("diese Option ist noch in Arbeit.");
         return;
     } else {
@@ -1048,7 +1051,7 @@ async function meow(selectedValue) {
         if (id == null) {
             alert("Fehler beim Erstellen der Infoseite!");
             return;
-        }
+        }  
         console.log(id);
         Template.list.forEach(template => {
             template.id = id; // Setze d 
