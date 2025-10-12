@@ -1045,10 +1045,13 @@ async function meow(selectedValue) {
     try {
         debugger
         const id = await createInfoseiteObj(inhalt, selectedTime, aktiv, titel, description);
-        // var lastUploadedInfoseite = await Infoseite.getLastUploadedInfoseite();
+        if (id == null) {
+            alert("Fehler beim Erstellen der Infoseite!");
+            return;
+        }
         console.log(id);
         Template.list.forEach(template => {
-            template.id = id; // Setze die InfoseiteId für jedes Template-Objekt
+            template.id = id; // Setze d 
         });
         console.log(Template.list);
         await insertTemplate(Template.list);
@@ -1060,7 +1063,6 @@ async function meow(selectedValue) {
     }
 }
 async function insertTemplate(listParams) {
-
     await fetch("../database/insertTemplates.php", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1093,11 +1095,10 @@ async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, d
         )
         console.log(obj1.selectedTime);
         const result = await insertDatabase(obj1);
-        if(!result.id){
+        if (!result.id) {
             alert("Fehler beim erstellen des Infoseite!");
-            return;
+            return null;
         }
-
         alert("Infoseite erfolgreich erstellt!");
         await Infoseite.update();
         console.log(result.id);
@@ -1135,7 +1136,7 @@ function prepareFormData(selectedValue) {
     var infoseiteForm = document.getElementById('infoSeiteForm');
     formData = new FormData(infoseiteForm);
     if (selectedValue === "img") {
-   
+
         filesData = new FormData();
         let files = infoseiteForm.querySelectorAll('input[type="file"]');
         console.log(files);
@@ -1239,13 +1240,13 @@ async function sendDatei(selectedValue) {
         return false;
     }
     await createInfoseiteObj(imageName, selectedTime, aktiv, titel, description);
+
     Template.resetForm("infoSeiteForm");
     return true;
 }
 async function sendPicture(filesData) {
-    
+
     try {
- 
         const response = await fetch("../php/movePic2.php", {
             method: 'POST',
             body: filesData // Sende das Objekt als JSON-String
@@ -1253,9 +1254,9 @@ async function sendPicture(filesData) {
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok');
         }
+        debugger;
         let imageName = await response.json();
         console.log(imageName.filePath);
-
         if (imageName.filePath[0].includes('../../uploads/img/')) {
             imageName = imageName.filePath[0].split('/').pop(); // Extrahiere nur den Dateinamen
 
@@ -1484,4 +1485,3 @@ window.addEventListener("DOMContentLoaded", function () {
         btnAddInfoSeite.click();
     }
 });
-

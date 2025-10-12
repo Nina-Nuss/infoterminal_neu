@@ -1,22 +1,30 @@
 <?php
-
-
+ob_start();
+include "../database/selectUser.php";
+ob_clean();
 session_start();
 
 $cookieIsSet = false;
 
+
 if (isset($_COOKIE['username'])) {
- 
-  $cookieIsSet = true;
+  foreach ($userList as $user) {
+    if ($_COOKIE['username'] === $user['username'] && $user['is_active'] == 1 && $user['remember_me'] == 1) {
+      // echo "User verified via cookie.";
+      $cookieIsSet = true;
+      break;
+    }
+  }
 }
 
 if (!$cookieIsSet) {
   if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != 1) {
     header('Location: ../login/index.php');
     exit;
+    exit;
+    exit;
   }
 }
-
 
 if (!empty($_SESSION['login_success'])) {
   echo '
@@ -32,6 +40,7 @@ if (!empty($_SESSION['login_success'])) {
           document.addEventListener("DOMContentLoaded", function(){
             var el = document.getElementById("loginToast");
             if (el) {
+
               var t = new bootstrap.Toast(el, { delay: 3000 });
               t.show();
             }
