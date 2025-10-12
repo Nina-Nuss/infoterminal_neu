@@ -1,7 +1,7 @@
 <head>
     <script src="../js/template.js"></script>
+    <?php include '../assets/links.html'; ?>
 </head>
-
 <script>
     debugger
     const params = new URLSearchParams(window.location.search);

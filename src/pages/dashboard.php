@@ -24,13 +24,13 @@ header('Access-Control-Allow-Origin: *');
     <title>Infoterminal - Dashboard</title>
 </head>
 
-<body>
+<body class="custom-column">
     <div style="min-height: 100vh;">
         <?php include '../layout/headerD.php'; ?>
         <?php include '../layout/modal/hinzufuegen.html'; ?>
         <?php include '../layout/modal/addInfoSeite.html'; ?>
         <div>
-            <div class="container-fluid pt-3">
+            <div class="container-fluid pt-3 ">
                 <div class="d-flex justify-content-center" style="height:90vh;">
                     <div style="width: 300px;">
                         <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
@@ -53,10 +53,10 @@ header('Access-Control-Allow-Origin: *');
                                 <i class="fas fa-trash"></i> Löschen
                             </button>
                         </div>
-                        <div class="d-flex justify-content-center gap-2 m-3">
-                            <div class="overflow-auto">
+                        <div class="d-flex justify-content-center gap-2 m-3 ">
+                            <div class="overflow-auto flex-shrink-0">
                                 <div id="konfigContainer">
-                                    <div class="card">
+                                    <div class="card" >
                                         <div class="card-header p-2">
                                             <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                         </div>
