@@ -4,7 +4,6 @@ include '../php/auth.php';
 
 ?>
 <?php
-header('Access-Control-Allow-Origin: *');
 // if (isset($_COOKIE['username'])) {
 //     $username = $_COOKIE['username'];
 //     echo 'Hallo ' . htmlspecialchars($username, ENT_QUOTES, 'UTF-8');

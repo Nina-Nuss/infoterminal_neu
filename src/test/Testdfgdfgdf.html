@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Auto-Scroll</title>
+    <style>
+        .table-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 2px solid #006b99;
+            border-radius: 8px;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #006b99;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tbody tr {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* CSS Animation für Auto-Scroll */
+        .auto-scrolling {
+            animation: scrollTable 60s linear infinite;
+        }
+
+        @keyframes scrollTable {
+            0% { scroll-behavior: smooth; }
+            100% { scroll-behavior: smooth; }
+        }
+    </style>
+</head>
+<body>
+    <h2>CSS Auto-Scroll mit Scroll-Snap</h2>
+    <button onclick="document.getElementById('tableContainer').classList.toggle('auto-scrolling')">
+        Toggle Auto-Scroll
+    </button>
+
+    <div class="table-container" id="tableContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Eintrag 1</td><td>Beschreibung für Eintrag 1</td></tr>
+                <tr><td>2</td><td>Eintrag 2</td><td>Beschreibung für Eintrag 2</td></tr>
+                <tr><td>3</td><td>Eintrag 3</td><td>Beschreibung für Eintrag 3</td></tr>
+                <tr><td>4</td><td>Eintrag 4</td><td>Beschreibung für Eintrag 4</td></tr>
+                <tr><td>5</td><td>Eintrag 5</td><td>Beschreibung für Eintrag 5</td></tr>
+                <tr><td>6</td><td>Eintrag 6</td><td>Beschreibung für Eintrag 6</td></tr>
+                <tr><td>7</td><td>Eintrag 7</td><td>Beschreibung für Eintrag 7</td></tr>
+                <tr><td>8</td><td>Eintrag 8</td><td>Beschreibung für Eintrag 8</td></tr>
+                <tr><td>9</td><td>Eintrag 9</td><td>Beschreibung für Eintrag 9</td></tr>
+                <tr><td>10</td><td>Eintrag 10</td><td>Beschreibung für Eintrag 10</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

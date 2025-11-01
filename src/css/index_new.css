@@ -20,18 +20,11 @@
     width: 300px;
 }
 
-@media screen and (max-width: 1530px) {
+@media screen and (max-width: 1200px) {
     .left,
     .main,
-    .body,
     .right {
-        width: 100%;
-        /* The width is 100%, when the viewport is 800px or smaller */
-        float: none;
-        /* float entfernen */
-        display: block;
-        /* Block-Element */
-        
+        display: block; /* Block-Element - untereinander stapeln */
     }
 }
 

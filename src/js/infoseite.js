@@ -221,18 +221,20 @@ class Infoseite {
         const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
         const deleteInfoSeite = document.getElementById("btn_deleteInfoSeite")
         const tabelleDelete = document.getElementById("tabelleDelete")
+        const btn_save_changes = document.getElementById("btn_save_changes");
         const checkbox = document.getElementById("checkA");
         console.log(bildschirmVerwaltung);
         if (aktiv == true) {
             this.removeChanges()
         }
         if (konfigContainer) {
-            console.log("DSAGFLKDSAFJLKDSFJLKSJFLKDSFLKJDSLK");
+            console.log("hier werden alle inputs deaktiviert");
             let buttons = konfigContainer.querySelectorAll('button');
             let inputs = konfigContainer.querySelectorAll('input');
 
             let selects = konfigContainer.querySelectorAll('select');
 
+            btn_save_changes.disabled = aktiv
             buttons.forEach(button => {
                 button.disabled = aktiv;
             });
@@ -1375,10 +1377,8 @@ function erstelleFunktionForCardObj(objID) {
     const allCardObj = document.querySelectorAll(`[id^="cardObjekt"]`)
     Infoseite.überprüfenÄnderungen();
     if (checkbox.checked) {
-        console.log("moew uwu kabum omi");
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
-
         console.log(obj);
         Infoseite.selectedID = id; // Set the selected ID
         Infoseite.deaktiviereAllElements(false)
@@ -1439,7 +1439,6 @@ function handleCardClick(id) {
     const flexCheck = document.getElementById("flexCheck" + id);
     flexCheck.checked = !flexCheck.checked;
     erstelleFunktionForCardObj(id)
-
     // cardObj.style.border = checkbox.checked ? "2px solid #006c99" : "none";
 }
 function handleCardMouseOver(id) {
