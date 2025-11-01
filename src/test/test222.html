@@ -9,8 +9,11 @@
         .table-container {
             height: 400px;
             overflow-y: auto;
-            border: 2px solid #006b99;
-            border-radius: 8px;
+            display: flex;
+            flex-direction: column-reverse;
+            overflow-anchor: auto;
+            /* Browser scrollt automatisch zu neuen Elementen */
+            /* ✅ Neuester Eintrag unten, scrollt automatisch */
         }
 
         table {
@@ -46,171 +49,51 @@
 
     <div class="table-container" id="tableContainer">
         <table>
-            <thead>
+            <thead id="tableHead">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Beschreibung</th>
                 </tr>
+
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Eintrag 1</td>
-                    <td>Beschreibung für Eintrag 1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Eintrag 2</td>
-                    <td>Beschreibung für Eintrag 2</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Eintrag 3</td>
-                    <td>Beschreibung für Eintrag 3</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Eintrag 4</td>
-                    <td>Beschreibung für Eintrag 4</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Eintrag 5</td>
-                    <td>Beschreibung für Eintrag 5</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Eintrag 6</td>
-                    <td>Beschreibung für Eintrag 6</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Eintrag 7</td>
-                    <td>Beschreibung für Eintrag 7</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Eintrag 8</td>
-                    <td>Beschreibung für Eintrag 8</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Eintrag 9</td>
-                    <td>Beschreibung für Eintrag 9</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Eintrag 10</td>
-                    <td>Beschreibung für Eintrag 10</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Eintrag 11</td>
-                    <td>Beschreibung für Eintrag 11</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Eintrag 12</td>
-                    <td>Beschreibung für Eintrag 12</td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>Eintrag 13</td>
-                    <td>Beschreibung für Eintrag 13</td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>Eintrag 14</td>
-                    <td>Beschreibung für Eintrag 14</td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td>Eintrag 15</td>
-                    <td>Beschreibung für Eintrag 15</td>
-                </tr>
-                <tr>
-                    <td>16</td>
-                    <td>Eintrag 16</td>
-                    <td>Beschreibung für Eintrag 16</td>
-                </tr>
-                <tr>
-                    <td>17</td>
-                    <td>Eintrag 17</td>
-                    <td>Beschreibung für Eintrag 17</td>
-                </tr>
-                <tr>
-                    <td>18</td>
-                    <td>Eintrag 18</td>
-                    <td>Beschreibung für Eintrag 18</td>
-                </tr>
-                <tr>
-                    <td>19</td>
-                    <td>Eintrag 19</td>
-                    <td>Beschreibung für Eintrag 19</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>Eintrag 20</td>
-                    <td>Beschreibung für Eintrag 20</td>
-                </tr>
+
             </tbody>
         </table>
     </div>
     <script>
         let scrollInterval;
         const container = document.getElementById('tableContainer');
+        const containerHead = document.getElementById('tableHead');
         const firstRow = document.querySelector('tbody tr');
         const body = document.querySelector('tbody');
-        console.log(body.offsetHeight);
-        console.log(firstRow.offsetHeight);
-        console.log()
-        debugger;
-        let save = firstRow.offsetHeight;
-        let lastRow = 0;
-        function startScroll() {
-            // Stoppe vorheriges Scrolling
-            // Scrolle alle 50ms um 1px nach unten
-
-            scrollInterval = setInterval(() => {
-                container.scrollTop += 1;
-                const currentScrollTop = container.scrollTop; // Echte Position!
-                const currentRow = Math.floor(currentScrollTop / firstRow.offsetHeight);
-                console.log(currentRow);
-                console.log(lastRow);
-                if (currentRow !== lastRow) {
-                    lastRow = currentRow
-                    // Stoppe das Scrolling für 3 Sekunden
-                    clearInterval(scrollInterval);
-                    setTimeout(() => {
-                        // Starte das Scrolling nach 3 Sekunden wieder
-                        startScroll();
-                    }, 50); // 3000ms = 3 Sekunden
-                    console.log(firstRow.offsetHeight);
-
+        const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        let listZeile = `<tr>
+                    <td>1</td>
+                    <td>Eintrag 1</td>
+                    <td>Beschreibung für Eintrag 1</td>
+                </tr>`
+        async function startScroll() {
+            for (let i = 0; i < list.length; i++) {
+                if (i > 5) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
                 }
-                // Wenn am Ende angekommen, von vorne beginnen
-                if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
-                    container.scrollTop = 0;
-                }
-                
-
-            }, 10);
-            console.log(scrollInterval);
-        }
-
-        function stopScroll() {
-            if (scrollInterval) {
-                clearInterval(scrollInterval);
-                scrollInterval = null;
+                const newRow = `<tr>
+            <td>${i + 1}</td>
+            <td>Eintrag ${i + 1}</td>
+            <td>Beschreibung für Eintrag ${i + 1}</td>
+        </tr>`;
+                body.innerHTML += newRow;
+                // const rows = body.querySelectorAll('tr');
+                // rows[rows.length - 1].scrollIntoView({
+                //     behavior: 'smooth',
+                //     block: 'end'
+                // });
             }
+            startScroll()
         }
-        function resetScroll() {
-            stopScroll();
-            container.scrollTop = 0;
-        }
-        // Optional: Automatisch beim Laden starten
-        // window.addEventListener('load', startScroll);
+        startScroll()
     </script>
 </body>
 
