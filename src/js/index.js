@@ -286,14 +286,12 @@ async function updateDataBase(cardObj, databaseUrl) {
 // Neue Funktion für Modal Focus-Management
 function setupModalFocusManagement() {
     const modals = document.querySelectorAll('.modal');
-
     modals.forEach(modal => {
         // Beim Öffnen des Modals
         modal.addEventListener('show.bs.modal', function () {
             // Entferne aria-hidden vor dem Öffnen
             modal.removeAttribute('aria-hidden');
         });
-
         // Beim Schließen des Modals
         modal.addEventListener('hide.bs.modal', function () {
             // Blur alle fokussierten Elemente im Modal
@@ -302,7 +300,6 @@ function setupModalFocusManagement() {
                 focusedElement.blur();
             }
         });
-
         // Nach dem Schließen des Modals
         modal.addEventListener('hidden.bs.modal', function () {
             // Setze aria-hidden erst nach dem vollständigen Schließen

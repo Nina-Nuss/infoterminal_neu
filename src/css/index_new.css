@@ -1,6 +1,39 @@
 * {
     font-family: Roboto;
 }
+.body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3vh;
+    height: 90vh;
+}
+
+.main {
+    float: left;
+    width: 1200px;
+    
+}
+
+.left .right {
+    float: left;
+    width: 300px;
+}
+
+@media screen and (max-width: 1530px) {
+    .left,
+    .main,
+    .body,
+    .right {
+        width: 100%;
+        /* The width is 100%, when the viewport is 800px or smaller */
+        float: none;
+        /* float entfernen */
+        display: block;
+        /* Block-Element */
+        
+    }
+}
 
 .btn-primary {
     background-color: #006b99 !important;
@@ -21,16 +54,12 @@ body {
     width: 100%;
 }
 
-
-.wochentageBtn{
+.wochentageBtn {
     width: 35px !important;
     height: 30px !important;
     padding: 0 !important;
     font-size: 14px !important;
-
 }
-
-
 
 .card-img-small {
     height: 140px;
@@ -40,9 +69,7 @@ body {
     object-fit: cover;
     display: block;
     overflow: hidden;
-
 }
-
 
 .card-deck {
     height: 400px;
