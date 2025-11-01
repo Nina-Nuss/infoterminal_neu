@@ -31,7 +31,7 @@ header('Access-Control-Allow-Origin: *');
         <?php include '../layout/modal/addInfoSeite.html'; ?>
         <div class="container-fluid pt-3 text-center">
             <div class="d-flex justify-content-center text-center" style="height:90vh;">
-                <div style="width: 300px;">
+                <div style="">
                     <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
                 </div>
                 <div>
