@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Slider</title>
   <style>
     .slider-container {
       width: 250px;
-      height: 150px;        /* zeigt mehrere Items gleichzeitig */
+      height: 150px;
+      /* zeigt mehrere Items gleichzeitig */
       overflow: hidden;
       border: 1px solid #ccc;
       position: relative;
@@ -16,7 +18,8 @@
       margin: 0;
       padding: 0;
       list-style: none;
-      position: absolute;   /* wir verschieben mit JS */
+      position: absolute;
+      /* wir verschieben mit JS */
       top: 0;
       left: 0;
       width: 100%;
@@ -32,6 +35,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="slider-container">
     <ul class="slider-list" id="slider">
@@ -71,4 +75,5 @@
     requestAnimationFrame(animate);
   </script>
 </body>
+
 </html>

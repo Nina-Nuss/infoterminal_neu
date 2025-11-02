@@ -30,6 +30,7 @@ class Template {
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
             this.resetAll();
+            debugger
             Template.imgContainer(1, templatesContainer);
             if (fileInput) {
                 fileInput.disabled = false;
@@ -65,10 +66,14 @@ class Template {
             Template.selectTemplate("img")
         }
     }
+    
+
+
     static imgContainer(anzahl, divContainer) {
-        for (let i = 0; i < anzahl.length; i++) {
+        debugger
+        for (let i = 0; i < anzahl; i++) {
             Template.imgContainerCount += 1;
-            const currentCount = Template.imgContainerCount;
+            let currentCount = Template.imgContainerCount;
             divContainer.innerHTML += `<form id="dataiContainer" class="form-group">
                         <label for="img${currentCount}" class="form-label">
                             <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
