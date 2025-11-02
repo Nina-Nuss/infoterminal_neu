@@ -16,12 +16,10 @@ $destPathList = [];
 $all_files = count($_FILES['files']['name']);
 
 for ($i = 0; $i < $all_files; $i++) {
-
     $file_name = $_FILES['files']['name'][$i];
     $file_tmp  = $_FILES['files']['tmp_name'][$i];
     $file_type = $_FILES['files']['type'][$i];
     $file_size = $_FILES['files']['size'][$i];
-
     if (!is_uploaded_file($file_tmp)) {
         echo json_encode(['success' => false, 'message' => 'Fehler: Datei wurde nicht korrekt hochgeladen.']);
         exit;
@@ -44,10 +42,10 @@ for ($i = 0; $i < $all_files; $i++) {
 
     // Zielordner je nach Dateityp
     if (in_array($fileExtension, $allowedImageTypes)) {
-        $uploadFolder = '../../uploads/img/';
+        $uploadFolder = '../uploads/img/';
         $randomName = uniqid('img_', true) . '.' . $fileExtension;
     } else {
-        $uploadFolder = '../../uploads/video/';
+        $uploadFolder = '../uploads/video/';
         $randomName = uniqid('video_', true) . '.' . $fileExtension;
     }
 

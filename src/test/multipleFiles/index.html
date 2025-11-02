@@ -3,29 +3,39 @@
         display: none;
     }
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        vertical-align: top;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Alle Bilder 200px breit */
     label {
         width: 200px;
         height: 200px;
         border: 2px solid #4CAF50;
         border-radius: 4px;
         display: inline-block;
-        padding: 6px 12px;
         cursor: pointer;
-        color: white;
-        font-size: 16px;
-        margin-left: 10px;
+        background-color: #f0f0f0;
     }
 
-    .bigLabel {
-        width: 400px;
-        height: 400px;
-        border: 2px solid #4CAF50;
-        border-radius: 4px;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        color: white;
-        font-size: 16px;
+    label:hover {
+        background-color: #e0e0e0;
     }
 
     .containerForPics {
@@ -35,56 +45,183 @@
         border: 2px solid #4CAF50;
         border-radius: 4px;
         display: none;
-        padding: 6px 12px;
         cursor: pointer;
-        color: white;
-        font-size: 16px;
     }
 
-    .containerForPics:hover {
-        border: 2px solid #45a049;
-    }
-
-    .containerForBigPics {
-        object-fit: cover;
-        width: 400px;
-        height: 400px;
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
         border: 2px solid #4CAF50;
         border-radius: 4px;
-        display: none;
-        padding: 6px 12px;
-        cursor: pointer;
-        color: white;
         font-size: 16px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #4CAF50;
+        border-radius: 4px;
+        font-size: 16px;
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Plus Button */
+    .add-row-btn {
+        background-color: #4CAF50;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .add-row-btn:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+    }
+
+    /* 3 Spalten Layout */
+    td:nth-child(1) {
+        width: 250px;
+    }
+
+    td:nth-child(2) {
+        width: 300px;
+    }
+
+    td:nth-child(3) {
+        width: auto;
+    }
+
+    /* Delete Button in Zeile */
+    .delete-btn {
+        background-color: #f44336;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .delete-btn:hover {
+        background-color: #da190b;
     }
 </style>
 
-
 <div id="multipleFiles">
-    <label for="file1" id="label1"></label>
-    <input type="file" id="file1" name="files[]" onchange="showPreview(this, 'container1', 'label1')">
-    <img for="file1" id="container1" class="containerForPics"></img>
-    <input type="text" for="file1">
-    <label for="file2" id="label2"></label>
-    <input type="file" id="file2" name="files[]" onchange="showPreview(this, 'container2', 'label2')">
-    <img id="container2" class="containerForPics"></img>
-    <label for="file3" id="label3" class="bigLabel"></label>
-    <input type="file" id="file3" name="files[]" onchange="showPreview(this, 'container3', 'label3')">
-    <img id="container3" class="containerForBigPics"></img>
-    <label for="file4" id="label4" class="bigLabel"></label>
-    <input type="file" id="file4" name="files[]" onchange="showPreview(this, 'container4', 'label4')">
-    <img id="container4" class="containerForBigPics"></img>
-    <input type="text" for="file4">
-    <button onclick="uploadFiles()" name="submit">Upload Files</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Bild hochladen</th>
+                <th>Titel</th>
+                <th>Beschreibung</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Zeilen werden dynamisch hinzugefügt -->
+        </tbody>
+    </table>
+
+    <!-- ✅ Plus Button zum Hinzufügen einer neuen Zeile -->
+    <button class="add-row-btn" onclick="addNewRow()" title="Neue Zeile hinzufügen">+</button>
+
+    <button onclick="uploadFiles()">Upload Files</button>
 </div>
+
 <script>
+    let rowCounter = 0; // Globaler Zähler für eindeutige IDs
+
+    // ✅ Methode zum Erzeugen der Zeilen
+    function createRows(anzahl) {
+        const tbody = document.getElementById('tableBody');
+
+        for (let i = 1; i <= anzahl; i++) {
+            addNewRow();
+        }
+
+        console.log(`✓ ${anzahl} Zeilen erstellt`);
+    }
+
+    // ✅ Fügt eine einzelne neue Zeile hinzu
+    function addNewRow() {
+        rowCounter++;
+        const tbody = document.getElementById('tableBody');
+        const row = document.createElement('tr');
+        row.id = `row${rowCounter}`;
+
+        row.innerHTML = `
+            <td>
+                <label for="file${rowCounter}" id="label${rowCounter}"></label>
+                <input type="file" id="file${rowCounter}" name="files[]" onchange="showPreview(this, 'container${rowCounter}', 'label${rowCounter}')">
+                <img id="container${rowCounter}" class="containerForPics">
+            </td>
+            <td>
+                <input type="text" id="title${rowCounter}" placeholder="Titel für Bild ${rowCounter}" data-file="file${rowCounter}">
+            </td>
+            <td>
+                <textarea id="description${rowCounter}" placeholder="Beschreibung für Bild ${rowCounter}" data-file="file${rowCounter}"></textarea>
+            </td>
+            <td>
+                <button class="delete-btn" onclick="deleteRow('${row.id}')">Löschen</button>
+            </td>
+        `;
+        tbody.appendChild(row);
+
+        console.log(`✓ Zeile ${rowCounter} hinzugefügt`);
+    }
+
+    // ✅ Löscht eine Zeile
+    function deleteRow(rowId) {
+        const row = document.getElementById(rowId);
+        if (row) {
+            row.remove();
+            console.log(`✓ Zeile ${rowId} gelöscht`);
+        }
+    }
+
+    // ✅ Beim Laden 2 Zeilen erstellen
+    createRows(2);
+
     function uploadFiles() {
-        const form = new FormData
-  
-        const fileInputs = document.querySelectorAll('input[type="file"]');
-        const textInputs = document.querySelectorAll('input[type="text"]');
+        debugger
+        let titleInputsList = [];
+        let descriptionInputsList = [];
+        const form = new FormData();
+        var getTableBody = document.getElementById('tableBody');
+        const fileInputs = getTableBody.querySelectorAll('input[type="file"]');
+        const titleInputs = getTableBody.querySelectorAll('input[id^="title"]');
+        const textareas = getTableBody.querySelectorAll('textarea[id^="description"]');
+
         console.log('File Inputs:', fileInputs);
-        console.log('Text Inputs:', textInputs);
+        console.log('Title Inputs:', titleInputs);
+        console.log('Textareas:', textareas);
+
+        // Dateien hinzufügen
         for (let i = 0; i < fileInputs.length; i++) {
             console.log(`Processing file input ${i}:`, fileInputs[i]);
             const files = fileInputs[i].files;
@@ -94,27 +231,43 @@
                 form.append(`files[]`, file);
             }
         }
-        for (let j = 0; j < textInputs.length; j++) {
-            const textValue = textInputs[j].value;
-            console.log(`Text from input ${j}:`, textValue);
+
+        // Titel hinzufügen (input text - Mitte)
+        for (let j = 0; j < titleInputs.length; j++) {
+            const textValue = titleInputs[j].value;
+            titleInputsList.push(textValue);
         }
 
+        // Beschreibungen hinzufügen (textarea - Rechts)
+        for (let m = 0; m < textareas.length; m++) {
+            const textValue = textareas[m].value;
+            descriptionInputsList.push(textValue);
+        }
+        console.log(titleInputsList);
+        console.log(descriptionInputsList);
         moveFileToServer(form);
     }
+
     function showPreview(input, containerId, labelId) {
         const file = input.files[0];
-        if (labelId) document.getElementById(labelId).style.display = 'none';
-        input.style.display = 'none';
         const container = document.getElementById(containerId);
+        const label = document.getElementById(labelId);
         if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 container.src = e.target.result;
                 container.style.display = 'block';
+                label.style.display = 'none';
+
+                // ✅ Klick auf Bild ermöglicht erneutes Hochladen
+                container.onclick = function () {
+                    input.click();
+                };
             };
             reader.readAsDataURL(file);
         } else {
             container.style.display = 'none';
+            label.style.display = 'inline-block';
         }
     }
 
@@ -127,13 +280,41 @@
                 .then(response => {
                     if (response.ok) {
                         console.log('result: ', response);
+                        return response.json();
                     } else {
                         console.error('File upload failed');
                     }
+                })
+                .then(data => {
+                    console.log('Server response:', data);
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         }
-    };
+    }
+
+    async function saveJSONToServer(jsonString) {
+        try {
+            const response = await fetch('../multipleFiles/saveJSON.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonString
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('JSON erfolgreich gespeichert:', result);
+                alert('Daten erfolgreich gespeichert!');
+            } else {
+                console.error('Fehler beim Speichern:', response.statusText);
+                alert('Fehler beim Speichern!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Fehler beim Speichern!');
+        }
+    }
 </script>

@@ -125,7 +125,6 @@
     var imageContainer = document.getElementById('imageContainer');
     var listSelect = [Youtube, datai, tempSnackbar, tempTest];
     selectItem.addEventListener('change', function () {
-        
         var selectedValue = this.value;
         if (selectedValue === 'yt') {
             Template.selectTemplate('yt');
@@ -137,7 +136,6 @@
             Template.selectTemplate('tempTest');
         }
     });
-  
     window.addEventListener("load", async function () {
         const templatebereich = document.getElementById("templateBereich");
         if (templatebereich !== null) {

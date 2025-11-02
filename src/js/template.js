@@ -30,7 +30,7 @@ class Template {
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
             this.resetAll();
-            templatesContainer.innerHTML += Template.imgContainer();
+            Template.imgContainer(1, templatesContainer);
             if (fileInput) {
                 fileInput.disabled = false;
                 fileInput.value = '';
@@ -40,8 +40,7 @@ class Template {
             }
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
-            templatesContainer.innerHTML = Template.imgContainer();
-            templatesContainer.innerHTML += Template.imgContainer();
+            Template.imgContainer(2, templatesContainer);
         }
         else if (selectedValue === 'tempTest') {
             this.resetAll();
@@ -66,29 +65,30 @@ class Template {
             Template.selectTemplate("img")
         }
     }
-    static imgContainer() {
-        Template.imgContainerCount += 1;
-        let form = `<form id="dataiContainer" class="form-group">
-                        <label for="img${Template.imgContainerCount}" class="form-label">
+    static imgContainer(anzahl, divContainer) {
+        for (let i = 0; i < anzahl.length; i++) {
+            Template.imgContainerCount += 1;
+            const currentCount = Template.imgContainerCount;
+            divContainer.innerHTML += `<form id="dataiContainer" class="form-group">
+                        <label for="img${currentCount}" class="form-label">
                             <i class="fas fa-image me-2"></i> Bild auswählen <span style="color:red">*</span>
                         </label>
-                        <input type="file" class="form-control" id="img${Template.imgContainerCount}" name="files" accept="image/*,video/*"
-                            onchange="Template.previewFile('single', this, event, ${Template.imgContainerCount});" >
-                        <div id="previewContainer${Template.imgContainerCount}" style="display:none; margin-bottom:10px;">
-                            <img id="imgPreview${Template.imgContainerCount}" src="#" alt="Bild-Vorschau" name="imgPreview"
-                                style="max-width:100%; max-height:200px;">
-                            <video id="videoPreview${Template.imgContainerCount}" controls muted name="videoPreview"
-                                style="max-width:100%; max-height:200px;">
+                        <input type="file" class="form-control" id="img${currentCount}" name="files" accept="image/*,video/*"
+                            onchange="Template.previewFile('single', this, event, ${currentCount});" >
+                        <div id="previewContainer${currentCount}" style="display:none; margin-bottom:10px;">
+                            <img id="imgPreview${currentCount}" src="#" alt="Bild-Vorschau" name="imgPreview"
+                                style="max-width:100%; height:200px;">
+                            <video id="videoPreview${currentCount}" controls muted name="videoPreview"
+                                style="max-width:100%; height:200px;">
                                 <source src="#" type="video/mp4">
                                 Ihr Browser unterstützt das Video-Element nicht.
                             </video>
                         </div>
                     </form>
                     `
-            ;
-        return form;
+                ;
+        }
     }
-
     static deleteCounterContainer() {
         Template.imgContainerCount = 0;
         Template.youtubeContainerCount = 0;
@@ -277,7 +277,6 @@ class Template {
         document.body.appendChild(container);
     }
     static async getIdContent(id) {
-
         console.log(id);
         let inhalt = await fetch("../database/selectTemplates.php?schema_id=" + id);
         console.log(inhalt);
@@ -285,7 +284,6 @@ class Template {
         console.log("Response:", response);
         console.log(response);
         for (const key of response) {
-
             new Template(key[1], key[2], key[3], key[4]);
         }
     }
@@ -369,7 +367,6 @@ class Template {
 if (document.getElementById('inputGroupSelect01')) {
     Template.selectTemplate("img")
 }
-
 // document.addEventListener('DOMContentLoaded', async () => {
 //     console.log("DOM vollständig geladen und analysiert");
 //     var lastUploaded = await Infoseite.getLastUploadedInfoseite();
