@@ -7,7 +7,7 @@
     <title>Auto-Scroll Tabelle</title>
     <style>
         .table-container {
-            height: 90vh;
+            height: auto;
             overflow-y: auto;
             overflow-anchor: auto;
             scroll-behavior: smooth;
@@ -53,94 +53,37 @@
         const container = document.getElementById('tableContainer');
         const containerHead = document.getElementById('tableHead');
         const body = document.querySelector('tbody');
-        const list = [
-            {
-                id: 1,
-                bild: 'bild1.png',
-                titel: 'Eintrag 1',
-                zeit: 'von 7 bis 8 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 1'
-            },
-            {
-                id: 2,
-                bild: 'bild2.png',
-                titel: 'Eintrag 2',
-                zeit: 'von 8 bis 9 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 2'
-            },
-            {
-                id: 3,
-                bild: 'bild3.png',
-                titel: 'Eintrag 3',
-                zeit: 'immer montags von 9 bis 10 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 3'
-            },
-            {
-                id: 4,
-                bild: 'bild4.png',
-                titel: 'Eintrag 4',
-                zeit: 'jede Woche von 10 bis 11 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 4'
-            },
-            {
-                id: 5,
-                bild: 'bild5.png',
-                titel: 'Eintrag 5',
-                zeit: ' 11 bis 12 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 5'
-            },
-            {
-                id: 6,
-                bild: 'bild6.png',
-                titel: 'Eintrag 6',
-                zeit: 'von 12 bis 13 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 6'
-            },
-            {
-                id: 7,
-                bild: 'bild7.png',
-                titel: 'Eintrag 7',
-                zeit: 'von 13 bis 14 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 7'
-            },
-            {
-                id: 8,
-                bild: 'bild8.png',
-                titel: 'Eintrag 8',
-                zeit: 'von 14 bis 15 Uhr',
-                beschreibung: 'Beschreibung für Eintrag 8'
-            }
-        ];
         async function startScroll() {
-            for (let i = 0; i < list.length; i++) {
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                
-                const item = list[i];
+            const data = await loadJSON();
+            for (let i = 0; i < data.length; i++) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                const item = data[i];
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                     <td><img style="width: 200px; height: auto;" src="../bilder/${item.bild}" alt="${item.titel}"></td>
                     <td><h1>${item.titel}</h1></td>
                     <td><h1>${item.zeit}</h1></td>
                 `;
-                
                 body.appendChild(newRow);
-                
                 // ✅ Automatisch zur neuen Zeile scrollen
-                newRow.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'end' 
+                newRow.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end'
                 });
-                
-                // ✅ Alternative: Zum Ende scrollen
-                // container.scrollTop = container.scrollHeight;
             }
-            
             // Von vorne beginnen
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            await new Promise(resolve => setTimeout(resolve, 500));
             body.innerHTML = '';
             startScroll();
+        }
+        async function loadJSON() {
+            const response = await fetch('test.json');
+            const list = await response.json();
+            console.log(list);
+            return list;
         }
         startScroll();
     </script>
 </body>
+
 </html>

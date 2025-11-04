@@ -154,27 +154,24 @@
 </div>
 
 <script>
-    let rowCounter = 0; // Globaler Zähler für eindeutige IDs
 
+    let rowCounter = 0; // Globaler Zähler für eindeutige IDs
+    var tbody = document.getElementById('tableBody');
     // ✅ Methode zum Erzeugen der Zeilen
     function createRows(anzahl) {
         const tbody = document.getElementById('tableBody');
-
         for (let i = 1; i <= anzahl; i++) {
             addNewRow();
         }
-
         console.log(`✓ ${anzahl} Zeilen erstellt`);
     }
 
     // ✅ Fügt eine einzelne neue Zeile hinzu
     function addNewRow() {
         rowCounter++;
-        const tbody = document.getElementById('tableBody');
-        const row = document.createElement('tr');
-        row.id = `row${rowCounter}`;
-
-        row.innerHTML = `
+        var tbody = document.getElementById('tableBody');
+        tbody.innerHTML += `
+        <tr id="row${rowCounter}">
             <td>
                 <label for="file${rowCounter}" id="label${rowCounter}"></label>
                 <input type="file" id="file${rowCounter}" name="files[]" onchange="showPreview(this, 'container${rowCounter}', 'label${rowCounter}')">
@@ -184,18 +181,17 @@
                 <input type="text" id="title${rowCounter}" placeholder="Titel für Bild ${rowCounter}" data-file="file${rowCounter}">
             </td>
             <td>
-                <textarea id="description${rowCounter}" placeholder="Beschreibung für Bild ${rowCounter}" data-file="file${rowCounter}"></textarea>
+                <textarea  type="text" id="description${rowCounter}" placeholder="Beschreibung für Bild ${rowCounter}" data-file="file${rowCounter}"></textarea>
             </td>
             <td>
-                <button class="delete-btn" onclick="deleteRow('${row.id}')">Löschen</button>
+                <button class="delete-btn" onclick="deleteRow('row${rowCounter}')">Löschen</button>
             </td>
+        </tr>
         `;
-        tbody.appendChild(row);
+
 
         console.log(`✓ Zeile ${rowCounter} hinzugefügt`);
     }
-
-    // ✅ Löscht eine Zeile
     function deleteRow(rowId) {
         const row = document.getElementById(rowId);
         if (row) {
@@ -203,51 +199,86 @@
             console.log(`✓ Zeile ${rowId} gelöscht`);
         }
     }
-
-    // ✅ Beim Laden 2 Zeilen erstellen
     createRows(2);
-
     function uploadFiles() {
         debugger
-        let titleInputsList = [];
-        let descriptionInputsList = [];
-        const form = new FormData();
-        var getTableBody = document.getElementById('tableBody');
-        const fileInputs = getTableBody.querySelectorAll('input[type="file"]');
-        const titleInputs = getTableBody.querySelectorAll('input[id^="title"]');
-        const textareas = getTableBody.querySelectorAll('textarea[id^="description"]');
+        jsonObjekt = [];
+        // const entry = {
+        //     id: null, // wird vom Server gesetzt
+        //     bild: '',
+        //     titel: titleInput,
+        //     zeit: descriptionInput,
+        // };
+        var tbody = document.getElementById('tableBody');
+        var tbodyRows = tbody.querySelectorAll('tr');
 
-        console.log('File Inputs:', fileInputs);
-        console.log('Title Inputs:', titleInputs);
-        console.log('Textareas:', textareas);
+        tbodyRows.forEach(element => {
+            const fileInput = element.querySelector('input[type="file"]');
+            const titleInput = element.querySelector('input[id^="title"]');
+            const descriptionInput = element.querySelector('textarea[id^="description"]');
+            const entry = {
+                id: null, // wird vom Server gesetzt
+                bild: fileInput && fileInput.files.length > 0 ? fileInput.files[0].name : '',
+                titel: titleInput ? titleInput.value : '',
+                zeit: descriptionInput ? descriptionInput.value : '',
+            };
+            jsonObjekt.push(entry);
+        });
+        console.log(jsonObjekt);
+        // Array.from(tbody.children).forEach((element, index) => {
+        //     const fileInput = element.querySelector('input[type="file"]');
+        //     const titleInput = element.querySelector('input[id^="title"]');
+        //     const descriptionInput = element.querySelector('textarea[id^="description"]');
+        //     if (fileInput && fileInput.files.length > 0) {
+        //         entry.bild = fileInput.files[0].name;
+        //     }
 
-        // Dateien hinzufügen
-        for (let i = 0; i < fileInputs.length; i++) {
-            console.log(`Processing file input ${i}:`, fileInputs[i]);
-            const files = fileInputs[i].files;
-            for (let k = 0; k < files.length; k++) {
-                const file = files[k];
-                console.log(`File from input ${i}:`, file);
-                form.append(`files[]`, file);
-            }
-        }
+        //     jsonObjekt.push(entry);
+        // });
+        // console.log(jsonObjekt);
+        // // console.log(titleInputsList);
+        // console.log(descriptionInputsList);
+        // console.log(fileNamesList);
 
-        // Titel hinzufügen (input text - Mitte)
-        for (let j = 0; j < titleInputs.length; j++) {
-            const textValue = titleInputs[j].value;
-            titleInputsList.push(textValue);
-        }
-
-        // Beschreibungen hinzufügen (textarea - Rechts)
-        for (let m = 0; m < textareas.length; m++) {
-            const textValue = textareas[m].value;
-            descriptionInputsList.push(textValue);
-        }
-        console.log(titleInputsList);
-        console.log(descriptionInputsList);
-        moveFileToServer(form);
     }
-
+    function createJSONObj(fileNames, titles, descriptions) {
+        const data = [];
+        for (let i = 0; i < fileNames.length; i++) {
+            data.push({
+                id: i,                     // ✅ Eindeutige ID
+                bild: fileNames[i],           // ✅ Dateiname
+                titel: titles[i] || '',        // ✅ Titel
+                zeit: descriptions[i] || '' // ✅ Zeit
+            });
+        }
+        jsonString = JSON.stringify(data);
+        return jsonString;
+    }
+    async function saveJSONToServer(jsonString) {
+        try {
+            const response = await fetch('../multipleFiles/addToJSON.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: 'add',
+                    data: JSON.parse(jsonString) // ✅ String zu Array konvertieren
+                })
+            });
+            if (response.ok) {
+                const result = await response.json();
+                console.log('JSON erfolgreich gespeichert:', result);
+                alert(`${result.message}\nGesamt: ${result.totalEntries} Einträge`);
+            } else {
+                console.error('Fehler beim Speichern:', response.statusText);
+                alert('Fehler beim Speichern!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Fehler beim Speichern!');
+        }
+    }
     function showPreview(input, containerId, labelId) {
         const file = input.files[0];
         const container = document.getElementById(containerId);
@@ -258,7 +289,6 @@
                 container.src = e.target.result;
                 container.style.display = 'block';
                 label.style.display = 'none';
-
                 // ✅ Klick auf Bild ermöglicht erneutes Hochladen
                 container.onclick = function () {
                     input.click();
@@ -270,7 +300,6 @@
             label.style.display = 'inline-block';
         }
     }
-
     function moveFileToServer(form) {
         if (form) {
             fetch('../multipleFiles/movePic.php', {
@@ -293,17 +322,15 @@
                 });
         }
     }
-
     async function saveJSONToServer(jsonString) {
         try {
-            const response = await fetch('../multipleFiles/saveJSON.php', {
+            const response = await fetch('../multipleFiles/movePic.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: jsonString
             });
-
             if (response.ok) {
                 const result = await response.json();
                 console.log('JSON erfolgreich gespeichert:', result);

@@ -7,7 +7,7 @@
     <title>Auto-Scroll Tabelle</title>
     <style>
         .table-container {
-            height: 90vh;
+            height: auto;
             overflow-y: auto;
             display: flex;
             flex-direction: column-reverse;
@@ -127,7 +127,7 @@
                     debugger
                     body.innerHTML = '';
                 }
-                await new Promise(resolve => setTimeout(resolve, 6000));
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 const item = list[i];
                 const newRow = `<tr>
             <td><img style="width: 200px; height: auto;" src="../bilder/${item.bild}" alt="${item.titel}"></td>
