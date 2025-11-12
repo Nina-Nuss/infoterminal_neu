@@ -1,19 +1,16 @@
 <?php
 // ...existing code..
-
 // Versuche Konfiguration aus JSON-Datei zu laden
-
 // $server =  "10.1.6.3";
-$serverName = "10.1.6.3";
-
-// $serverName = "10.1.6.3";
-$database = "testdbTerminal";
-$UID = "sa";
-$PWD = "A%00000p&";
-
+// $serverName = "10.1.6.21";
+$serverName = "FIS-BW-03\SQLEXPRESS";
+ // $serverName = ""
+$database = "dbTerminal";
+// $UID = "sa";
+// $PWD = "A%00000p&";
 
 $connectionOptions = array(
-    "Database" => $database ?? "testdbTerminal",
+    "Database" => $database ?? "dbTerminal",
     "CharacterSet" =>  "UTF-8",
     "TrustServerCertificate" =>  true,
     "Encrypt" =>  true,
@@ -32,6 +29,20 @@ if (!$conn) {
     // echo "Verbindung erfolgreich hergestellt.";
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
