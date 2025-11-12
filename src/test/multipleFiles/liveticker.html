@@ -7,25 +7,20 @@
     <title>Auto-Scroll Tabelle</title>
     <style>
         .table-container {
-            height: auto;
+            max-height: 100vh;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column-reverse;
-            overflow-anchor: auto;
-            /* Browser scrollt automatisch zu neuen Elementen */
-            /* ✅ Neuester Eintrag unten, scrollt automatisch */
+            -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
-            scroll-padding: 10px;
         }
-
-        .table-container {
-            transition: scroll-behavior 20s ease-in-out;
-            /* Aber funktioniert nicht direkt */
+        .table-container>table {
+            width: 100%;    
+            border-collapse: collapse;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            scroll-behavior: smooth;
         }
 
         th,
@@ -50,10 +45,10 @@
 
 <body>
     <div class="table-container" id="tableContainer">
-        <table>
+        <table id="liveTable">
             <thead id="tableHead">
             </thead>
-            <tbody>
+            <tbody id="tableBody">
             </tbody>
         </table>
     </div>
@@ -127,7 +122,7 @@
                     debugger
                     body.innerHTML = '';
                 }
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 500));
                 const item = list[i];
                 const newRow = `<tr>
             <td><img style="width: 200px; height: auto;" src="../bilder/${item.bild}" alt="${item.titel}"></td>
@@ -135,9 +130,13 @@
             <td><h1>${item.zeit}</h1></td>
         </tr>`;
                 body.innerHTML += newRow;
-
+                scrollToBottom()
             }
             startScroll();
+        }
+        function scrollToBottom() {
+            const container = document.getElementById('tableContainer'); // scrollbaren Container verwenden
+            container.scrollTop = container.scrollHeight;
 
         }
         startScroll();

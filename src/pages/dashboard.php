@@ -285,11 +285,8 @@ include '../php/auth.php';
                 </div>
             </div>
             <div class="mt-3"></div>
-
-
         </div>
         <div class="right">
-
         </div>
     </div>
     </div>

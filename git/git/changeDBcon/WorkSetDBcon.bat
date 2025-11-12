@@ -1,6 +1,6 @@
 REM Ersetzt $serverName in connection.php durch neuen Wert
 @echo off
-set "file=c:\xampp\htdocs\html_Infoterminal\config\php\connection.php"
+set "file=c:\xampp\htdocs\infoterminal_neu\config\php\connection.php"
 REM $serverName ersetzen (egal was drinsteht)
 powershell -Command "(Get-Content -Raw '%file%') -replace '\$serverName\s*=\s*\".*?\";'  ,  '$serverName = \"10.1.6.3\";' | Set-Content '%file%'"
 REM $UID ersetzen (egal was drinsteht)
