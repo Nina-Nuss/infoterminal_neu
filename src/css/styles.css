@@ -9,7 +9,11 @@
     padding: 0px;
 }
 
-
+.navbuttons{
+    text-align: center;
+    font-weight: bold;
+    width: 150px !important;
+}
 
 
 #showDateInCard {
@@ -278,8 +282,3 @@ select::after {
     height: 500px;
 }
 
-.imagesCarousel {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}

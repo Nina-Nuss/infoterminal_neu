@@ -1,6 +1,7 @@
 * {
     font-family: Roboto;
 }
+
 .body {
     display: flex;
     justify-content: center;
@@ -12,7 +13,7 @@
 .main {
     float: left;
     width: 1200px;
-    
+
 }
 
 .left .right {
@@ -20,11 +21,16 @@
     width: auto;
 }
 
+.left {
+    width: 300px;
+}
 @media screen and (max-width: 1200px) {
+
     .left,
     .main,
     .right {
-        display: block; /* Block-Element - untereinander stapeln */
+        display: block;
+        /* Block-Element - untereinander stapeln */
     }
 }
 
@@ -159,14 +165,25 @@ input[type="checkbox"] {
 .start-btn {
     border-width: 2px !important;
     border-color: 006c99 !important;
-    border-radius: 8px !important;
     border: #006b99 !important;
     border-style: solid !important;
-    color: #006b99 !important;
+    font-size: 1.3rem !important;
+}
+.start-btn:hover {
+    background-color: #e5f0f5 !important;
+    color: white !important;
+    text-decoration: underline;
 }
 
-.navbuttons {
-    width: 200px !important;
+.start-btn {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Underline Effekt beim Hover */
+
+.zeitconfig{
+
 }
 
 .marquee {
@@ -176,7 +193,6 @@ input[type="checkbox"] {
     overflow: hidden;
     /* hier evtl. noch font-size, color usw. */
 }
-
 .marquee span {
     display: inline-block;
     padding-left: 105%;
@@ -229,8 +245,6 @@ input[type="checkbox"] {
     transform: skewX(35deg);
     font-size: 4vh;
     margin: 0 auto;
-
-
 }
 
 label {
@@ -438,18 +452,18 @@ hr {
     align-items: center;
 }
 
-.card-img-small {}
-
 .infobtn {
     width: 25px !important;
     height: 25px !important;
     padding: 1px !important;
+
 }
 
 .adddelLogoutbtn {
     width: 40px !important;
     height: 40px !important;
     padding: 0px !important;
+    border-color: white;
 }
 
 .infoterminalAddbtn {

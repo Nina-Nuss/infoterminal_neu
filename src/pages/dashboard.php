@@ -32,9 +32,7 @@ include '../php/auth.php';
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
         </div>
         <div class="main">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
-            <hr>
-            <div class="mt-0 d-flex justify-content-center overflow-auto " style="margin-right: 25%;">
+            <div class="mt-0 d-flex justify-content-center overflow-auto mb-2 " style="margin-right: 25%;">
                 <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                     class="btn btn-success btn-sm me-2 navbuttons">
                     <i class="fas fa-save"></i> Speichern
@@ -49,13 +47,13 @@ include '../php/auth.php';
                     <i class="fas fa-trash"></i> Löschen
                 </button>
             </div>
-            <div class="d-flex gap-2 m-3 ">
+            <div class="d-flex gap-2 m-3 mt-0 ">
                 <div class="overflow-auto flex-shrink-0" id="konfigContainer">
                     <div class="card">
                         <div class="card-header p-2">
                             <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                         </div>
-                        <div class="d-flex justify-content-around" style="min-height: 170px;">
+                        <div class="zeitconfig d-flex justify-content-around" style="min-height: 170px;">
                             <div class="p-3" style="width: 18rem;">
                                 <div class="form-group mt-0">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
@@ -186,7 +184,7 @@ include '../php/auth.php';
                                                 <option value="">auswählen</option>
                                             </select>
                                             <button id="openTerminalBtn"
-                                                class="btn start-btn btn-sm trashBtn "
+                                                class="btn btn-sm trashBtn "
                                                 style="width: 2vw;">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </button>
@@ -234,7 +232,6 @@ include '../php/auth.php';
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -284,7 +281,7 @@ include '../php/auth.php';
                     </div>
                 </div>
             </div>
-            <div class="mt-3"></div>
+
         </div>
         <div class="right">
         </div>

@@ -28,12 +28,8 @@ if (isset($_COOKIE['isAdmin'])) {
 <html>
 
 <body>
-    <?php include '../layout/header.php'; ?>
+    <?php include '../layout/headerD.php'; ?>
     <div class="container-fluid pt-3">
-        <div class="col-md-12 text-center">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
-        </div>
-        <hr>
         <div class="row mt-3 mb-3">
             <div class="col-12 d-flex justify-content-center">
                 <select id="adminSectionSelector" class="form-select w-auto">

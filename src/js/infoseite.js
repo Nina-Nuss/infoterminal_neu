@@ -489,13 +489,10 @@ class Infoseite {
         }
     }
     static checkWeekdays(obj) {
-
-        ;
         let wochentage = "";
         listeWochentage.forEach(element => {
             wochentage += element + "+";
         });
-
         wochentage = wochentage.slice(0, -1); // Letztes "+" entfernen
         obj.wochentage = wochentage;
         console.log(obj.wochentage);
@@ -641,10 +638,6 @@ class Infoseite {
             listWochenTage = wochentageStr.split("+"); // Teilt den String in ein Array auf
         }
         console.log(listWochenTage);
-
-
-
-
         listWochenTage.forEach(tag => {
             if (tag == "Monday") {
                 document.getElementById("monKonf").classList.add("btn-primary");
@@ -874,9 +867,7 @@ class Infoseite {
         console.log("Endzeit:", cardObj.endTime);
         console.log("Startdatum:", cardObj.startDate);
         console.log("Enddatum:", cardObj.endDate);
-
     }
-
     static removeDateRange(objID) {
         var btnDelDateTime = document.getElementById('btnDelDateTime');
         var startDate = document.getElementById("startDate");
@@ -886,7 +877,6 @@ class Infoseite {
             endDate.value = "";
         }
     }
-
     static removeTimeRangeFromDate(objID) {
         var startTime = document.getElementById("startTime");
         var endTime = document.getElementById("endTime");
@@ -896,7 +886,6 @@ class Infoseite {
             endTime.value = "";
         }
     }
-
     static removeTimeRange(objID) {
         var btnDelTime = document.getElementById('delTimeRange');
         var startTimeRange = document.getElementById("startTimeRange");
@@ -953,7 +942,6 @@ if (document.querySelectorAll('input[type="date"]') || document.querySelectorAll
         });
     });
 }
-
 function getTodayDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -961,21 +949,18 @@ function getTodayDate() {
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
-
 function getCurrentTime() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
 }
-
 function detectLinkType(link) {
     if (checkYoutubeUrl(link)) return "yt";
     if (checkTikTokUrl(link)) return "tiktok";
     return null; // Unbekannter Typ
 }
 async function meow(selectedValue) {
-
     let inhalt = null
     // Improved file upload handling for multiple images
     if (selectedValue === "img") {
@@ -1211,7 +1196,6 @@ function prepareFormData(selectedValue) {
     const description = formData.get('description');
     return { filesData, selectedTime, aktiv, titel, description };
 }
-
 async function sendDatei(selectedValue) {
     var { filesData, selectedTime, aktiv, titel, description } = prepareFormData(selectedValue); // Formulardaten vorbereiten
     console.log("Selected Time:", selectedTime);
@@ -1233,7 +1217,6 @@ async function sendDatei(selectedValue) {
     // Sequenziell verarbeiten
     const imageName = await sendPicture(filesData);
     console.log(imageName);
-
     if (imageName) {
         serverImageNames.push(imageName);
     }
@@ -1481,9 +1464,10 @@ function randomNumberGenerator() {
     return String(randomNumber)
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-    const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
-    if (btnAddInfoSeite) {
-        btnAddInfoSeite.click();
-    }
-});
+
+// window.addEventListener("DOMContentLoaded", function () {
+//     const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
+//     if (btnAddInfoSeite) {
+//         btnAddInfoSeite.click();
+//     }
+// });

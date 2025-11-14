@@ -118,6 +118,7 @@ foreach ($userList as $row) {
                     'message' => 'Falsches Passwort. Fehlversuche: ' . ($row['failed_attempts'] + 1)
                 ]);
             }
+            
         }
     }
 }
