@@ -5,8 +5,6 @@ ob_clean();
 session_start();
 
 $cookieIsSet = false;
-
-
 if (isset($_COOKIE['username'])) {
   foreach ($userList as $user) {
     if ($_COOKIE['username'] === $user['username'] && $user['is_active'] == 1 && $user['remember_me'] == 1) {
@@ -21,8 +19,7 @@ if (!$cookieIsSet) {
   if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != 1) {
     header('Location: ../login/index.php');
     exit;
-    exit;
-    exit;
+
   }
 }
 

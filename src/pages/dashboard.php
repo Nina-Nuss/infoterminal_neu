@@ -184,7 +184,7 @@ include '../php/auth.php';
                                                 <option value="">auswählen</option>
                                             </select>
                                             <button id="openTerminalBtn"
-                                                class="btn btn-sm trashBtn "
+                                                class="btn btn-sm openTestPageBtn "
                                                 style="width: 2vw;">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </button>

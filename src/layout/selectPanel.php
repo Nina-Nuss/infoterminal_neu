@@ -5,12 +5,12 @@
             <div class="d-flex justify-content-center gap-2 w-100" id="startBtns">
                 <button type="button" id="infotherminalBereich"
                     class="btn text-dark start-btn navbuttons">Infoterminal</button>
-                <button id="templates" type="button" class="btn text-dark start-btn navbuttons">Templates</button>
-                <button id="adminBereich" type="button" class="btn text-dark start-btn navbuttons">Administration</button>
+                <button id="templates" type="button" class="btn text-dark start-btn">Templates</button>
+                <button id="adminBereich" type="button" class="btn text-dark start-btn">Administration</button>
                 <div class="d-flex align-items-center justify-content-end position-absolute me-auto end-0">
                     <i id="themeToggle" class="bi bi-sun me-2" style="font-size: 1.5rem; cursor: pointer;" aria-label="Theme wechseln" title="Theme wechseln"></i>
                     <div class="d-flex align-items-center">
-                        <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+                        <i class="bi bi-person-circle me-2" style="font-size: 1.2rem;"></i>
                         <span id="usernameDisplay">
                             <?php
                             if (isset($_SESSION['username'])) {

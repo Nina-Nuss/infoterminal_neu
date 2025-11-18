@@ -219,7 +219,6 @@ input[type="checkbox"] {
     z-index: -1;
     overflow: hidden;
     align-items: center;
-
 }
 
 .text {
@@ -239,14 +238,24 @@ label {
 
 /* Neue Klasse für aktiven Button-Zustand */
 .start-btn {
-    position: relative;
+    position: sticky;
     /* background-color: white !important; */
     color: #090909 !important;
-    font-size: 1.3rem !important; 
+    font-size: 1.2rem !important; 
     transition: all 0.3s ease;
     border-color: #006b99 !important;
+    text-align: center;
+    font-weight: bold;
+    width: 150px !important; 
 
 }
+
+.navbuttons{
+    text-align: center;
+    font-weight: bold;
+    width: 150px !important;
+}
+
 
 .start-btn:hover::after {
     width: 100%;
@@ -412,7 +421,6 @@ hr {
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
-
 .selectBtn {
     background-color: rgba(255, 255, 255, 0.952);
     border-color: #006b99;
@@ -421,7 +429,6 @@ hr {
     width: 100%;
     height: 100%;
 }
-
 #container_btn2 {
     display: block;
     float: right;
@@ -437,17 +444,13 @@ hr {
     justify-content: center;
 
 }
-
 .button_time:hover {
     background-color: grey;
 }
-
 #tabelleDelete td {
     padding: 5px;
     /* rem verwenden */
 }
-
-
 
 .btn-custom-outline {
     border-color: #006b99 !important;
@@ -465,7 +468,6 @@ hr {
 .center-bottom {
     display: flex;
     justify-content: center;
-
     bottom: 1rem;
     /* Abstand vom unteren Rand anpassen (z.B. 1rem, 2vh, etc.) */
     display: inline-flex;
@@ -503,6 +505,30 @@ hr {
     display: flex;
     justify-content: center;
     align-items: top;
+}
+
+.trashBtn:hover {
+    background-color: #cd2828 !important;
+    border-color:  #dc0606 !important;
+    color: white !important;
+}
+
+.openTestPageBtn {
+    width: 2.5rem !important;
+    height: 1.9rem !important;
+    border-radius: 0.25rem !important;
+    border: 2px solid !important;
+    inline-size: auto;
+    padding: 7px !important;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+.openTestPageBtn:hover {
+    background-color: #006c99 !important;
+    border-color:  #006c99 !important;
+    color: white !important;
 }
 
 .infoseiteSelect {
