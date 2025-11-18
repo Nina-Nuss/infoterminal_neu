@@ -295,14 +295,7 @@ window.addEventListener("load", async function () {
 function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-function cutAndCreate(responseText) {
-    var obj = responseText.split("],[");
-    for (let i = 0; i < obj.length; i++) {
-        var zeile = obj[i].replace("[[", "").replace("]]", "").replace("[", "").replace("]", "").replace(/"/g, '')
-        const inZeile = zeile.split(",");
-        // new Infoterminal(inZeile[0], inZeile[1], inZeile[2])
-    }
-}
+
 document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('infoCounterLimit') && document.getElementById('cardCounterLimit')) {
         const infoCounterLimit = document.getElementById('infoCounterLimit');
@@ -396,4 +389,13 @@ async function update(key, value) {
     });
     const res = await result.json();
     console.log(res);
+}
+
+function cutAndCreate(responseText) {
+    var obj = responseText.split("],[");
+    for (let i = 0; i < obj.length; i++) {
+        var zeile = obj[i].replace("[[", "").replace("]]", "").replace("[", "").replace("]", "").replace(/"/g, '')
+        const inZeile = zeile.split(",");
+        // new Infoterminal(inZeile[0], inZeile[1], inZeile[2])
+    }
 }

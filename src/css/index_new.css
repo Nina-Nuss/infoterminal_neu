@@ -162,23 +162,7 @@ input[type="checkbox"] {
     border-radius: 10px;
 }
 
-.start-btn {
-    border-width: 2px !important;
-    border-color: 006c99 !important;
-    border: #006b99 !important;
-    border-style: solid !important;
-    font-size: 1.3rem !important;
-}
-.start-btn:hover {
-    background-color: #e5f0f5 !important;
-    color: white !important;
-    text-decoration: underline;
-}
 
-.start-btn {
-    position: relative;
-    transition: all 0.3s ease;
-}
 
 /* Underline Effekt beim Hover */
 
@@ -251,19 +235,56 @@ label {
     margin-bottom: 0px
 }
 
-.start-btn:hover {
-    background-color: #006b99 !important;
-    color: white !important;
-}
 
-/* ...existing code... */
 
 /* Neue Klasse für aktiven Button-Zustand */
+.start-btn {
+    position: relative;
+    /* background-color: white !important; */
+    color: #090909 !important;
+    font-size: 1.3rem !important; 
+    transition: all 0.3s ease;
+    border-color: #006b99 !important;
+
+}
+
+.start-btn:hover::after {
+    width: 100%;
+
+}
+
+.start-btn:hover {
+    background-color: #006b99 !important;
+    border-color: #006b99 !important;
+    color:#fff !important;
+    /* color: white !important; */
+}
+.start-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+/* Aktiver Button - Underline bleibt sichtbar */
 .btn-active {
     background-color: #006b99 !important;
     color: white !important;
 }
 
+.btn-active::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+}
 /* ...existing code... */
 
 .center-block {
