@@ -4,7 +4,6 @@ let pushDelete = false
 let json;
 let selectedCard = "";
 var anzeigebereichV = document.getElementById("anzeigebereichV");
-
 window.onload = async function () {
     console.log("window.onload von index.js läuft!");
     const ipAdress = await getSystemPath();
@@ -36,15 +35,12 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }
-
 }
-
 function getSekMin(ms) {
     const minutes = Math.floor(ms / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes} Min,  ${seconds} Sek`;
 }
-
 function deakNavbarbtns() {
     try {
         const startBtnsContainer = document.getElementById("startBtns");
@@ -76,14 +72,12 @@ function erstelleNavigation() {
             window.location.href = 'dashboard.php';
         });
     }
-
     if (homeBereich) {
         homeBereich.addEventListener("click", async function (event) {
             window.location.href = 'index.php';
         });
     }
 }
-
 async function logout() {
     try {
         await fetch('../login/logout.php').then(response => {
@@ -199,7 +193,6 @@ function findObj(list, id) {
     console.warn(`Objekt mit ID ${id} nicht gefunden.`);
     return null;
 }
-
 function convertCardObjForDataBase(cardObjListe) {
     objListe = []
     cardObjListe.forEach(cardObj => {
@@ -267,7 +260,6 @@ function isParseableNumber(str) {
     return true;
 };
 async function updateDataBase(cardObj, databaseUrl) {
-
     console.log(cardObj);
     // Erstellen eines FormData-Objekts
     try {

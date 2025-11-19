@@ -65,10 +65,7 @@ class Template {
             modalInstance.hide();
             Template.selectTemplate("img")
         }
-    }
-    
-
-
+    }    
     static imgContainer(anzahl, divContainer) {
         debugger
         for (let i = 0; i < anzahl; i++) {
@@ -235,7 +232,6 @@ class Template {
         document.body.appendChild(video); // Add the new video to the body
     }
     static createVorlageA(id) {
-
         let listInhalt = [];
         let container = document.createElement('div');
         container.className = "d-flex justify-content-evenly align-items-center";

@@ -13,6 +13,8 @@ if (!is_array($data)) {
     exit;
 }
 
+
+
 $imagePath = $data["imagePath"];
 $selectedTime = $data["selectedTime"];
 $aktiv = $data["aktiv"];

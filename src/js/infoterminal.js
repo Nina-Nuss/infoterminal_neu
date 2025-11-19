@@ -295,7 +295,6 @@ window.addEventListener("load", async function () {
 function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('infoCounterLimit') && document.getElementById('cardCounterLimit')) {
         const infoCounterLimit = document.getElementById('infoCounterLimit');
@@ -305,14 +304,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     try {
         console.log("Config wird geladen");
-        const res = await fetch('../../config/config.json');
-        if (!res.ok) throw new Error(`Config nicht gefunden (Status ${res.status})`);
-        const cfg = await res.json();
+        const res = await getData('../../config/config.json');
         // Dropdown befüllen
         // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
-        createList(cfg.maxCountForInfoPages, infoCounterLimit, cfg.defaultMaxCountForInfoPages + " " + "Info-Seiten");
-        createList(cfg.maxCountForInfoTerminals, cardCounterLimit, cfg.defaultMaxCountForInfoTerminals + " " + "Terminals");
-        console.log(cfg);
+        createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages + " " + "Info-Seiten");
+        createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals + " " + "Terminals");
+        console.log(res);
         // saveList(select, "default");
         saveList(infoCounterLimit, "defaultMaxCountForInfoPages");
         saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals");
@@ -321,6 +318,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 });
+
+async function getData(url) {
+    const result = await fetch(url)
+    if (!result.ok) throw new Error(`Config nicht gefunden (Status ${result.status})`);
+    return await result.json();
+}
 function createList(cfg, select, defaultValue) {
     select.innerHTML = ""; // Vorher leeren
     const bitteWaehlen = document.createElement('option');
@@ -361,13 +364,10 @@ function saveList(select, name) {
         }
     });
 }
-async function getData() {
-    const result = await fetch('../../config/configTest.json')
-    return await result.json();
-}
+
 async function setData() {
     try {
-        var data = await getData();
+        var data = await getData('../../config/configTest.json');
         document.getElementById("val1").value = data.webpageSettings[0].maxCountForInfoPages
         document.getElementById("val3").value = data.webpageSettings[0].maxUsers
         document.getElementById("val2").value = data.webpageSettings[0].darkMode
@@ -377,7 +377,7 @@ async function setData() {
 }
 async function update(key, value) {
     console.log(value);
-    const result = await fetch("saveValue.php", {
+    const result = await fetch("    .php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
