@@ -377,7 +377,7 @@ async function setData() {
 }
 async function update(key, value) {
     console.log(value);
-    const result = await fetch("    .php", {
+    const result = await fetch(".php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

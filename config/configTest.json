@@ -7,11 +7,27 @@
             "darkMode": "1",
             "sdfsdf": null,
             "fsdfsd": null,
-            "": "1bcvbvcb",
+            "": null,
             "maxCountForInfoTerminals": "40",
-            "maxCountForInfoPages": "20",
+            "maxCountForInfoPages": "40",
             "theme": "dark",
-            "test": "test"
+            "test": "test",
+            "tessafdsdfsdt": "tesdfdsfst"
         }
-    ]
+    ],
+    "testSettings": {
+        "test2": "MEdsfdsfdsfdsfdsfOW",
+        "testModeDuration": 30,
+        "test12": {
+            "test2": "MEOW2"
+        },
+        "2": {
+            "test2": "MEOW3"
+        },
+        "GDJFDGJLKFDJGLKFDG": {
+            "test2": "MEOW4"
+        },
+        "3": "NBMNBMMM",
+        "0": "NBMNBMMM"
+    }
 }
