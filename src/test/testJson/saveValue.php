@@ -13,9 +13,6 @@ foreach ($data as $item) {
     $key = $item['key'];
     $value = $item['value'];
 }
-
 $config['webpageSettings'][0][$key] = $value;
-
-
 
 file_put_contents('../../../config/configTest.json', json_encode($config, JSON_PRETTY_PRINT));

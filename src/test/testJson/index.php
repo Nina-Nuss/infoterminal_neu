@@ -25,7 +25,6 @@
     async function getData() {
         const result = await fetch('../../../config/configTest.json')
         return await result.json();
-
     }
 
     function setValue(val1) {
