@@ -24,6 +24,7 @@
 .left {
     width: 300px;
 }
+
 @media screen and (max-width: 1200px) {
 
     .left,
@@ -170,6 +171,7 @@ input[type="checkbox"] {
     overflow: hidden;
     /* hier evtl. noch font-size, color usw. */
 }
+
 .marquee span {
     display: inline-block;
     padding-left: 105%;
@@ -244,16 +246,16 @@ label {
     position: sticky;
     /* background-color: white !important; */
     color: #090909 !important;
-    font-size: 1.2rem !important; 
+    font-size: 1.2rem !important;
     transition: all 0.3s ease;
     border-color: #006b99 !important;
     text-align: center;
     font-weight: bold;
-    width: 150px !important; 
+    width: 150px !important;
 
 }
 
-.navbuttons{
+.navbuttons {
     text-align: center;
     font-weight: bold;
     width: 150px !important;
@@ -268,9 +270,10 @@ label {
 .start-btn:hover {
     background-color: #006b99 !important;
     border-color: #006b99 !important;
-    color:#fff !important;
+    color: #fff !important;
     /* color: white !important; */
 }
+
 .start-btn::after {
     content: '';
     position: absolute;
@@ -297,6 +300,7 @@ label {
     height: 3px;
     background-color: white;
 }
+
 /* ...existing code... */
 
 .center-block {
@@ -398,6 +402,7 @@ hr {
     height: 100%;
     align-items: center;
 }
+
 #IP_Adresse_main {
     width: 40vh;
     float: left;
@@ -419,6 +424,7 @@ hr {
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
+
 .selectBtn {
     background-color: rgba(255, 255, 255, 0.952);
     border-color: #006b99;
@@ -427,6 +433,7 @@ hr {
     width: 100%;
     height: 100%;
 }
+
 #container_btn2 {
     display: block;
     float: right;
@@ -442,9 +449,11 @@ hr {
     justify-content: center;
 
 }
+
 .button_time:hover {
     background-color: grey;
 }
+
 #tabelleDelete td {
     padding: 5px;
     /* rem verwenden */
@@ -507,7 +516,7 @@ hr {
 
 .trashBtn:hover {
     background-color: #cd2828 !important;
-    border-color:  #dc0606 !important;
+    border-color: #dc0606 !important;
     color: white !important;
 }
 
@@ -525,7 +534,7 @@ hr {
 
 .openTestPageBtn:hover {
     background-color: #006c99 !important;
-    border-color:  #006c99 !important;
+    border-color: #006c99 !important;
     color: white !important;
 }
 
@@ -534,10 +543,12 @@ hr {
     border: 2px solid #006c99;
     border-radius: 0.25rem;
 }
+
 .progress {
     height: 1vh;
     width: 500px;
 }
+
 @keyframes fill {
     from {
         width: 0
@@ -547,6 +558,7 @@ hr {
         width: 100%
     }
 }
+
 /* Dauer wird per CSS-Variable --dur gesetzt */
 .progress-bar.run {
     animation: fill var(--dur, 0ms) linear forwards;
@@ -559,4 +571,44 @@ hr {
     border-radius: 0.25rem;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+
+@media (max-width: 1170px) {
+
+    /* DIV-Element ausblenden, wenn die Bildschirmbreite kleiner oder gleich 768px ist */
+    .bearbeiten {
+        display: none;
+    }
+
+    #headerTitle {
+        display: none;
+    }
+}
+
+@media (max-width: 1400px) {
+    .cardbreack {
+        flex-direction: column;
+    }
+
+    #bildschirmVerwaltung {
+        width: 300px;
+        min-height: 170px;
+    }
+
+    .zeitconfig {
+        flex-direction: column;
+    }
+
+    /* .datum {
+        flex-direction: column;
+        justify-content: start !important;
+        align-self: start !important; 
+        margin: 0;
+    } */
+    #konfigContainer{
+        width: 600px;
+    }
+
+
 }

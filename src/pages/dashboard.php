@@ -47,122 +47,122 @@ include '../php/auth.php';
                     <i class="fas fa-trash"></i> Löschen
                 </button>
             </div>
-            <div class="d-flex gap-2 m-3 mt-0 ">
-                <div class="overflow-auto flex-shrink-0" id="konfigContainer">
-                    <div class="card">
-                        <div class="card-header p-2">
-                            <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
-                        </div>
-                        <div class="zeitconfig d-flex justify-content-around" style="min-height: 170px;">
-                            <div class="p-3" style="width: 18rem;">
-                                <div class="form-group mt-0">
-                                    <div class="d-flex align-items-center justify-content-between mb-3">
-                                        <i class="fas fa-file-alt me-2"></i>
-                                        <div class="mb-0 me-auto">Infoseite Name:
-                                        </div>
-                                        <div type="text" class="w-auto fw-bolder text-break" id="websiteName" value="-" style="word-break: break-word; max-width: 200px;">
-                                        </div>
+            <div class="d-flex gap-2 m-3 mt-0 cardbreack">
+                <div class="card overflow-auto flex-shrink-0" id="konfigContainer">
+                    <div class="card-header p-2">
+                        <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
+                    </div>
+                    <div class="zeitconfig d-flex justify-content-around" style="min-height: 170px;">
+                        <div class="p-3" style="width: 18rem;">
+                            <div class="form-group mt-0">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <i class="fas fa-file-alt me-2"></i>
+                                    <div class="mb-0 me-auto">Infoseite Name:
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="d-flex flex-wrap align-items-center  justify-content-start mb-2 ">
-                                        <i class="fas fa-hourglass-half"></i>
-                                        <!-- Uhr-Icon für Sekunden -->
-                                        <div for="anzeigeDauer" class="mb-0 ms-2">
-                                            Sekunden:</div>
-                                        <input type="text" id="selectSekunden"
-                                            class="form-control form-control-sm ms-2 me-auto" maxlength="4"
-                                            style="width: 50px;">
-                                        <div class="fw-bolder w-auto" id="anzeigeDauer"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start gap-2 ">
-                                        <label class="form-check-label mb-0" for="checkA">
-                                            Aktiv:
-                                        </label>
-                                        <input class="form-check-input" type="checkbox" id="checkA"
-                                            name="checkA">
+                                    <div type="text" class="w-auto fw-bolder text-break" id="websiteName" value="-" style="word-break: break-word; max-width: 200px;">
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-3" style="width: 35rem;  overflow-y: auto;">
-                                <div id="panelForDateTime" class="w-100">
-                                    <div id="dateTimeInfoPanel ">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="d-flex  align-items-center">
-                                                <i class="fas fa-calendar-alt me-2"></i>
-                                                <span>Datum:</span>
-                                                <div class="d-flex align-items-center" style="margin-left: 20px;">
-                                                    <input type="date" class="form-control form-control-sm" style="width: 9rem; "
-                                                        id="startDate" name="startDate">
-                                                </div>
+                            <div class="form-group">
+                                <div class="d-flex flex-wrap align-items-center  justify-content-start mb-2 ">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <!-- Uhr-Icon für Sekunden -->
+                                    <div for="anzeigeDauer" class="mb-0 ms-2">
+                                        Sekunden:</div>
+                                    <input type="text" id="selectSekunden"
+                                        class="form-control form-control-sm ms-2 me-auto" maxlength="4"
+                                        style="width: 50px;">
+                                    <div class="fw-bolder w-auto" id="anzeigeDauer"></div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-start gap-2 ">
+                                    <label class="form-check-label mb-0" for="checkA">
+                                        Aktiv:
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkA"
+                                        name="checkA">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3" style="width: 35rem;  overflow-y: auto;">
+                            <div id="panelForDateTime" class="w-100">
+                                <div id="dateTimeInfoPanel ">
+
+                                    <div class="datum d-flex align-items-center mb-3">
+                                        <div class="d-flex  align-items-center">
+                                            <i class="fas fa-calendar-alt me-2"></i>
+                                            <span>Datum:</span>
+                                            <div class="d-flex align-items-center" style="margin-left: 20px;">
+                                                <input type="date" class="form-control form-control-sm" style="width: 9rem; "
+                                                    id="startDate" name="startDate">
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between ms-auto">
-                                                <label for="endDate"
-                                                    class="form-label mb-0 text-secondary mx-2">bis</label>
-                                                <input type="date"
-                                                    class="form-control form-control-sm" style="width: 9rem; "
-                                                    id="endDate" name="endDate">
-                                                <button id="btnDelDateTime"
-                                                    class="btn btn-outline-danger trashBtn btn-sm ms-3"
-                                                    onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                            <div type="button" data-bs-placement="bottom"
-                                                class="btn btn-lg btn-secondary  btn-sm infobtn"
-                                                data-bs-toggle="popover" title="Information zum Datum"
-                                                data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></div>
-                                            <script>
-                                                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                                    new bootstrap.Popover(el, {
-                                                        trigger: 'hover',
-                                                        html: true,
-                                                        placement: el.getAttribute('data-bs-placement') || 'top'
-                                                    });
-                                                });
-                                            </script>
                                         </div>
-                                        <!-- Uhrzeit -->
+                                        <div class="d-flex align-items-center justify-content-between ms-auto">
+                                            <label for="endDate"
+                                                class="form-label mb-0 text-secondary mx-2">bis</label>
+                                            <input type="date"
+                                                class="form-control form-control-sm" style="width: 9rem; "
+                                                id="endDate" name="endDate">
+                                            <button id="btnDelDateTime"
+                                                class="btn btn-outline-danger trashBtn btn-sm ms-3"
+                                                onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                        <div type="button" data-bs-placement="bottom"
+                                            class="btn btn-lg btn-secondary  btn-sm infobtn"
+                                            data-bs-toggle="popover" title="Information zum Datum"
+                                            data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></div>
+                                        <script>
+                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                new bootstrap.Popover(el, {
+                                                    trigger: 'hover',
+                                                    html: true,
+                                                    placement: el.getAttribute('data-bs-placement') || 'top'
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                    <!-- Uhrzeit -->
+                                    <div class="uhrzeit d-flex align-items-center">
                                         <div class="d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fa fa-clock me-2"></i>
-                                                <span style="margin-right: 0.5rem;">Uhrzeit:</span>
-                                                <input type="time"
-                                                    class="form-control form-control-sm flex-fill mx-2" style="width: 6rem;" style="margin-left: 30px;"
-                                                    id="startTimeRange" name="startTimeRange">
-                                                <label for="endTimeRange"
-                                                    class="form-label mb-0 me-2 text-secondary">Uhr</label>
-                                            </div>
-                                            <div class="d-flex align-items-center ms-auto">
-                                                <label for="endTimeRange"
-                                                    class="form-label mb-0 me-2 text-secondary"
-                                                    style="width: auto;">bis</label>
-                                                <input type="time" style="width: 6rem;"
-                                                    class="form-control form-control-sm flex-fill"
-                                                    id="endTimeRange" name="endTimeRange">
-                                                <label for="endTimeRange"
-                                                    class="form-label mb-0 text-secondary me-3 mx-2"> Uhr</label>
-                                                <button id="delTimeRange"
-                                                    class="btn btn-outline-danger trashBtn me-auto ms-3 btn-sm "
-                                                    onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                            <button type="button" data-bs-placement="bottom"
-                                                class="btn btn-lg btn-secondary btn-sm infobtn"
-                                                data-bs-toggle="popover" title="Information zur Uhrzeit"
-                                                data-bs-content="Zwischen welcher Uhrzeit die Infoseite jeden Tag angezeigt werden soll"> <i class="bi bi-info-circle"></i></i></button>
-                                            <script>
-                                                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                                    new bootstrap.Popover(el, {
-                                                        trigger: 'hover',
-                                                        html: true,
-                                                        placement: el.getAttribute('data-bs-placement') || 'top'
-                                                    });
-                                                });
-                                            </script>
+                                            <i class="fa fa-clock me-2"></i>
+                                            <span style="margin-right: 0.5rem;">Uhrzeit:</span>
+                                            <input type="time"
+                                                class="form-control form-control-sm flex-fill mx-2" style="width: 6rem;" style="margin-left: 30px;"
+                                                id="startTimeRange" name="startTimeRange">
+                                            <label for="endTimeRange"
+                                                class="form-label mb-0 me-2 text-secondary">Uhr</label>
                                         </div>
-                                        <!-- <div class="input-group input-group-sm mt-3  d-flex">
+                                        <div class="d-flex align-items-center ms-auto">
+                                            <label for="endTimeRange"
+                                                class="form-label mb-0 me-2 text-secondary"
+                                                style="width: auto;">bis</label>
+                                            <input type="time" style="width: 6rem;"
+                                                class="form-control form-control-sm flex-fill"
+                                                id="endTimeRange" name="endTimeRange">
+                                            <label for="endTimeRange"
+                                                class="form-label mb-0 text-secondary me-3 mx-2"> Uhr</label>
+                                            <button id="delTimeRange"
+                                                class="btn btn-outline-danger trashBtn me-auto ms-3 btn-sm "
+                                                onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                        <button type="button" data-bs-placement="bottom"
+                                            class="btn btn-lg btn-secondary btn-sm infobtn"
+                                            data-bs-toggle="popover" title="Information zur Uhrzeit"
+                                            data-bs-content="Zwischen welcher Uhrzeit die Infoseite jeden Tag angezeigt werden soll"> <i class="bi bi-info-circle"></i></i></button>
+                                        <script>
+                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                new bootstrap.Popover(el, {
+                                                    trigger: 'hover',
+                                                    html: true,
+                                                    placement: el.getAttribute('data-bs-placement') || 'top'
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                    <!-- <div class="input-group input-group-sm mt-3  d-flex">
                                                             <label for="img" class="form-label me-4">
                                                                 <i class="fab fa-youtube me-2"></i> Video
                                                             </label>
@@ -173,63 +173,62 @@ include '../php/auth.php';
                                                             <input type="text" id="endyt" class="form-control form-control-sm" placeholder="Sekunden" value=""
                                                                 aria-label="Sekunden" aria-describedby="addon-wrapping">
                                                         </div> -->
+                                </div>
+                                <div class="form-group mt-3 d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <label for="openTerminalBtn" class="form-label m-0">
+                                            <i class="fas fa-desktop me-2"></i>Anzeige:
+                                        </label>
+                                        <select class="form-control form-select-sm" style="width: 140px; margin-left: 0.5rem;"
+                                            id="infotherminalSelect">
+                                            <option value="">auswählen</option>
+                                        </select>
+                                        <button id="openTerminalBtn"
+                                            class="btn btn-sm openTestPageBtn "
+                                            style="width: 2vw;">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </button>
                                     </div>
-                                    <div class="form-group mt-3 d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <label for="openTerminalBtn" class="form-label m-0">
-                                                <i class="fas fa-desktop me-2"></i>Anzeige:
-                                            </label>
-                                            <select class="form-control form-select-sm" style="width: 140px; margin-left: 0.5rem;"
-                                                id="infotherminalSelect">
-                                                <option value="">auswählen</option>
-                                            </select>
-                                            <button id="openTerminalBtn"
-                                                class="btn btn-sm openTestPageBtn "
-                                                style="width: 2vw;">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </button>
-                                        </div>
 
+                                </div>
+                                <div class="form-group d-flex justify-content-start align-items-center">
+                                    <i class="fas fa-calendar-day  me-2"></i>Tage:
+                                    <div id="wochentageContainer" class="d-flex gap-1 align-items-center ms-4">
+                                        <button id="monKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Monday', this)">Mo</button>
+                                        <button id="tueKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Tuesday', this)">Di</button>
+                                        <button id="wedKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Wednesday', this)">Mi</button>
+                                        <button id="thuKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Thursday', this)">Do</button>
+                                        <button id="friKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Friday', this)">Fr</button>
+                                        <button id="satKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Saturday', this)">Sa</button>
+                                        <button id="sunKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Sunday', this)">So</button>
                                     </div>
-                                    <div class="form-group d-flex justify-content-start align-items-center">
-                                        <i class="fas fa-calendar-day  me-2"></i>Tage:
-                                        <div id="wochentageContainer" class="d-flex gap-1 align-items-center ms-4">
-                                            <button id="monKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Monday', this)">Mo</button>
-                                            <button id="tueKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Tuesday', this)">Di</button>
-                                            <button id="wedKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Wednesday', this)">Mi</button>
-                                            <button id="thuKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Thursday', this)">Do</button>
-                                            <button id="friKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Friday', this)">Fr</button>
-                                            <button id="satKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Saturday', this)">Sa</button>
-                                            <button id="sunKonf" class="btn border btn-sm wochentageBtn" onclick="senden('Sunday', this)">So</button>
-                                        </div>
-                                    </div>
-                                    <div id="zeitspannePanel"
-                                        class="border rounded-3 shadow-sm p-3 bg-light"
-                                        style="display:none;">
-                                        <div class="row d-flex g-2">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center" style="margin-left: 1rem;">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center" style="margin-left: 1rem;">
-
-                                                </div>
+                                </div>
+                                <div id="zeitspannePanel"
+                                    class="border rounded-3 shadow-sm p-3 bg-light"
+                                    style="display:none;">
+                                    <div class="row d-flex g-2">
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center" style="margin-left: 1rem;">
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-12 mt-2">
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center" style="margin-left: 1rem;">
 
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="uhrzeitPanel" class="border rounded-3 shadow-sm p-3 bg-light"
-                                        style="display:none;">
-                                        <div class="row g-2 justify-content-center">
-                                            <div class="col-6 d-flex align-items-center">
-                                            </div>
-                                            <div class="col-6 d-flex align-items-center">
-                                            </div>
+                                    <div class="row ">
+                                        <div class="col-12 mt-2">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="uhrzeitPanel" class="border rounded-3 shadow-sm p-3 bg-light"
+                                    style="display:none;">
+                                    <div class="row g-2 justify-content-center">
+                                        <div class="col-6 d-flex align-items-center">
+                                        </div>
+                                        <div class="col-6 d-flex align-items-center">
                                         </div>
                                     </div>
                                 </div>
