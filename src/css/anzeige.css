@@ -26,9 +26,6 @@ body {
   flex-direction: column;
 }
 
-header {
-  width: 100%;
-}
 
 footer {
   position: fixed;
@@ -79,13 +76,6 @@ footer {
   }
 }
 
-.header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* zentriert die mittleren Buttons */
-}
 
 .logout-btn {
   position: absolute;

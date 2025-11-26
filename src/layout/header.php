@@ -33,14 +33,13 @@
 </style>
 
 <div class="parallelogram" id="header">
-    <div class=" text d-flex justify-content-between align-items-center gap-2" style="margin-left: 3%; margin-right: 3%;">
+    <div class="textFrond d-flex justify-content-between align-items-center gap-2" style="margin-left: 3%; margin-right: 3%;">
         <div id="headerTitle" class="clock"> Infoterminal CJD Offenburg</div>
         <div class="clock">
             <div id="time"></div>
             <div>/</div>
             <div id="date"></div>
         </div>
-
     </div>
 </div>
 <script>

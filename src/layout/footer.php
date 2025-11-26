@@ -39,7 +39,7 @@
 
 <body>
     <div class="parallelogram">
-        <div class="para_inhalt text d-flex justify-content-between align-items-center gap-2 " style="margin-left: 3%; margin-right: 3%;">
+        <div class="para_inhalt textFrond d-flex justify-content-between align-items-center gap-2 " style="margin-left: 3%; margin-right: 3%;">
             <div style="margin-right: 1%;">
                 <div>Tagesschau.de</div>
             </div>

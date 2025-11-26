@@ -6,17 +6,15 @@
 </head>
 
 <div class="parallelogram" id="header">
-    <div class="text d-flex justify-content-between align-items-center gap-2" style="margin-left: 3%; margin-right: 3%;">
+    <div class="textDashboard d-flex justify-content-between align-items-center" style="margin-left: 3%; margin-right: 3%;">
         <div id="headerTitle"> Infoterminal CJD Offenburg</div>
         <div id="selectPanel">
             <div class="mx-auto pl-auto bg-gray-100 w-100">
-                <div class="">
-                    <div class="d-flex justify-content-between gap-2" id="startBtns">
-                        <button type="button" id="infotherminalBereich"
-                            class="btn text-dark start-btn navbuttons">Infoterminal</button>
-                        <button id="templates" type="button" class="btn text-dark start-btn navbuttons">Templates</button>
-                        <button id="adminBereich" type="button" class="btn text-dark start-btn navbuttons">Administration</button>
-                    </div>
+                <div class="d-flex justify-content-between gap-2" id="startBtns">
+                    <button type="button" id="infotherminalBereich"
+                        class="btn text-dark start-btn navbuttons">Infoterminal</button>
+                    <button id="templates" type="button" class="btn text-dark start-btn navbuttons">Templates</button>
+                    <button id="adminBereich" type="button" class="btn text-dark start-btn navbuttons">Administration</button>
                 </div>
             </div>
         </div>
