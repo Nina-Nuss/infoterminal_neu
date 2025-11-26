@@ -7,7 +7,7 @@
 
 <div class="parallelogram" id="header">
     <div class="textDashboard d-flex justify-content-between align-items-center" style="margin-left: 3%; margin-right: 3%;">
-        <div id="headerTitle"> Infoterminal CJD Offenburg</div>
+        <div id="headerTitleD"> Infoterminal CJD Offenburg</div>
         <div id="selectPanel">
             <div class="mx-auto pl-auto bg-gray-100 w-100">
                 <div class="d-flex justify-content-between gap-2" id="startBtns">
