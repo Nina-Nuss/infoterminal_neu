@@ -236,7 +236,7 @@ include '../php/auth.php';
                         </div>
                     </div>
                 </div>
-                <div class="" id="bildschirmVerwaltung" style="min-height: 170px;">
+                <div class="" id="bildschirmVerwaltung"  >
                     <div class="card h-100">
                         <div class="card-header p-2">
                             <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirme verwalten</h6>

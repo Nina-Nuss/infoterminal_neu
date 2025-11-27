@@ -613,3 +613,9 @@ hr {
 
 
 }
+
+@media (max-width: 2000px) {
+    .configAdmin {
+        flex-direction: column;
+    }
+}

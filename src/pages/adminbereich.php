@@ -52,15 +52,15 @@ if (isset($_COOKIE['isAdmin'])) {
                 </div> -->
                     <div class="card-body mt-3">
                         <div class="row d-flex justify-content-center">
-                            <div class="card h-100 col-md-2 flex-column p-0">
+                            <div class="card h-100 col-xl-2 flex-column p-0">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
                                             <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
                                         </h6>
                                     </div>
                                     <form id="formID" action="../php/bereitsVorhanden.php" method="post">
-                                        <div class="card-body position-relative">
-                                            <div class="d-flex flex-column " style="height: 280px;">
+                                        <div class="card-body ">
+                                            <div class="d-flex flex-column ">
                                                 <div class="form-group mb-3">
                                                     <label for="infotherminalIp" class="form-label">
                                                         <i class="fas fa-network-wired me-2"></i> IP-Adresse:
@@ -68,7 +68,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                                     <input class="form-control" type="text" id="infotherminalIp"
                                                         name="infotherminalIp" placeholder="z.B. 10.5.0.100" required>
                                                 </div>
-                                                <div class="form-group mb-3">
+                                                <div class="form-group mb-5">
                                                     <label for="infotherminalName" class="form-label">
                                                         <i class="fas fa-tag me-2"></i> Name:
                                                     </label>
@@ -98,7 +98,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                         </div>
                                     </form>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xl-3">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -135,7 +135,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-xl-2">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0">
@@ -199,16 +199,16 @@ if (isset($_COOKIE['isAdmin'])) {
             </div> -->
                 <div class="col-12 mt-3">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-2">
-                            <div class="card h-100">
+                        <div class="col-xl-2">
+                            <div class="card">
                                 <div class="card-header">
-                                    <h6 class="card-title mb-0 d-flex justify-content-center">
+                                    <h6 class="card-title mb-0 d-flex justify-con+tent-center">
                                         <i class="fas fa-user-plus me-2"></i> Benutzer hinzufügen
                                     </h6>
                                 </div>
                                 <div class="card-body">
                                     <div id="formUser">
-                                        <div class="form-group mb-3" style="height: 260px;">
+                                        <div class="form-group mb-3">
                                             <div class="form-group mb-3">
                                                 <label for="username" class="form-label">
                                                     <i class="fas fa-user me-2"></i> Benutzername:
@@ -251,7 +251,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-xl-3">
                             <div class="card h-100 ">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -265,7 +265,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                             <i class="fas fa-list me-2"></i> Benutzer auswählen:
                                         </label>
                                     </div>
-                                    <div style="height: 200px; overflow-y: auto;">
+                                    <div style="overflow-y: auto;">
                                         <table class="table table-hover position-relative ">
                                             <thead>
                                                 <tr>
@@ -291,7 +291,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-xl-2">
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0">

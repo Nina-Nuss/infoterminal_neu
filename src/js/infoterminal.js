@@ -90,7 +90,7 @@ class Infoterminal {
                     <td class="p-2">${listInfo[2]}</td>
                     <td class="p-2">${listInfo[1]}</td>
                     <td class=""><input type="checkbox" name="${listInfo[0]}" id="checkDelInfo${listInfo[0]}" onchange="Infoterminal.event_remove(${listInfo[0]})"></td>
-                    <td class=""><input type="button" name="${listInfo[0]}" id="updateDelInfo${listInfo[0]}" onchange="Infoterminal.update_(${listInfo[0]})"></td>
+                   
                 </tr>`;
             // Selector-Optionen sammeln
             selectorOptions += `<option value="${listInfo[1]}">${listInfo[1]}</option>`

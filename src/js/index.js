@@ -15,6 +15,7 @@ window.onload = async function () {
 
         } catch (error) {
             console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
+            
         }
     }
     try {
