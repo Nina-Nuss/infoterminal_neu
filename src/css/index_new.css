@@ -1,5 +1,10 @@
 * {
     font-family: Roboto;
+      
+}
+
+html{
+ 
 }
 
 .body {
@@ -8,6 +13,7 @@
     text-align: center;
     padding-top: 3vh;
     height: 90vh;
+    margin-top: 0px;
 }
 
 .main {
@@ -48,7 +54,7 @@
 }
 
 body {
-    margin: 0;
+    margin: 0px !important;
     padding: 0;
     margin-top: 5px;
     width: 100%;
@@ -134,7 +140,6 @@ input[type="checkbox"] {
 
 
 @media (max-width: 1000px) {
-
     /* DIV-Element ausblenden, wenn die Bildschirmbreite kleiner oder gleich 768px ist */
     .bearbeiten {
         display: none;
@@ -332,9 +337,6 @@ label {
 
 /* kleine, standardisierte Höhe für card/modal body */
 /* kleine, standardisierte Höhe für card/modal body */
-
-
-
 .clock {
     text-align: center;
 }
@@ -373,7 +375,6 @@ hr {
     width: 100%;
     margin-top: 1vh;
     margin-bottom: 1vh;
-
 }
 
 .vr {
@@ -619,3 +620,4 @@ hr {
         flex-direction: column;
     }
 }
+

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Site</title>
-    <?php include '../assets/links.html'; ?>
+
     <style>
         #ticker {
             width: 100%;

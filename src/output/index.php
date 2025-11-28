@@ -7,6 +7,7 @@
     <title>Bootstrap Site</title>
     <script src="errorDisplay.js"></script>
     <meta http-equiv="Permissions-Policy" content="compute-pressure=()">
+  
 </head>
 <style>
     html,
