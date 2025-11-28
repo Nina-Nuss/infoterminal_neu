@@ -14,6 +14,7 @@ class Template {
         Template.list.push(this);
     }
     static selectTemplate(template) {
+        debugger
         var templatesContainer = document.getElementById("templateContainer");
         var fileInput = document.getElementById('img');
         var inputGroupSelect01 = document.getElementById('inputGroupSelect01');
@@ -23,6 +24,7 @@ class Template {
         var selectedValue = template;
         if (selectedValue === 'yt') {
             this.resetAll();
+            inputGroupSelect01.value = 'yt';
             templatesContainer.innerHTML = Template.youtubeContainer();
             if (fileInput) {
                 fileInput.disabled = true;
@@ -31,6 +33,7 @@ class Template {
         } else if (selectedValue === 'img') {
             this.resetAll();
             debugger
+            inputGroupSelect01.value = 'img';
             Template.imgContainer(1, templatesContainer);
             if (fileInput) {
                 fileInput.disabled = false;
@@ -41,6 +44,7 @@ class Template {
             }
         } else if (selectedValue === 'tempSnackbar') {
             this.resetAll();
+            inputGroupSelect01.value = 'tempSnackbar';
             Template.imgContainer(2, templatesContainer);
         }
         else if (selectedValue === 'tempTest') {
@@ -65,7 +69,7 @@ class Template {
             modalInstance.hide();
             Template.selectTemplate("img")
         }
-    }    
+    }
     static imgContainer(anzahl, divContainer) {
         debugger
         for (let i = 0; i < anzahl; i++) {
@@ -364,10 +368,16 @@ class Template {
             previewContainer.style.display = 'none';
         }
     }
+
 }
-if (document.getElementById('inputGroupSelect01')) {
-    Template.selectTemplate("img")
-}
+document.addEventListener('DOMContentLoaded', () => {
+    Template.selectTemplate("yt")
+});
+
+
+
+
+
 // document.addEventListener('DOMContentLoaded', async () => {
 //     console.log("DOM vollständig geladen und analysiert");
 //     var lastUploaded = await Infoseite.getLastUploadedInfoseite();

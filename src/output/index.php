@@ -7,7 +7,7 @@
     <title>Bootstrap Site</title>
     <script src="errorDisplay.js"></script>
     <meta http-equiv="Permissions-Policy" content="compute-pressure=()">
-  
+
 </head>
 <style>
     html,
@@ -15,6 +15,8 @@
         height: 100%;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+        /* Verhindert Scrollbar */
     }
 
     body {
@@ -44,7 +46,7 @@
         /* <- verhinder Überlauf */
     }
 
-   
+
 
     .iframe-container iframe {
         height: 77vh;
@@ -100,8 +102,8 @@
 
 <header>
     <?php include '../layout/logo.php'; ?>
-    
-    <?php include '../layout/header.php'; ?> 
+
+    <?php include '../layout/header.php'; ?>
 </header>
 
 <body>
