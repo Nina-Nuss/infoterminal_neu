@@ -371,7 +371,7 @@ class Template {
 
 }
 document.addEventListener('DOMContentLoaded', () => {
-    Template.selectTemplate("yt")
+    Template.selectTemplate("img")
 });
 
 

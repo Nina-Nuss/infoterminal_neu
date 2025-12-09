@@ -35,6 +35,7 @@ if (isset($_COOKIE['isAdmin'])) {
                 <select id="adminSectionSelector" class="form-select w-auto">
                     <option value="infoterminal" selected>Infoterminal verwalten</option>
                     <option value="user">Benutzer verwalten</option>
+                    <option value="settings">Einstellungen</option>
                 </select>
             </div>
         </div>
@@ -52,53 +53,56 @@ if (isset($_COOKIE['isAdmin'])) {
                 </div> -->
                     <div class="card-body mt-3">
                         <div class="row d-flex justify-content-center">
-                            <div class="card h-100 col-xl-2 flex-column p-0">
-                                    <div class="card-header">
-                                        <h6 class="card-title mb-0 d-flex justify-content-center">
-                                            <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
-                                        </h6>
-                                    </div>
-                                    <form id="formID" action="../php/bereitsVorhanden.php" method="post">
-                                        <div class="card-body ">
-                                            <div class="d-flex flex-column ">
-                                                <div class="form-group mb-3">
-                                                    <label for="infotherminalIp" class="form-label">
-                                                        <i class="fas fa-network-wired me-2"></i> IP-Adresse:
-                                                    </label>
-                                                    <input class="form-control" type="text" id="infotherminalIp"
-                                                        name="infotherminalIp" placeholder="z.B. 10.5.0.100" required>
-                                                </div>
-                                                <div class="form-group mb-5">
-                                                    <label for="infotherminalName" class="form-label">
-                                                        <i class="fas fa-tag me-2"></i> Name:
-                                                    </label>
-                                                    <input class="form-control" type="text" id="infotherminalName"
-                                                        name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
-                                                </div>
+                            <div class="card h-100 col-md-2 flex-column p-0">
+                                <div class="card-header">
+                                    <h6 class="card-title mb-0 d-flex justify-content-center">
+                                        <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
+                                    </h6>
+                                </div>
+                                <form id="formID" action="../php/bereitsVorhanden.php" method="post">
+                                    <div class="card-body ">
+                                        <div class="d-flex flex-column ">
+                                            <div class="form-group mb-5">
+                                                <label for="infotherminalIp" class="form-label">
+                                                    <i class="fas fa-network-wired me-2"></i> IP-Adresse:
+                                                </label>
+                                                <input class="form-control" type="text" id="infotherminalIp"
+                                                    name="infotherminalIp" placeholder="z.B. 10.5.0.100" required>
                                             </div>
+                                            <div class="form-group mb-4">
+                                                <label for="infotherminalName" class="form-label">
+                                                    <i class="fas fa-tag me-2"></i> Name:
+                                                </label>
+                                                <input class="form-control" type="text" id="infotherminalName"
+                                                    name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
+                                            </div>
+                                            <div class="form-group mb-3">
 
+                                            </div>
                                         </div>
-                                        <div class="d-flex justify-content-center card-bottom p-3" style="border-top: none;">
-                                            <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
-                                                <i class="fas fa-plus me-2"></i> Hinzufügen
-                                            </button>
-                                            <button type="button" data-bs-placement="top"
-                                                class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
-                                                data-bs-toggle="popover" title="Popover title"
-                                                data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
-                                            <script>
-                                                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                                    new bootstrap.Popover(el, {
-                                                        trigger: 'hover',
-                                                        html: true,
-                                                        placement: el.getAttribute('data-bs-placement') || 'top'
-                                                    });
+
+                                    </div>
+                                    <div class="d-flex justify-content-center card-bottom p-3" style="border-top: none;">
+                                        <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
+                                            <i class="fas fa-plus me-2"></i> Hinzufügen
+                                        </button>
+                                        <button type="button" data-bs-placement="top"
+                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
+                                            data-bs-toggle="popover" title="Popover title"
+                                            data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
+                                        <script>
+                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                new bootstrap.Popover(el, {
+                                                    trigger: 'hover',
+                                                    html: true,
+                                                    placement: el.getAttribute('data-bs-placement') || 'top'
                                                 });
-                                            </script>
-                                        </div>
-                                    </form>
+                                            });
+                                        </script>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="col-xl-3">
+                            <div class="col-md-3">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -135,51 +139,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2">
-                                <div class="card h-100">
-                                    <div class="card-header">
-                                        <h6 class="card-title mb-0">
-                                            <i class="fas fa-cogs me-2"></i> Einstellungen
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- <div class="form-group mb-3">
-                                        <label for="refreshSelect" class="form-label">
-                                            <i class="fas fa-clock me-2"></i> Refresh-Zeit:
-                                        </label>
-                                        <select id="refreshSelect" class="form-select" style="padding: 5px;">
-                                            <!-- Optionen werden per JS aus config.json befüllt -->
-                                        <!-- </select> -->
-                                        <!-- </div> -->
-                                        <div>
-                                            <div class="form-group ">
-                                                <label for="cardCounterLimit" class="form-label">
-                                                    <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
-                                                </label>
-                                                <select id="cardCounterLimit" class="form-select" style="padding: 5px;">
-                                                    <!-- Optionen werden per JS aus config.json befüllt -->
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="infoCounterLimit" class="form-label">
-                                                    <i class="fas fa-hashtag me-2"></i> Infoseiten-Limit:
-                                                </label>
-                                                <select id="infoCounterLimit" class="form-select" style="padding: 5px;">
-                                                    <!-- Optionen werden per JS aus config.json befüllt -->
-                                                </select>
-                                            </div>
-                                        </div>
 
-
-                                    </div>
-                                    <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
-                                        <button type="button" class="btn btn-sm btn-danger" style="width: 150px;"
-                                            onclick="bereinigeDatenbankUndFolder()">
-                                            <i class="fas fa-broom me-2"></i> Daten bereinigen
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -199,7 +159,7 @@ if (isset($_COOKIE['isAdmin'])) {
             </div> -->
                 <div class="col-12 mt-3">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-xl-2">
+                        <div class="col-md-2">
                             <div class="card">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-con+tent-center">
@@ -251,7 +211,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-md-3">
                             <div class="card h-100 ">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -261,7 +221,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 <div class="card-body flex-column">
                                     <div class="form-group
                                     mb-3">
-                                        <label  class="form-label">
+                                        <label class="form-label">
                                             <i class="fas fa-list me-2"></i> Benutzer auswählen:
                                         </label>
                                     </div>
@@ -291,22 +251,65 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-2">
-                            <div class="card h-100">
-                                <div class="card-header">
-                                    <h6 class="card-title mb-0">
-                                        <i class="fas fa-cogs me-2"></i> Einstellungen
-                                    </h6>
 
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 col-12" id="settings" style="display: none;">
+                <div class="d-flex justify-content-center gap-3">
+                    <div class="col-md-2">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-cogs me-2"></i> Einstellungen
+                                </h6>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <label for="userCounterLimit" class="form-label">
+                                        <i class="fas fa-hashtag me-2"></i> Benutzer-Limit:
+                                    </label>
+                                    <input type="number" id="userCounterLimit" class="form-control" min="1" value="10">
                                 </div>
-                                <div class="card-body">
-                                    <div class="form-group mb-3">
-                                        <label for="userCounterLimit" class="form-label">
-                                            <i class="fas fa-hashtag me-2"></i> Benutzer-Limit:
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-cogs me-2"></i> Einstellungen
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <label for="refreshSelect" class="form-label">
+                                        <i class="fas fa-clock me-2"></i> Refresh-Zeit:
+                                    </label>
+                                    <select id="refreshSelect" class="form-select" style="padding: 5px;">
+                                    </select>
+                                </div>
+                                <div>
+                                    <div class="form-group ">
+                                        <label for="cardCounterLimit" class="form-label">
+                                            <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
                                         </label>
-                                        <input type="number" id="userCounterLimit" class="form-control" min="1" value="10">
+                                        <select id="cardCounterLimit" class="form-select" style="padding: 5px;">
+                                            Optionen werden per JS aus config.json befüllt
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="infoCounterLimit" class="form-label">
+                                            <i class="fas fa-hashtag me-2"></i> Infoseiten-Limit:
+                                        </label>
+                                        <select id="infoCounterLimit" class="form-select" style="padding: 5px;">
+
+                                        </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
                             </div>
                         </div>
                     </div>
@@ -319,14 +322,21 @@ if (isset($_COOKIE['isAdmin'])) {
             const selector = document.getElementById('adminSectionSelector');
             const infoterminalSection = document.getElementById('infoterminalVerwaltung');
             const userSection = document.getElementById('userVerwaltung');
+            const settingsSection = document.getElementById('settings');
 
             function updateSections() {
                 if (selector.value === 'infoterminal') {
                     infoterminalSection.style.display = 'block';
                     userSection.style.display = 'none';
+                    settingsSection.style.display = 'none';
                 } else if (selector.value === 'user') {
                     infoterminalSection.style.display = 'none';
                     userSection.style.display = 'block';
+                    settingsSection.style.display = 'none';
+                } else if (selector.value === 'settings') {
+                    infoterminalSection.style.display = 'none';
+                    userSection.style.display = 'none';
+                    settingsSection.style.display = 'block';
                 }
             }
             selector.addEventListener('change', updateSections);

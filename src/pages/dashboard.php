@@ -86,7 +86,6 @@ include '../php/auth.php';
                         <div class="p-3" style="width: 35rem;  overflow-y: auto;">
                             <div id="panelForDateTime" class="w-100">
                                 <div id="dateTimeInfoPanel ">
-
                                     <div class="datum d-flex align-items-center mb-3">
                                         <div class="d-flex  align-items-center">
                                             <i class="fas fa-calendar-alt me-2"></i>
@@ -189,7 +188,6 @@ include '../php/auth.php';
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
                                     </div>
-
                                 </div>
                                 <div class="form-group d-flex justify-content-start align-items-center">
                                     <i class="fas fa-calendar-day  me-2"></i>Tage:

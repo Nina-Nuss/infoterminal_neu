@@ -119,12 +119,8 @@ class Infoseite {
         console.log(ext);
         console.log(imageExts.includes(ext));
         console.log(imagePath);
-
-
-
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
         console.log(src);
-
         if (imageExts.includes(ext)) {
             return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
         } else if (videoExts.includes(ext)) {
@@ -231,7 +227,6 @@ class Infoseite {
             console.log("hier werden alle inputs deaktiviert");
             let buttons = konfigContainer.querySelectorAll('button');
             let inputs = konfigContainer.querySelectorAll('input');
-
             let selects = konfigContainer.querySelectorAll('select');
 
             btn_save_changes.disabled = aktiv
@@ -309,7 +304,6 @@ class Infoseite {
         return temp;
     }
     static async überprüfenÄnderungen() {
-
         var zuletztAusgewählteObj = "";
         var obj = ""
         if (Infoseite.selectedHistorys.length === 0) {
@@ -323,8 +317,6 @@ class Infoseite {
             zuletztAusgewählteObj = Infoseite.selectedHistorys[Infoseite.selectedHistorys.length - 2];
             Infoseite.lastSelectedID = zuletztAusgewählteObj;
             obj = findObj(Infoseite.list, zuletztAusgewählteObj);
-
-
         } else {
             zuletztAusgewählteObj = Infoseite.selectedHistorys[0];
             obj = findObj(Infoseite.list, zuletztAusgewählteObj);
@@ -353,7 +345,6 @@ class Infoseite {
         }
     }
     static async getLastUploadedInfoseite() {
-
         var result = await fetch("../database/selectLastRow.php");
         var data = await result.text();
         return data;
@@ -392,7 +383,6 @@ class Infoseite {
         }
     }
     static async update() {
-
         var delSchema = document.getElementById("deleteSchema")
         console.log("bin in delschema drin");
         if (delSchema != null) {
@@ -579,7 +569,6 @@ class Infoseite {
         }
     }
     static prepareObjForUpdate(obj) {
-
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         console.log(obj);
         // var timerSelect = document.getElementById("timerSelectRange");
@@ -631,7 +620,6 @@ class Infoseite {
             });
         }
         var wochentageStr = cardObj.wochentage; // Beispiel: "monday+tuesday+friday"
-
         let listWochenTage = [];
         listeWochentage = [];
         if (wochentageStr) {
@@ -1357,7 +1345,8 @@ function erstelleFunktionForCardObj(objID) {
     const cardObj = document.getElementById(`cardObjekt${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
-    const allCardObj = document.querySelectorAll(`[id^="cardObjekt"]`)
+    const allCardObj = document.querySelectorAll(`[id^="cardObjekt"]`);
+
     Infoseite.überprüfenÄnderungen();
     if (checkbox.checked) {
         const id = extractNumberFromString(checkbox.id);

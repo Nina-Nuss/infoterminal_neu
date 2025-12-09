@@ -26,9 +26,9 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Infoterminal:", error);
     }
-    // Modal Focus-Management hinzufügen
+  
     setupModalFocusManagement();
-    // Hier wird die startseite ausgewählt
+
     erstelleNavigation();
     try {
         wähleErstesInfoseite();
@@ -42,6 +42,9 @@ function getSekMin(ms) {
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes} Min,  ${seconds} Sek`;
 }
+
+
+
 function deakNavbarbtns() {
     try {
         const startBtnsContainer = document.getElementById("startBtns");
@@ -54,12 +57,10 @@ function deakNavbarbtns() {
                 buttonsInContainer.forEach(btn => {
                     btn.disabled = false;
                 });
-
                 // Nur den geklickten Button deaktivieren
                 button.disabled = true;
             });
         });
-
     } catch (error) {
         console.error("Fehler beim Laden der Seite:", error);
     }
@@ -105,7 +106,7 @@ async function getSystemPath() {
         console.log("System Path erhalten:", path);
     } catch (error) {
         console.error("Fehler beim Abrufen des Systempfads:", error);
-        path = "/html_infoterminal/"; // Fallback-Pfad
+        path = "/html_infoterminal/"; 
     }
     return path;
 }
