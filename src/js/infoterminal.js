@@ -296,29 +296,7 @@ window.addEventListener("load", async function () {
 function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-document.addEventListener('DOMContentLoaded', async () => {
-    if (document.getElementById('infoCounterLimit') && document.getElementById('cardCounterLimit')) {
-        const infoCounterLimit = document.getElementById('infoCounterLimit');
-        const cardCounterLimit = document.getElementById('cardCounterLimit');
-    } else {
-        return;
-    }
-    try {
-        console.log("Config wird geladen");
-        const res = await getData('../../config/config.json');
-        // Dropdown befüllen
-        // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
-        createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages + " " + "Info-Seiten");
-        createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals + " " + "Terminals");
-        console.log(res);
-        // saveList(select, "default");
-        saveList(infoCounterLimit, "defaultMaxCountForInfoPages");
-        saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals");
-    } catch (err) {
-        console.error('Fehler beim Laden der Config:', err);
-        return;
-    }
-});
+
 
 async function getData(url) {
     const result = await fetch(url)
@@ -366,31 +344,6 @@ function saveList(select, name) {
     });
 }
 
-async function setData() {
-    try {
-        var data = await getData('../../config/configTest.json');
-        document.getElementById("val1").value = data.webpageSettings[0].maxCountForInfoPages
-        document.getElementById("val3").value = data.webpageSettings[0].maxUsers
-        document.getElementById("val2").value = data.webpageSettings[0].darkMode
-    } catch (err) {
-        console.error("Error fetching data:", err);
-    }
-}
-async function update(key, value) {
-    console.log(value);
-    const result = await fetch(".php", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify([{
-            "key": key,
-            "value": value
-        }])
-    });
-    const res = await result.json();
-    console.log(res);
-}
 
 function cutAndCreate(responseText) {
     var obj = responseText.split("],[");

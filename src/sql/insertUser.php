@@ -3,8 +3,8 @@
 session_start();
 
 ob_start();
-include 'selectUser.php';
-include("../../config/php/connection.php");
+include '../database/selectUser.php';
+include "../../config/php/connection.php";
 ob_clean();
 // if($_SERVER["REQUEST_METHOD"] != "POST"){
 //     echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);

@@ -35,7 +35,7 @@ if (isset($_COOKIE['isAdmin'])) {
                 <select id="adminSectionSelector" class="form-select w-auto">
                     <option value="infoterminal" selected>Infoterminal verwalten</option>
                     <option value="user">Benutzer verwalten</option>
-                    <option value="settings">Einstellungen</option>
+                    <option value="settings" selected>Einstellungen</option>
                 </select>
             </div>
         </div>
@@ -270,7 +270,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                     <label for="userCounterLimit" class="form-label">
                                         <i class="fas fa-hashtag me-2"></i> Benutzer-Limit:
                                     </label>
-                                    <input type="number" id="userCounterLimit" class="form-control" min="1" value="10">
+                                    <input type="number" id="userCounterLimit" class="form-control" min="1" max="10" value="10">
                                 </div>
                             </div>
                         </div>
@@ -310,6 +310,12 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                             <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
+                                <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
+                                        <button type="button" class="btn btn-sm btn-danger" style="width: 150px;"
+                                            onclick="bereinigeDatenbankUndFolder()">
+                                            <i class="fas fa-broom me-2"></i> Daten bereinigen
+                                        </button>
+                                    </div>
                             </div>
                         </div>
                     </div>
