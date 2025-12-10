@@ -30,8 +30,8 @@ if (isset($_COOKIE['isAdmin'])) {
 <body>
     <?php include '../layout/headerD.php'; ?>
     <div class="container-fluid pt-3">
-        <div class="row mt-3 mb-3">
-            <div class="col-12 d-flex justify-content-center">
+        <div class="mt-3 mb-3">
+            <div class="d-flex justify-content-center">
                 <select id="adminSectionSelector" class="form-select w-auto">
                     <option value="infoterminal" selected>Infoterminal verwalten</option>
                     <option value="user">Benutzer verwalten</option>
@@ -40,8 +40,8 @@ if (isset($_COOKIE['isAdmin'])) {
             </div>
         </div>
         <div>
-            <div class="row mt-3" id="infoterminalVerwaltung" style="display: none;">
-                <div class="col-12">
+            <div class="mt-3" id="infoterminalVerwaltung" style="display: none;">
+                <div class="">
                     <!-- <div class="col-12">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light text-dark border-bottom text-center">
@@ -52,8 +52,8 @@ if (isset($_COOKIE['isAdmin'])) {
                     </div>
                 </div> -->
                     <div class="card-body mt-3">
-                        <div class="row d-flex justify-content-center">
-                            <div class="card h-100 col-md-2 flex-column p-0">
+                        <div class="d-flex justify-content-center gap-3">
+                            <div class="card h-100 -2 flex-column p-0">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
                                         <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
@@ -102,7 +102,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-3">
+                            <div class="-3">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -147,7 +147,7 @@ if (isset($_COOKIE['isAdmin'])) {
                 </div>
             </div>
 
-            <div class="row mt-3" id="userVerwaltung" style="display: none;">
+            <div class=" mt-3" id="userVerwaltung" style="display: none;">
                 <!-- <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-header bg-light text-dark border-bottom text-center">
@@ -157,9 +157,9 @@ if (isset($_COOKIE['isAdmin'])) {
                     </div>
                 </div>
             </div> -->
-                <div class="col-12 mt-3">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-2">
+                <div class="mt-3">
+                    <div class="d-flex justify-content-center gap-3">
+                        <div class="-2">
                             <div class="card">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-con+tent-center">
@@ -211,7 +211,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="">
                             <div class="card h-100 ">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -255,67 +255,53 @@ if (isset($_COOKIE['isAdmin'])) {
                     </div>
                 </div>
             </div>
-            <div class="row mt-3 col-12" id="settings" style="display: none;">
+            <div class=" mt-3" id="settings" style="display: none;">
                 <div class="d-flex justify-content-center gap-3">
-                    <div class="col-md-2">
-                        <div class="card h-100">
-                            <div class="card-header">
-                                <h6 class="card-title mb-0">
-                                    <i class="fas fa-cogs me-2"></i> Einstellungen
-                                </h6>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group mb-3">
-                                    <label for="userCounterLimit" class="form-label">
-                                        <i class="fas fa-hashtag me-2"></i> Benutzer-Limit:
-                                    </label>
-                                    <input type="number" id="userCounterLimit" class="form-control" min="1" max="10" value="10">
-                                </div>
-                            </div>
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-cogs me-2"></i> Einstellungen
+                            </h6>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card h-100">
-                            <div class="card-header">
-                                <h6 class="card-title mb-0">
-                                    <i class="fas fa-cogs me-2"></i> Einstellungen
-                                </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group mb-3">
+                        <div class="card-body">
+                            <!-- <div class="form-group mb-3">
                                     <label for="refreshSelect" class="form-label">
                                         <i class="fas fa-clock me-2"></i> Refresh-Zeit:
                                     </label>
                                     <select id="refreshSelect" class="form-select" style="padding: 5px;">
                                     </select>
-                                </div>
-                                <div>
-                                    <div class="form-group ">
-                                        <label for="cardCounterLimit" class="form-label">
-                                            <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
-                                        </label>
-                                        <select id="cardCounterLimit" class="form-select" style="padding: 5px;">
-                                            Optionen werden per JS aus config.json befüllt
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="infoCounterLimit" class="form-label">
-                                            <i class="fas fa-hashtag me-2"></i> Infoseiten-Limit:
-                                        </label>
-                                        <select id="infoCounterLimit" class="form-select" style="padding: 5px;">
+                                </div> -->
 
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="form-group d-flex align-items-center mb-3">
+                                <label for="cardCounterLimit" class="form-label" style="margin: 0 1rem 0 0;">
+                                    <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
+                                </label>
+                                <select id="cardCounterLimit" class="form-select" style="padding: 5px; width: 5rem;">
+
+                                </select>
                             </div>
-                            <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
-                                <div class="card-bottom  d-flex justify-content-center p-3" style="border-top: none;">
-                                        <button type="button" class="btn btn-sm btn-danger" style="width: 150px;"
-                                            onclick="bereinigeDatenbankUndFolder()">
-                                            <i class="fas fa-broom me-2"></i> Daten bereinigen
-                                        </button>
-                                    </div>
+                            <div class="form-group mb-3 d-flex align-items-center">
+                                <label for="infoCounterLimit" class="form-label" style="margin: 0 2rem 0 0;">
+                                    <i class="fas fa-hashtag me-2"></i> Infoseiten-Limit:
+                                </label>
+                                <select id="infoCounterLimit" class="form-select" style="padding: 5px;  width: 5rem;">
+
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 d-flex align-items-center justify-content-between">
+                                <label for="userCounterLimit" class="form-label" style="margin: 0 2rem 0 0; ">
+                                    <i class="fas fa-hashtag me-2"></i> User-Limit: 
+                                </label>
+                                <input type="number" id="userCounterLimit" class="form-control" min="1" max="50" value="10" style="padding: 5px;  width: 5rem;">
+                            </div>
+                            <div class="form-group flex-column mb-3 d-flex">
+                                <label for="bereinigeDaten" class="form-label" style="padding: 5px;">
+                                    <i class="fas fa-hashtag me-2"></i> Daten bereinigen:
+                                </label>
+                                <button type="button" id="bereinigeDaten" class="btn btn-sm btn-danger" style="width: 150px;"
+                                    onclick="bereinigeDatenbankUndFolder()">
+                                    <i class="fas fa-broom me-2"></i> Löschen
+                                </button>
                             </div>
                         </div>
                     </div>

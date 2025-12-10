@@ -11,15 +11,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await getData('../../config/config.json');
         // Dropdown befüllen
         // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
-        createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages + " " + "Info-Seiten");
-        createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals + " " + "Terminals");
+        createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages);
+        createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals);
         createList
         console.log(res);
         // saveList(select, "default");
         saveList(infoCounterLimit, "defaultMaxCountForInfoPages");
         saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals");
     } catch (err) {
-        console.error('Fehler beim Laden der Config:', err);
         return;
     }
 });
@@ -29,16 +28,12 @@ async function getData(url) {
     if (!result.ok) throw new Error(`Config nicht gefunden (Status ${result.status})`);
     return await result.json();
 }
-function createList(cfg, select, defaultValue) {
+function createList(cfg, select) {
     select.innerHTML = ""; // Vorher leeren
-    const bitteWaehlen = document.createElement('option');
-    bitteWaehlen.value = "bitte wählen";
-    bitteWaehlen.textContent = defaultValue;
-    select.appendChild(bitteWaehlen);
     for (let i = 0; i < cfg.length; i++) {
         const opt = document.createElement('option');
         opt.value =  cfg[i].value;
-        opt.textContent = cfg[i].name;
+        opt.textContent = cfg[i].value;
         select.appendChild(opt);
     }
 }

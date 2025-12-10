@@ -31,6 +31,10 @@ html{
     width: 300px;
 }
 
+.labelForm{
+    margin: 0 2rem 0 0 !important;
+}
+
 @media screen and (max-width: 1200px) {
 
     .left,
