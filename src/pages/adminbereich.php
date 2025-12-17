@@ -276,7 +276,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 <label for="cardCounterLimit" class="form-label" style="margin: 0 1rem 0 0;">
                                     <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
                                 </label>
-                                <select id="cardCounterLimit" class="form-select" style="padding: 5px; width: 5rem;">
+                                <select id="cardCounterLimit" name="cardCounterLimit" class="form-select" style="padding: 5px; width: 5rem;">
 
                                 </select>
                             </div>
@@ -284,7 +284,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 <label for="infoCounterLimit" class="form-label" style="margin: 0 2rem 0 0;">
                                     <i class="fas fa-hashtag me-2"></i> Infoseiten-Limit:
                                 </label>
-                                <select id="infoCounterLimit" class="form-select" style="padding: 5px;  width: 5rem;">
+                                <select id="infoCounterLimit" name="infoCounterLimit"  class="form-select" style="padding: 5px;  width: 5rem;">
 
                                 </select>
                             </div>
@@ -292,7 +292,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 <label for="userCounterLimit" class="form-label" style="margin: 0 2rem 0 0; ">
                                     <i class="fas fa-hashtag me-2"></i> User-Limit: 
                                 </label>
-                                <input type="number" id="userCounterLimit" class="form-control" min="1" max="50" value="10" style="padding: 5px;  width: 5rem;">
+                                <input type="number" id="userCounterLimit" name="userCounterLimit" class="form-control" min="1" max="50" value="10" style="padding: 5px;  width: 5rem;">
                             </div>
                             <div class="form-group flex-column mb-3 d-flex">
                                 <label for="bereinigeDaten" class="form-label" style="padding: 5px;">

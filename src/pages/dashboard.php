@@ -217,7 +217,6 @@ include '../php/auth.php';
                                     </div>
                                     <div class="row ">
                                         <div class="col-12 mt-2">
-
                                         </div>
                                     </div>
                                 </div>
