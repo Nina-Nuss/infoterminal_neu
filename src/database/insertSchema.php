@@ -7,13 +7,18 @@ ob_clean();
 $file = file_get_contents('php://input');
 $data = json_decode($file, true);
 
+
+
+
 if (!is_array($data)) {
     sqlsrv_close($conn);
     echo json_encode(['success' => false, 'message' => 'Ungültige JSON-Daten']);
     exit;
 }
 
+// if(isset($config){
 
+// }
 
 $imagePath = $data["imagePath"];
 $selectedTime = $data["selectedTime"];
