@@ -22,7 +22,7 @@ if (strpos($username, ' ') !== false) {
     echo "Im Benutzernamen befindet sich ein Leerzeichen.";
     exit;
 }
-foreach ($userList as $row) {
+foreach ($userList1 as $row) {
     if (isset($row['username']) && $row['username'] === $username) {
         echo json_encode(['success' => false, 'message' => 'Benutzername existiert bereits.']);
         exit;
