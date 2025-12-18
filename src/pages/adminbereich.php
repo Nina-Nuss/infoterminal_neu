@@ -115,7 +115,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                                 <i class="fas fa-list me-2"></i> Infoterminal auswählen:
                                             </label>
                                         </div>
-                                        <div class="mb-3" style="height: 200px; overflow-y: auto;">
+                                        <div class="mb-3" style="max-height: 23vh; overflow-y: auto;">
                                             <table class="table table-hover mb-0">
                                                 <thead class="" style="position: sticky; top: 0; z-index: 1;">
                                                     <tr>
@@ -225,7 +225,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                             <i class="fas fa-list me-2"></i> Benutzer auswählen:
                                         </label>
                                     </div>
-                                    <div style="overflow-y: auto;">
+                                    <div style="max-height: 23vh; overflow-y: auto;">
                                         <table class="table table-hover position-relative ">
                                             <thead>
                                                 <tr>
