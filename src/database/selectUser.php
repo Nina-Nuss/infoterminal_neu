@@ -1,8 +1,6 @@
 <?php
 // ...existing code...
 
-
-
 include '../../config/php/connection.php';
 
 $sql = "SELECT * FROM user_login";

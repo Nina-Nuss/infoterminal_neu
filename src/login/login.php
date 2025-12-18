@@ -4,9 +4,10 @@ ob_start();
 
 require("../database/selectUser.php");
 include("../../config/php/connection.php");
-
-
 ob_end_clean();
+ob_clean();
+
+
 
 $file = file_get_contents('php://input');
 // Abrufen der JSON-Daten aus der Anfrage
@@ -21,15 +22,8 @@ $username = trim($data['username'] ?? 'user'); // Leerzeichen entfernen, Default
 // $email = trim($data['email'] ?? ''); // Leerzeichen entfernen
 $password = $data['password'] ?? '0000'; // Leerzeichen entfernen, Default leer
 $remember = $data['remember'] ?? false; // Boolean konvertieren
-// if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-//     echo "Ungültige Email-Adresse.";
-//     exit();
-// }
-// if (strlen($password) < 4) {
-//     echo "Passwort muss mindestens 4 Zeichen haben.";
-//     exit();
-// // }
-foreach ($userList as $row) {
+
+foreach ($userList1 as $row) {
     if (isset($row['username']) && isset($row['password'])) {
         if ($row['username'] == $username) {
             $userExist = true;

@@ -6,7 +6,7 @@ session_start();
 
 $cookieIsSet = false;
 if (isset($_COOKIE['username'])) {
-  foreach ($userList as $user) {
+  foreach ($userList1 as $user) {
     if ($_COOKIE['username'] === $user['username'] && $user['is_active'] == 1 && $user['remember_me'] == 1) {
       // echo "User verified via cookie.";
       $cookieIsSet = true;

@@ -8,9 +8,10 @@ $file = file_get_contents('php://input');
 $data = json_decode($file, true);
 
 
-// if($){
-//     echo "maximal errecht";
-// }
+if($jsonData['defaultMaxCountForInfoPages'] < $schemalistLength){
+    echo json_encode(['success' => false, 'message' => 'Maximal Limit fuer Infoseiten erreicht']);
+    return;
+}
 
 
 if (!is_array($data)) {
