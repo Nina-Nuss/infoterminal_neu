@@ -8,6 +8,9 @@ $file = file_get_contents('php://input');
 $data = json_decode($file, true);
 
 
+// if($){
+//     echo "maximal errecht";
+// }
 
 
 if (!is_array($data)) {
@@ -15,10 +18,6 @@ if (!is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Ungültige JSON-Daten']);
     exit;
 }
-
-// if(isset($config){
-
-// }
 
 $imagePath = $data["imagePath"];
 $selectedTime = $data["selectedTime"];

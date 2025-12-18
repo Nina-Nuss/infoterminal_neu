@@ -14,9 +14,9 @@ if ($result === false) {
     exit;
 }
 
-$userList = [];
+$userList1 = [];
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    array_push($userList, [
+    array_push($userList1, [
         'id' => $row['id'],
         'username' => $row['username'],
         'is_active' => $row['is_active'],
@@ -38,5 +38,6 @@ sqlsrv_free_stmt($result);
 
 sqlsrv_close($conn);
 
+$userList = json_encode($userList1);
 
-echo json_encode($userList);
+echo $userList;

@@ -4,12 +4,14 @@
 ob_start();
 include("../database/selectInfotherminal.php");
 include("../database/selectSchemas.php");
-
+include("../database/selectUser.php");
 ob_end_clean();
+ob_clean();
 
 
 $infoterminalListLength = count($infotherminalList1);
 $schemalistLength = count($schemaList1);
+$userlistLength = count($userList1);
 
 
 
@@ -27,7 +29,16 @@ foreach ($jsonData as $key => $value) {
     if ($key === 'defaultMaxCountForInfoPages') {
         array_push($listelengthValue, [$value, $schemalistLength]);
     }
+    if ($key === 'defaultUserLimit'){
+        array_push($listelengthValue, [$value, $userlistLength]);
+    }
+
 
 }
+foreach($listelengthValue as $key => $value){
+    foreach($value as $key2 => $value2){
+        echo ''. $key2 .''. $value2 .'';
+    }
+};
 
 return $listelengthValue;
