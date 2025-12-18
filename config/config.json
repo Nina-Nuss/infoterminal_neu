@@ -25,7 +25,7 @@
             "value": 500
         }
     ],
-    "defaultMaxCountForInfoPages": 50,
+    "defaultMaxCountForInfoPages": 20,
     "maxCountForInfoTerminals": [
         {
             "value": 5
@@ -46,8 +46,8 @@
             "value": 100
         }
     ],
-    "defaultMaxCountForInfoTerminals": 10,
-    "defaultUserLimit": 4,
+    "defaultMaxCountForInfoTerminals": 5,
+    "defaultUserLimit": 6,
     "userLimitMax": 20,
     "userLimitMin": 1,
     "userCounterLimit": 50,

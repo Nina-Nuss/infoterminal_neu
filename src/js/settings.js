@@ -3,18 +3,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const infoCounterLimit = document.getElementById('infoCounterLimit');
         const cardCounterLimit = document.getElementById('cardCounterLimit');
         const userCounterLimit = document.getElementById('userCounterLimit');
-    } catch (err) {
-        return;
-    }
-    try {
         console.log("Config wird geladen");
         const res = await getData('../../config/config.json');
+        
         // Dropdown befüllen
         // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
         createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages);
         createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals);
         loadNumbers(res.userLimitMax, res.userLimitMin, res.defaultUserLimit, userCounterLimit)
-
         // saveList(select, "default");
         saveList(infoCounterLimit, "defaultMaxCountForInfoPages", "", "");
         saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals", "", "");
@@ -28,7 +24,8 @@ async function getData(url) {
     if (!result.ok) throw new Error(`Config nicht gefunden (Status ${result.status})`);
     return await result.json();
 }
-function createList(cfg, select) {
+function createList(cfg, select, def) {
+    console.log(def);
     select.innerHTML = ""; // Vorher leeren
     for (let i = 0; i < cfg.length; i++) {
         const opt = document.createElement('option');
@@ -36,6 +33,7 @@ function createList(cfg, select) {
         opt.textContent = cfg[i].value;
         select.appendChild(opt);
     }
+    select.value = def
 }
 function loadNumbers(max, min, cfg, userCounterLimit) {
     console.log(max);
@@ -43,9 +41,10 @@ function loadNumbers(max, min, cfg, userCounterLimit) {
     console.log(cfg)
     console.log(userCounterLimit)
     userCounterLimit.value = "";
-    if (cfg > max == false && !cfg < min == false) {
-        userCounterLimit.value = cfg
+    if (cfg > max == true || cfg < min == true) {
+       return
     }
+    userCounterLimit.value = cfg
 }
 function saveList(select, name, max, min) {
     select.addEventListener('change', async () => {
