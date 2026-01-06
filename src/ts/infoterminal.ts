@@ -133,7 +133,7 @@ class Infoterminal {
         return temp;
     }
     static event_remove(id) {
-        var element = document.getElementById(`checkDelInfo${id}`);
+        var element = document.getElementById(`checkDelInfo${id}`) as h;
         if (element.checked && !this.temp_remove.includes(id)) {
             this.list.forEach(checkID => {
                 if (checkID.id == id) {

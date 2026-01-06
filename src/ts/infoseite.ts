@@ -1,14 +1,33 @@
+
+
 class Infoseite {
-    static idCounter = 0;
-    static selectedID = null;
-    static lastSelectedID = null;
-    static temp_remove = [];
-    static eleListe = []
-    static list = [];
-    static selectedHistorys = [];
-    static prepareTemplate = [];
-    static checkAllowed = false; // Variable to control checkbox behavior
-    constructor(id, imagePath, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, wochentage, beschreibung) {
+    static idCounter: any = 0;
+    static selectedID: any = null;
+    static lastSelectedID: any = null;
+    static temp_remove: any = [];
+    static eleListe: any = []
+    static list: any = [];
+    static selectedHistorys: any = [];
+    static prepareTemplate: any = [];
+    static checkAllowed: any = false; // Variable to control checkbox behavior
+      id: number;
+    update: boolean;
+
+    imagePath: string;
+    startTime: string;
+    endTime: string;
+    startDate: string;
+    endDate: string;
+
+    selectedTime: string;
+    timeAktiv: boolean;
+    dateAktiv: boolean;
+    aktiv: boolean;
+
+    titel: string;
+    wochentage: string[];
+    beschreibung: string;
+    constructor(id: any, imagePath: any, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, wochentage, beschreibung) {
         this.id = id;
         this.update = false;
         //AB hier kommt alles in die Datenbank rein:
@@ -90,11 +109,11 @@ class Infoseite {
         });
     }
 
-    static preparePlaceHolder(imagePath) {
+    static preparePlaceHolder(imagePath: string) {
         let placeHolder = '';
-        let ext = [];
-        let videoExts = [];
-        let imageExts = [];
+        let ext: any[]  = [];
+        let videoExts: any[] = [];
+        let imageExts: any[] = [];
         console.log(imagePath);
 
         // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
@@ -140,7 +159,6 @@ class Infoseite {
             </div>`;
         }
     }
-
 
     static getEmbedUrl(url) {
         if (url.includes("youtube.com")) {
@@ -198,7 +216,6 @@ class Infoseite {
             alert("Bitte wählen Sie mindestens ein Schema aus, um es zu löschen.");
             return;
         }
-
         // Bestätigungsdialog anzeigen
         const confirmed = confirm(`Sind Sie sicher, dass Sie ${this.temp_remove.length} Schema(s) löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.`);
 
@@ -206,11 +223,9 @@ class Infoseite {
             console.log("Löschvorgang vom Benutzer abgebrochen");
             return; // Benutzer hat abgebrochen
         }
-
         await this.removeFromListLogik();
         await this.update();
     }
-
     static deaktiviereAllElements(aktiv) {
         const konfigContainer = document.getElementById("konfigContainer");
         const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
@@ -259,7 +274,6 @@ class Infoseite {
         if (aktiv) {
             Infoseite.selectedID = null; // Update the checkAllowed state
         }
-
     }
     static async deleteCardObj() {
         const confirmed = confirm("Sind Sie sicher, dass Sie die Infoseite löschen möchten?");

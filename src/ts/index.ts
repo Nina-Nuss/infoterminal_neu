@@ -12,12 +12,9 @@ window.onload = async function () {
     console.log("IP-Adresse:", ipAdress);
     if (document.getElementById("dokumente")) {
         try {
-
             await Infoseite.update();
-
         } catch (error) {
             console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
-            
         }
     }
     try {
@@ -28,9 +25,7 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Infoterminal:", error);
     }
-  
     setupModalFocusManagement();
-
     erstelleNavigation();
     try {
         wähleErstesInfoseite();
@@ -39,18 +34,15 @@ window.onload = async function () {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }
 }
-function getSekMin(ms) {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = Math.floor((ms % 60000) / 1000);
-    return `${minutes} Min,  ${seconds} Sek`;
+function getSekMin(ms: number): string {
+    const minutes: number = Math.floor(ms / 60000);
+    const seconds: number = Math.floor((ms % 60000) / 1000);
+    return `${minutes} Min, ${seconds} Sek`;
 }
-
-
-
-function deakNavbarbtns() {
+function deakNavbarbtns() : void {
     try {
         const startBtnsContainer = document.getElementById("startBtns");
-        const buttonsInContainer = startBtnsContainer.querySelectorAll("button");
+        const buttonsInContainer = startBtnsContainer.querySelectorAll<html("button");
 
         buttonsInContainer.forEach(button => {
             button.addEventListener("click", function () {
@@ -66,7 +58,6 @@ function deakNavbarbtns() {
     } catch (error) {
         console.error("Fehler beim Laden der Seite:", error);
     }
-
 }
 function erstelleNavigation() {
     const infoterminalBereich = document.getElementById("infotherminalBereich");

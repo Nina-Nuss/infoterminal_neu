@@ -1,4 +1,4 @@
-
+import 
 
 class Beziehungen {
     static list = [];
