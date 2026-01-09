@@ -12,8 +12,6 @@ ob_clean();
 // }
 $file = file_get_contents('php://input');
 
-
-
 // Abrufen der JSON-Daten aus der Anfrage
 $data = json_decode($file, true);
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)

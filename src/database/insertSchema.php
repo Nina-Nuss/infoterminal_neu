@@ -1,8 +1,14 @@
 <?php
 ob_start();
 include("../php/checkJson.php");
-include '../../config/php/connection.php';
+
 ob_clean();
+
+if ($schemalistLength >= $jsonPageLimit) {
+    echo json_encode(['success' => false, 'message' => 'InfoseitenLimit erreicht', 'errors' => sqlsrv_errors()]);
+    exit;
+}
+
 
 $file = file_get_contents('php://input');
 $data = json_decode($file, true);

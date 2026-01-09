@@ -3,15 +3,15 @@
 session_start();
 
 ob_start();
-include '../database/selectUser.php';
-include "../../config/php/connection.php";
 include "../php/checkJson.php";
+ob_end_clean();
 ob_clean();
+
 // if($_SERVER["REQUEST_METHOD"] != "POST"){
 //     echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);
 //     exit;
 // }
-if ($jsonUserLimit >= $userlistLength) {
+if ($jsonUserLimit <= $userlistLength) {
     echo false;
     exit;
 }

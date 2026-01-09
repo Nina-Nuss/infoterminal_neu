@@ -1,16 +1,15 @@
 <?php
 
 ob_start();
-
 include "checkJson.php";
-include '../../config/php/connection.php';
-
 ob_clean();
-
-
 
 // Überprüfen, ob beide Werte vorhanden sind
 
+if($infoterminalListLength >= $jsonInfoterminalLimit){
+    echo "Infoterminal Limit erreicht";
+    exit;
+}
 // SQL-Abfrage mit Prepared Statement
 $sql = "INSERT INTO infotherminals (titel, ipAdresse) VALUES (?, ?)";
 $params = array($name, $ip);
@@ -31,7 +30,6 @@ if ($stmt) {
 } else {
     // echo "Fehler bei der Vorbereitung: ";
     print_r(sqlsrv_errors());
-    
 }
 
 

@@ -34,7 +34,7 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 }
 sqlsrv_free_stmt($result);
 
-sqlsrv_close($conn);
+// sqlsrv_close($conn);
 
 $userList = json_encode($userList1);
 

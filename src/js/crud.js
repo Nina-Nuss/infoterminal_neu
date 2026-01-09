@@ -117,7 +117,7 @@ class Crud {
             // Formular zurücksetzen
         } else {
             console.error('Fehler beim Hinzufügen des Users:', response.statusText);
-            alert('Fehler beim Hinzufügen des Users');
+            alert('Fehler beim Hinzufügen des Users oder Userlimit erreicht.');
         }
         username.value = '';
         password.value = '';
