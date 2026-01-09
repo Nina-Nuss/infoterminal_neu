@@ -22,13 +22,13 @@ $connectionOptions = array(
 );
 global $conn;
 $conn = sqlsrv_connect( $serverName ?? "FIS-BW-03\SQLEXPRESS", $connectionOptions);
+
 if (!$conn) {
-    header("Location: /src/output/connectionError.php");
-    exit();
+    die("Verbindung fehlgeschlagen: " . print_r(sqlsrv_errors(), true));
 } else {
-    
     // echo "Verbindung erfolgreich hergestellt.";
 }
+
 ?>
 
 

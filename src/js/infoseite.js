@@ -269,8 +269,7 @@ class Infoseite {
         }
         await this.deleteCardObjDataBase(this.selectedID);
         await this.update();
-
-        wähleErstesInfoseite();
+        await wähleErstesInfoseite();
     }
     static async removeFromListLogik() {
         // DIese Methode wird aufgerufen sobald wir auf Minus (-) klicken
@@ -1423,7 +1422,8 @@ function handleCardMouseOut(id) {
     cardObj.style.boxShadow = "none";
 }
 
-function wähleErstesInfoseite() {
+async function wähleErstesInfoseite() {
+    debugger
     if (Infoseite.list.length > 0) {
         var titelUmgebung = document.getElementById("titelUmgebung");
         const erstesObjekt = Infoseite.list[0];

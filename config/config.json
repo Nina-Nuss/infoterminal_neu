@@ -46,8 +46,8 @@
             "value": 100
         }
     ],
-    "defaultMaxCountForInfoTerminals": 10,
-    "defaultUserLimit": 30,
+    "defaultMaxCountForInfoTerminals": 5,
+    "defaultUserLimit": 4,
     "userLimitMax": 30,
     "userLimitMin": 1,
     "userCounterLimit": 50,

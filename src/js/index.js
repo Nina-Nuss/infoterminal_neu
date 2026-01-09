@@ -12,7 +12,7 @@ window.onload = async function () {
         try {
             await Infoseite.update();
         } catch (error) {
-            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);    
+            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error); 
         }
     }
     try {
@@ -25,8 +25,7 @@ window.onload = async function () {
     setupModalFocusManagement();
     erstelleNavigation();
     try {
-        wähleErstesInfoseite();
-
+        await wähleErstesInfoseite();
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }
@@ -36,14 +35,10 @@ function getSekMin(ms) {
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes} Min,  ${seconds} Sek`;
 }
-
-
-
 function deakNavbarbtns() {
     try {
         const startBtnsContainer = document.getElementById("startBtns");
         const buttonsInContainer = startBtnsContainer.querySelectorAll("button");
-
         buttonsInContainer.forEach(button => {
             button.addEventListener("click", function () {
                 console.log(`Button mit ID ${button.id} wurde geklickt`);
@@ -58,7 +53,6 @@ function deakNavbarbtns() {
     } catch (error) {
         console.error("Fehler beim Laden der Seite:", error);
     }
-
 }
 function erstelleNavigation() {
     const infoterminalBereich = document.getElementById("infotherminalBereich");

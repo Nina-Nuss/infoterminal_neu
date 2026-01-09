@@ -14,9 +14,12 @@ $schemalistLength = count($schemaList1);
 $userlistLength = count($userList1);
 
 
-
 $jsonFile = '../../config/config.json'; // Pfad zur JSON-Datei
 $jsonData = json_decode(file_get_contents($jsonFile), true); // In ein PHP-Array umwandeln
+
+$jsonPageLimit = $jsonData['defaultMaxCountForInfoPages'];
+$jsonInfoterminalLimit = $jsonData['defaultMaxCountForInfoTerminals'];
+$jsonUserLimit = $jsonData['defaultUserLimit'];
 
 global $listelengthValue;
 $listelengthValue = array();

@@ -33,7 +33,6 @@ include '../assets/links.html';
     });
     //  startProgressBar(10000);
     setInterval(() => {
-
         window.location.href = "index.php";
     }, 10000);
   

@@ -5,13 +5,18 @@ session_start();
 ob_start();
 include '../database/selectUser.php';
 include "../../config/php/connection.php";
+include "../php/checkJson.php";
 ob_clean();
 // if($_SERVER["REQUEST_METHOD"] != "POST"){
 //     echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);
 //     exit;
 // }
-$file = file_get_contents('php://input');
+if ($jsonUserLimit >= $userlistLength) {
+    echo false;
+    exit;
+}
 
+$file = file_get_contents('php://input');
 
 
 // Abrufen der JSON-Daten aus der Anfrage

@@ -236,7 +236,7 @@ class Beziehungen {
                             obj.htmlBody("cardContainer");
                         });
                     }
-                    wähleErstesInfoseite();
+                    await wähleErstesInfoseite();
                 }
             });
         }
