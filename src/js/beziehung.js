@@ -7,6 +7,7 @@ class Beziehungen {
     static temp_add = [];
     static temp_list_add = [];
     static temp_list_remove = [];
+    static tempListForSelector = [];
     constructor(id, umgebungsID, cardObjektID) {
         this.id = id;
         this.umgebungsID = umgebungsID;
@@ -208,6 +209,7 @@ class Beziehungen {
     }
 
     static showBeziehungsList() {
+      
         const selectorInfoterminalForCards = document.getElementById('selectorInfoterminalForCards');
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
@@ -225,18 +227,22 @@ class Beziehungen {
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
                             let obj = findObj(Infoseite.list, beziehung.cardObjektID);
+                            this.tempListForSelector.push(obj);
                             console.log(obj);
                             obj.htmlBody("cardContainer");
                         }
                         // Hier kannst du die Logik hinzufügen, um die Beziehung anzuzeigen
                     });
                     if (selectedValue == "alle") {
-                        Infoseite.list.forEach(obj => {
-                            console.log(obj);
+                            this.tempListForSelector = Infoseite.list;
+                            this.tempListForSelector.forEach(obj => {
+                                console.log(obj);
                             obj.htmlBody("cardContainer");
+                            
                         });
                     }
-                    await wähleErstesInfoseite();
+                    await wähleErstesInfoseite(this.tempListForSelector);
+                    this.tempListForSelector = [];
                 }
             });
         }

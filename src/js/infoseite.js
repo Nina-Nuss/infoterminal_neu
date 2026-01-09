@@ -1,5 +1,4 @@
 class Infoseite {
-
     static idCounter = 0;
     static selectedID = null;
     static lastSelectedID = null;
@@ -8,6 +7,7 @@ class Infoseite {
     static list = [];
     static selectedHistorys = [];
     static prepareTemplate = [];
+   
     static checkAllowed = false; // Variable to control checkbox behavior
     constructor(id, imagePath, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, wochentage, beschreibung) {
         this.id = id;
@@ -1422,11 +1422,11 @@ function handleCardMouseOut(id) {
     cardObj.style.boxShadow = "none";
 }
 
-async function wähleErstesInfoseite() {
+async function wähleErstesInfoseite(liste) {
     debugger
-    if (Infoseite.list.length > 0) {
+    if (liste.length > 0) {
         var titelUmgebung = document.getElementById("titelUmgebung");
-        const erstesObjekt = Infoseite.list[0];
+        const erstesObjekt = liste[0];
         try {
             document.getElementById(`cardObjekt${erstesObjekt.id}`).click(); // Simuliere einen Klick auf das erste Objekt
             titelUmgebung.innerHTML = "";

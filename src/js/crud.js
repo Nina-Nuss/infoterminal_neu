@@ -38,7 +38,6 @@ class Crud {
                 if (checkID.id == id) {
                     checkID.check = false
                     // console.log(checkID)
-
                 }
             });
             User.temp_remove.forEach(idd => {

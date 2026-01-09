@@ -25,7 +25,7 @@ window.onload = async function () {
     setupModalFocusManagement();
     erstelleNavigation();
     try {
-        await wähleErstesInfoseite();
+        await wähleErstesInfoseite(Infoterminal.list);
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }

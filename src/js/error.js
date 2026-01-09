@@ -18,7 +18,6 @@ function insertErrorLog(message) {
     });
 }
 window.addEventListener('error', function (event) {
-
     console.error( event.error, 'in', event.filename, 'Zeile', event.lineno);
     insertErrorLog(event.message, 'in', event.filename, 'Zeile', event.lineno);
     // window.location.href = "../../errorInfoterminal.php";
