@@ -10,25 +10,19 @@ window.onload = async function () {
     console.log("IP-Adresse:", ipAdress);
     if (document.getElementById("dokumente")) {
         try {
-
             await Infoseite.update();
-
         } catch (error) {
-            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
-            
+            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);    
         }
     }
     try {
         await Infoterminal.update();
         Infoterminal.erstelleSelector();
         Infoterminal.erstelleSelectorForCardObj();
-
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Infoterminal:", error);
     }
-  
     setupModalFocusManagement();
-
     erstelleNavigation();
     try {
         wähleErstesInfoseite();
@@ -306,7 +300,6 @@ function uncheckAllTableCheckboxes() {
     checkboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
-
     // Reset auch die temp_remove Liste
     if (Infoterminal.temp_remove) {
         Infoterminal.temp_remove = [];

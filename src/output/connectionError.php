@@ -12,7 +12,7 @@ include '../assets/links.html';
     
 </head>
 
-<body class="justify-content-center align-items-center d-flex  flex-column vh-100">
+<body class="d-flex justify-content-center align-items-center flex-column vh-100">
     <div class="text-center w-100">
         <img class="img-fluid" style="max-width: 300px;" src="/src/images/logo.png" alt="">
     </div>
@@ -28,13 +28,14 @@ include '../assets/links.html';
             .then(response => response.text())
             .then(data => {
                 console.log('IP-Adresse:', data);
-                document.getElementById("error-message").innerHTML = "<p>ihre IP-Adresse: " + data + " wurde nicht gefunden. Bitte kontaktieren Sie den Administrator.</p>";
+                document.getElementById("error-message").innerHTML = "Es besteht keine Verbindung zum Lern-Netzwerk. Bitte wenden Sie sich an den Administrator.</p>";
             });
     });
-    //  startProgressBar(10000);
-    setInterval(() => {
 
-        window.location.href = "index.php";
-    }, 10000);
-  
+    setInterval(() => {
+        window.location.href = "/dashboard/index.php";
+    }, 100);
+
+
+    
 </script>

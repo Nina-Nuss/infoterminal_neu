@@ -25,6 +25,7 @@ class Beziehungen {
             return relationlistee;
         } catch (error) {
             console.error("Fehler beim Abrufen der Beziehungen:", error);
+            window.location.href = "/config/php/connection.php";
             return [];
         }
     }

@@ -90,7 +90,6 @@ class Infoseite {
             });
         });
     }
-
     static preparePlaceHolder(imagePath) {
         let placeHolder = '';
         let ext = [];
