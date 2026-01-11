@@ -1,18 +1,13 @@
 <?php
 session_start();
 ob_start();
-
 require("../database/selectUser.php");
 include("../../config/php/connection.php");
 ob_end_clean();
 ob_clean();
-
-
-
 $file = file_get_contents('php://input');
 // Abrufen der JSON-Daten aus der Anfrage
 $data = json_decode($file, true);
-
 $userExist = false;
 // if($_SERVER["REQUEST_METHOD"] != "POST"){
 //     echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);
@@ -22,7 +17,6 @@ $username = trim($data['username'] ?? 'user'); // Leerzeichen entfernen, Default
 // $email = trim($data['email'] ?? ''); // Leerzeichen entfernen
 $password = $data['password'] ?? '0000'; // Leerzeichen entfernen, Default leer
 $remember = $data['remember'] ?? false; // Boolean konvertieren
-
 foreach ($userList1 as $row) {
     if (isset($row['username']) && isset($row['password']) && $row['username'] == $username && $row['is_active'] == 1) {
         // Überprüfen, ob das Konto gesperrt ist
