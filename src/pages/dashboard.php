@@ -112,10 +112,10 @@
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </div>
-                                        <div type="button" data-bs-placement="bottom"
+                                        <button type="button" data-bs-placement="bottom"
                                             class="btn btn-lg btn-secondary  btn-sm infobtn"
                                             data-bs-toggle="popover" title="Information zum Datum"
-                                            data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></div>
+                                            data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></button>
                                         <script>
                                             document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
                                                 new bootstrap.Popover(el, {
