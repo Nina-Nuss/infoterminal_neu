@@ -1,47 +1,32 @@
-document.addEventListener('DOMContentLoaded', async (): Promise<void> => {
+"use strict";
+document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const infoCounterLimit = document.getElementById('infoCounterLimit') as HTMLSelectElement | null;
-        const cardCounterLimit = document.getElementById('cardCounterLimit') as HTMLSelectElement | null;
-        const userCounterLimit = document.getElementById('userCounterLimit') as HTMLInputElement | null;
+        const infoCounterLimit = document.getElementById('infoCounterLimit');
+        const cardCounterLimit = document.getElementById('cardCounterLimit');
+        const userCounterLimit = document.getElementById('userCounterLimit');
         if (!infoCounterLimit || !cardCounterLimit || !userCounterLimit) {
             throw new Error('Required elements not found');
         }
         console.log("Config wird geladen");
-        const res: ConfigData = await getData('../../config/config.json'); // Define ConfigData interface
-        
+        const res = await getData('../../config/config.json'); // Define ConfigData interface
         createList(res.maxCountForInfoPages, infoCounterLimit, res.defaultMaxCountForInfoPages);
         createList(res.maxCountForInfoTerminals, cardCounterLimit, res.defaultMaxCountForInfoTerminals);
         loadNumbers(res.userLimitMax, res.userLimitMin, res.defaultUserLimit, userCounterLimit);
-        
         saveList(infoCounterLimit, "defaultMaxCountForInfoPages", "", "");
         saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals", "", "");
         saveList(userCounterLimit, "defaultUserLimit", res.userLimitMax, res.userLimitMin);
-    } catch (err) {
+    }
+    catch (err) {
         console.error('Error loading config:', err);
     }
 });
-
-interface ConfigItem {
-    value: number;
-}
-
-interface ConfigData {
-    maxCountForInfoPages: ConfigItem[];
-    maxCountForInfoTerminals: ConfigItem[];
-    defaultMaxCountForInfoPages: number;
-    defaultMaxCountForInfoTerminals: number;
-    userLimitMax: number;
-    userLimitMin: number;
-    defaultUserLimit: number;
-}
-
-async function getData(url: string): Promise<ConfigData> {
+async function getData(url) {
     const result = await fetch(url);
-    if (!result.ok) throw new Error(`Config nicht gefunden (Status ${result.status})`);
+    if (!result.ok)
+        throw new Error(`Config nicht gefunden (Status ${result.status})`);
     return await result.json();
 }
-
-function createList(cfg: ConfigItem[], select: HTMLSelectElement, def: number): void {
+function createList(cfg, select, def) {
     console.log(def);
     select.innerHTML = "";
     for (const item of cfg) {
@@ -52,8 +37,7 @@ function createList(cfg: ConfigItem[], select: HTMLSelectElement, def: number): 
     }
     select.value = def.toString();
 }
-
-function loadNumbers(max: number, min: number, cfg: number, userCounterLimit: HTMLInputElement): void {
+function loadNumbers(max, min, cfg, userCounterLimit) {
     console.log(max, min, cfg, userCounterLimit);
     userCounterLimit.value = "";
     if (cfg > max || cfg < min) {
@@ -61,9 +45,8 @@ function loadNumbers(max: number, min: number, cfg: number, userCounterLimit: HT
     }
     userCounterLimit.value = cfg.toString();
 }
-
-function saveList(select: HTMLSelectElement | HTMLInputElement, name: string, max: string | number, min: string | number): void {
-    select.addEventListener('change', async (): Promise<void> => {
+function saveList(select, name, max, min) {
+    select.addEventListener('change', async () => {
         const newDefault = parseFloat(select.value);
         console.log(`Neuer Default-Wert: ${newDefault}`);
         console.log(`Name: ${name}`);
@@ -79,31 +62,33 @@ function saveList(select: HTMLSelectElement | HTMLInputElement, name: string, ma
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, value: newDefault })
             });
-            if (!res.ok) throw new Error(`Speichern fehlgeschlagen (Status ${res.status})`);
-            const result: { success: boolean; error?: string } = await res.json();
+            if (!res.ok)
+                throw new Error(`Speichern fehlgeschlagen (Status ${res.status})`);
+            const result = await res.json();
             if (!result.success) {
                 alert('Fehler: ' + (result.error || 'Unbekannter Fehler'));
             }
-        } catch (err) {
+        }
+        catch (err) {
             console.error('Fehler beim Speichern der Config:', err);
             alert('Speicher-Fehler');
         }
     });
 }
-
-async function setData(): Promise<void> {
+async function setData() {
     try {
-        const data: any = await getData('../../config/configTest.json'); // Adjust type if possible
-        const val1 = document.getElementById("val1") as HTMLInputElement | null;
-        const val2 = document.getElementById("val2") as HTMLInputElement | null;
-        const val3 = document.getElementById("val3") as HTMLInputElement | null;
+        const data = await getData('../../config/configTest.json'); // Adjust type if possible
+        const val1 = document.getElementById("val1");
+        const val2 = document.getElementById("val2");
+        const val3 = document.getElementById("val3");
         if (!val1 || !val2 || !val3) {
             throw new Error('Input elements not found');
         }
         val1.value = data.webpageSettings[0].maxCountForInfoPages.toString();
         val2.value = data.webpageSettings[0].maxCountForInfoPages.toString();
         val3.value = data.webpageSettings[0].userLimit.toString();
-    } catch (err) {
+    }
+    catch (err) {
         console.error("Error fetching data:", err);
     }
 }
