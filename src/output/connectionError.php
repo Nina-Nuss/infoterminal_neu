@@ -33,8 +33,8 @@ include '../assets/links.html';
     });
 
     setInterval(() => {
-        window.location.href = "/src";
-    }, 1000);
+        window.location.href = "/src/pages/dashboard.php";
+    }, 10000);
 
 
     
