@@ -1,17 +1,18 @@
-<?php include '../php/noCache.php'; ?>
-<?php include '../php/auth.php'; ?>
 
 <?php
+// include '../php/noCache.php'; 
+// include '../php/auth.php'; 
 
-if (isset($_COOKIE['isAdmin'])) {
-    // Admin-Bereich anzeigen
-} else if ($_SESSION['is_admin'] != 1) {
-    header('Location: ../pages/dashboard.php');
-    exit;
-} else {
-    header('Location: ../pages/dashboard.php');
-    exit;
-}
+
+// if (isset($_COOKIE['isAdmin'])) {
+//     // Admin-Bereich anzeigen
+// } else if ($_SESSION['is_admin'] != 1) {
+//     header('Location: ../pages/dashboard.php');
+//     exit;
+// } else {
+//     header('Location: ../pages/dashboard.php');
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,7 @@
-<?php include  '../assets/links.html'; ?>
-<?php include  '../layout/header.php'; ?>
-<?php include  '../assets/scripts.html'; ?>
+<?php include  '../assets/links.html'; 
+include  '../layout/header.php'; 
+include  '../assets/scripts.html'; 
+?>
 
 
 <body class="bg-light">

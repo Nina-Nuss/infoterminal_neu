@@ -4,7 +4,7 @@
 // $server =  "10.1.6.3";
 // $serverName = "10.1.6.21";
 $serverName = "FIS-BW-03\SQLEXPRESS";
-//  $serverName = "NINA\SQLEXPRESS";
+$serverName = "NINA\SQLEXPRESS";
 $database = "dbTerminal";
 // $UID = "sa";
 // $PWD = "A%00000p&";

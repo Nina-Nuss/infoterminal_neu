@@ -1,8 +1,8 @@
 <?php
 
-include '../php/noCache.php';
-include '../php/auth.php';
-include '../php/checkConn.php';
+// include '../php/noCache.php';
+// include '../php/auth.php';
+// include '../php/checkConn.php';
 
 
 ?>
